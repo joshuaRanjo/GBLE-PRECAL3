@@ -54,6 +54,10 @@ public class PuzzleScript : MonoBehaviour
     [SerializeField] private Transform workAreaTransform;
     [SerializeField] private GameObject gridObject;
     [SerializeField] private GameObject puzzleObject;
+    [Header("Camera Offset")]
+    [SerializeField] private float xOffset = 0;
+    [SerializeField] private float yOffset = 0;
+
 
     private void OnEnable() {
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
@@ -74,7 +78,7 @@ public class PuzzleScript : MonoBehaviour
                                                 , allowOrientation, ceiling
                                                 , maxA,minA, maxB,minB, maxH,minH, maxK,minK
                                                 ,default_a, default_b,default_h,default_k
-                                                
+                                                , xOffset, yOffset
                                                 );
         
 

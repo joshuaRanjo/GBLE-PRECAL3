@@ -86,12 +86,17 @@ public class SideMenuController3 : MonoBehaviour
         inputA.text = ldScriptableObject.a.ToString();
         inputH.text = ldScriptableObject.h.ToString();
         inputK.text = ldScriptableObject.k.ToString();
+
+        aSlider.value = ldScriptableObject.a;
+        hSlider.value = ldScriptableObject.h;
+        kSlider.value = ldScriptableObject.k;
         if(ldScriptableObject.b == -99f)
         {
             inputB.text = "";
         }
         else
         {
+            bSlider.value = ldScriptableObject.b;
             inputB.text = ldScriptableObject.b.ToString();
         }
         InputStartListening();

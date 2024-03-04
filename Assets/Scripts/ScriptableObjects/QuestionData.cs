@@ -13,13 +13,13 @@ public class QuestionData : ScriptableObject
     public bool ceiling;
     public float maxA,minA,maxB,minB,maxH,minH,maxK,minK;
     public float defaultA, defaultB, defaultH, defaultK;
+    public float xOffset,yOffset;
 
     public bool puzzleType; // True = interact with object, false = line creation
 
     [Header("ExpectedAnswer")]
     public List<ExpectedAnswer> expectedAnswerList;
-    [Header("Puzzle Script")]
-    public PuzzleScript puzzleScript;
+
 
     [System.NonSerialized]
     public UnityEvent questionUpdateEvent = new UnityEvent();
@@ -30,6 +30,7 @@ public class QuestionData : ScriptableObject
                                     , bool newAllowK, bool newAllowOrientation, bool newCeiling
                                     , float newMaxA, float newMinA, float newMaxB, float newMinB, float newMaxH, float newMinH, float newMaxK, float newMinK
                                     , float newDefaultA, float newDefaultB, float newDefaultH, float newDefaultK
+                                    , float newXOffset, float newYOffset
                                     )
     {
         prompt = newPrompt;
@@ -63,6 +64,9 @@ public class QuestionData : ScriptableObject
         defaultB = newDefaultB;
         defaultH = newDefaultH;
         defaultK = newDefaultK;
+
+        xOffset = newXOffset;
+        yOffset = newYOffset;
        
         //Change UI
         questionUpdateEvent.Invoke();

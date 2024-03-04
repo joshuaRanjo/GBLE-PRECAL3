@@ -8,6 +8,7 @@ public class FollowPlayer : MonoBehaviour
     public Transform target;
     public Transform target2;
     [SerializeField] private LineData ld;
+    [SerializeField] private QuestionData qd;
     [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private float cameraSpeed = 0.1f;
 
@@ -91,7 +92,8 @@ public class FollowPlayer : MonoBehaviour
         target = ld.workArea;
 
         Vector3 offset = cameraOffset;
-        offset.y = 0f;
+        offset.y = qd.yOffset;
+        offset.x = -3.2f + qd.xOffset;
         cameraOffset = offset;
     }
     private void ExitPuzzle()
@@ -100,6 +102,7 @@ public class FollowPlayer : MonoBehaviour
 
         Vector3 offset = cameraOffset;
         offset.y = 5f;
+        offset.x = 0f;
         cameraOffset = offset;
     }
 }   

@@ -34,10 +34,11 @@ public class LineRendererController : MonoBehaviour
         objectMoverScript.SetLineObject(ldScriptableObject.lineObject, ldScriptableObject.workArea);
         if(ldScriptableObject.conicType == 1)
         {
-            
+             
             //Circle
             if(qdScriptableObject.puzzleType) //True == Interact type puzzle // False == Line type puzzle;
             {
+
                 interactedCircleRenderer.SetLineObject(ldScriptableObject.lineObject);
             }
             else 
