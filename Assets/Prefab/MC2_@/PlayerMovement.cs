@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         animator = sprite.GetComponent<Animator>();
 
         // Ignore NPC Collision
-        Physics2D.IgnoreLayerCollision( 7,8, true);
+        Physics2D.IgnoreLayerCollision( 8,9, true);
     }
 
     // Update is called once per frame

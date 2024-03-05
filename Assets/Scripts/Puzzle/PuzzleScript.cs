@@ -24,6 +24,7 @@ public class PuzzleScript : MonoBehaviour
     [SerializeField] private string prompt;
     
     [SerializeField] private bool allowCircle, allowEllipse, allowParabola, allowHyperbola;
+    [Tooltip("// True = interact with object, false = line creation")]
     [SerializeField] private bool puzzleType; // True = interact with object, false = line creation
     [SerializeField] private bool allowA, allowB, allowH, allowK, allowOrientation;
     [Header("For Parabolas")]
@@ -33,13 +34,18 @@ public class PuzzleScript : MonoBehaviour
     [Header("Saved values")]
     [SerializeField] private float a;
     [SerializeField] private float b,h,k;
+
+    [Tooltip("True = Horizontal, False = Vertical")]
     [SerializeField] private bool orientation; //true = horizontal , false = vertical
+    [Tooltip("1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola")]
     [SerializeField] private int conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
 
     [Header("Default values")]
     [SerializeField] private float default_a;
     [SerializeField] private float default_b,default_h,default_k;
+    [Tooltip("True = Horizontal, False = Vertical")]
     [SerializeField] private bool default_orientation; //true = horizontal , false = vertical
+    [Tooltip("1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola")]
     [SerializeField] private int default_conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
 
     [Header("Max Values")]
@@ -69,6 +75,7 @@ public class PuzzleScript : MonoBehaviour
 
     public void AttachToScriptableObjects()
     {
+        Debug.Log(a);
         Debug.Log(conicType);
         ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID);
         qdScriptableObject.AttachToQuestionData(prompt, 
@@ -93,6 +100,7 @@ public class PuzzleScript : MonoBehaviour
         {
             gridObject.SetActive(false);
             GetSaveLineData();
+            Debug.Log(a);
         }
         
         //Invoke or clear data on both LineData and QuestionData Scriptable objects;
