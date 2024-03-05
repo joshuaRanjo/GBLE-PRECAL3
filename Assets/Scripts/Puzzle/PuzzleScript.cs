@@ -90,7 +90,7 @@ public class PuzzleScript : MonoBehaviour
                                                 , xOffset, yOffset
                                                 );
         
-
+        Debug.Log("Enter Puzzle");
         gridObject.SetActive(true);
         inPuzzle = true;
         EventManager.TriggerEvent("EnterPuzzle");

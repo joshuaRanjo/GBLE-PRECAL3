@@ -9,6 +9,12 @@ public class NumberLineGenerator : MonoBehaviour
 
     public Color numberColor;
     public Color circleColor;
+    public float fontSize = 2.5f;
+    public int skipNumbers;
+    public float verticalNumberOffsetX = 0f;
+    public float verticalNumberOffsetY = 0f;
+    public float horizontalNumberOffsetY = 0f;
+    public float horizontalNumberOffsetX = 0f;
 
     void Start()
     {
@@ -47,14 +53,16 @@ public class NumberLineGenerator : MonoBehaviour
             if(i == 0)
             {
                 // Position the number object in a line
-                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(-0.19f, -0.18f, 0);
+                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(-0.19f, -0.18f + horizontalNumberOffsetY, 0);
             }
             else
             {
                 // Position the number object in a line
-                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(0, -0.18f, 0);
+                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(0+horizontalNumberOffsetX, -0.18f + horizontalNumberOffsetY, 0);
             }
             numberObject.GetComponent<TextMeshPro>().text = i.ToString();
+            numberObject.GetComponent<TextMeshPro>().fontSize = fontSize;
+            i = i + skipNumbers -1;
         }
 
 
@@ -101,12 +109,15 @@ public class NumberLineGenerator : MonoBehaviour
                     
                 
                 // Calculate the position with Y-axis offset
-                Vector3 position =  Vector3.up * i * spacing + new Vector3(-0.19f - offset, 0, 0);
+                Vector3 position =  Vector3.up * i * spacing + new Vector3(-0.19f - offset + verticalNumberOffsetX, 0+verticalNumberOffsetY, 0);
 
                 // Position the number object
                 numberObject.transform.localPosition = position;
                 numberObject.GetComponent<TextMeshPro>().text = i.ToString();
+                numberObject.GetComponent<TextMeshPro>().fontSize = fontSize;
+                
             }
+            i = i + skipNumbers -1;
         }
     }
 }
