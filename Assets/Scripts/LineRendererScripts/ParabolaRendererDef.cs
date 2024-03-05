@@ -99,8 +99,13 @@ public class ParabolaRendererDef : MonoBehaviour
         a = ldScriptableObject.a;
         isVertical = !ldScriptableObject.orientation;
         ceiling = qdScriptableObject.ceiling;
+
+        
         
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
+
+        float shapeHeight = shape.spline.GetHeight(0);
+        Debug.Log("Shape height = " + shapeHeight);
         shape.spline.Clear();
 
         List<Vector3> points = DrawParabola();
@@ -116,7 +121,7 @@ public class ParabolaRendererDef : MonoBehaviour
                     for(int i = points.Count - 1; i >= 0 ; i--)
                     {
                         shape.spline.InsertPointAt(k, points[i]);
-                        shape.spline.SetHeight(k, 1f);
+                        shape.spline.SetHeight(k, shapeHeight);
                         shape.spline.SetTangentMode(k, ShapeTangentMode.Continuous);
                         k++;
                     }
@@ -125,10 +130,24 @@ public class ParabolaRendererDef : MonoBehaviour
                 else { 
                     for(int i = 0; i < points.Count; i++)
                     {
-
-                        shape.spline.InsertPointAt(i, points[i]);
-                        shape.spline.SetHeight(i, 1f);
-                        shape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+                        int count = shape.spline.GetPointCount();
+                        if(count > 0 )
+                        {
+                               
+                            if(Vector3.Distance(shape.spline.GetPosition(count-1), points[i]) > 0.1f
+                                && Vector3.Distance(shape.spline.GetPosition(0), points[i]) > 0.1f  )
+                            {
+                                shape.spline.InsertPointAt(count, points[i]);
+                                shape.spline.SetHeight(count, shapeHeight);
+                                shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+                            }                             
+                        }
+                        else{
+                                shape.spline.InsertPointAt(count, points[i]);
+                                shape.spline.SetHeight(count, shapeHeight);
+                                shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+                        }
+                        
                     }
                 }
                 if(lineObject.CompareTag("Terrain"))

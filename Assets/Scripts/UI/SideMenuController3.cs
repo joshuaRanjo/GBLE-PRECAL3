@@ -124,9 +124,12 @@ public class SideMenuController3 : MonoBehaviour
     {
         backButton.interactable = true;
         backButton.onClick.AddListener( () => {EventManager.TriggerEvent("ExitPuzzle");});
-
+        InputStopListening();
         AddSliderLimits();
+        InputStartListening();
         UpdateUI();
+        
+        
         
     }
 
@@ -263,10 +266,15 @@ public class SideMenuController3 : MonoBehaviour
     {
         if(float.TryParse(newValue, out float floatValue))
         {         
-            if((qdScriptableObject.maxA != -99) && (qdScriptableObject.maxA >= floatValue || qdScriptableObject.minA <= floatValue))
+
+            if((qdScriptableObject.maxA != -99) && (qdScriptableObject.maxA >= floatValue && qdScriptableObject.minA <= floatValue))
             {
+                InputStopListening();
                 ldScriptableObject.SetA(floatValue, "input");
+                
                 aSlider.value = floatValue;
+                InputStartListening();
+                Debug.Log("Valid Input");
             }
         }
         
@@ -275,10 +283,12 @@ public class SideMenuController3 : MonoBehaviour
     {
         if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxB != -99) && (qdScriptableObject.maxB >= floatValue || qdScriptableObject.minB <= floatValue))
+            if((qdScriptableObject.maxB != -99) && (qdScriptableObject.maxB >= floatValue && qdScriptableObject.minB <= floatValue))
             {
                 ldScriptableObject.SetB(floatValue, "input");
+                 InputStopListening();
                 bSlider.value = floatValue;
+                InputStartListening();
             }
         }
     }
@@ -287,10 +297,12 @@ public class SideMenuController3 : MonoBehaviour
 
         if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxH != -99) && (qdScriptableObject.maxH >= floatValue || qdScriptableObject.minH <= floatValue))
+            if((qdScriptableObject.maxH != -99) && (qdScriptableObject.maxH >= floatValue && qdScriptableObject.minH <= floatValue))
             {
                 ldScriptableObject.SetH(floatValue, "input");
+                 InputStopListening();
                 hSlider.value = floatValue;
+                InputStartListening();
             }
         }
         
@@ -299,14 +311,15 @@ public class SideMenuController3 : MonoBehaviour
     {
         if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxK != -99) && (qdScriptableObject.maxK >= floatValue || qdScriptableObject.minK <= floatValue))
+            if((qdScriptableObject.maxK != -99) && (qdScriptableObject.maxK >= floatValue && qdScriptableObject.minK <= floatValue))
             {    
                 ldScriptableObject.SetK(floatValue, "input");
+                 InputStopListening();
                 kSlider.value = floatValue;
-                Debug.Log("Inside");
+                InputStartListening();
             }
             else{
-                Debug.Log("Outside");
+
             }
         }
     }
@@ -323,8 +336,8 @@ public class SideMenuController3 : MonoBehaviour
         bSlider.value = 0.5f;
         hSlider.value = 0.5f;
         kSlider.value = 0.5f;
-        InputStartListening();
-
+        
+        /*
         aSlider.minValue = 0;
         aSlider.maxValue = 1f;
         bSlider.minValue = 0;
@@ -332,7 +345,8 @@ public class SideMenuController3 : MonoBehaviour
         hSlider.minValue = 0;
         hSlider.maxValue = 1f;
         kSlider.minValue = 0;
-        kSlider.maxValue = 1f;
+        kSlider.maxValue = 1f;*/
+        InputStartListening();
     }
 
     private void AddSliderLimits()
@@ -363,28 +377,28 @@ public class SideMenuController3 : MonoBehaviour
     {
         InputStopListening();
         inputA.text = newValue.ToString("F1");
-        ldScriptableObject.SetA(Mathf.Round(newValue*10f)/10f);
+        ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f);
         InputStartListening();
     }
     private void SliderBChange(float newValue)
     {
         InputStopListening();
         inputB.text = newValue.ToString("F1");
-        ldScriptableObject.SetB(Mathf.Round(newValue*10f)/10f);
+        ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f);
         InputStartListening();
     }
     private void SliderHChange(float newValue)
     {
         InputStopListening();
         inputH.text = newValue.ToString("F1");
-        ldScriptableObject.SetH(Mathf.Round(newValue*10f)/10f);
+        ldScriptableObject.SetH(Mathf.Round(newValue*100f)/100f);
         InputStartListening();
     }
     private void SliderKChange(float newValue)
     {
         InputStopListening();
         inputK.text = newValue.ToString("F1");
-        ldScriptableObject.SetK(Mathf.Round(newValue*10f)/10f);
+        ldScriptableObject.SetK(Mathf.Round(newValue*100f)/100f);
         InputStartListening();
     }
 

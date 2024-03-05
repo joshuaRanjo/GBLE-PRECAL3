@@ -48,6 +48,7 @@ public class LineData : ScriptableObject
     public void AttachToLineData(float newA, float newB, float newH,float newK,bool  newOrientation, int newConicType, GameObject newPuzzleObject, Transform newWorkArea, string newPuzzleID)
     {
         a = newA; b = newB; h = newH; k = newK; orientation = newOrientation; conicType = newConicType; lineObject = newPuzzleObject; workArea = newWorkArea; puzzleID = newPuzzleID;
+        Debug.Log("LD a value = " + a);
         attachedDataEvent.Invoke();
     }
     public void ResetValues()

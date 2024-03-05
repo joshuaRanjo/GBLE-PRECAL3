@@ -64,6 +64,8 @@ public class PuzzleScript : MonoBehaviour
     [SerializeField] private float xOffset = 0;
     [SerializeField] private float yOffset = 0;
 
+    private bool inPuzzle = false;
+
 
     private void OnEnable() {
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
@@ -75,8 +77,8 @@ public class PuzzleScript : MonoBehaviour
 
     public void AttachToScriptableObjects()
     {
-        Debug.Log(a);
-        Debug.Log(conicType);
+
+        Debug.Log("A value = " + a);
         ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID);
         qdScriptableObject.AttachToQuestionData(prompt, 
                                                 allowCircle, allowEllipse, allowParabola, allowHyperbola
@@ -90,17 +92,18 @@ public class PuzzleScript : MonoBehaviour
         
 
         gridObject.SetActive(true);
+        inPuzzle = true;
         EventManager.TriggerEvent("EnterPuzzle");
     }
 
 
     public void ExitPuzzle()
     {
-        if(puzzleID == ldScriptableObject.puzzleID)
-        {
+        if(puzzleID == ldScriptableObject.puzzleID && inPuzzle == true)
+        {   Debug.Log("Exit Puzzle number = " + a);
+            inPuzzle = false;
             gridObject.SetActive(false);
             GetSaveLineData();
-            Debug.Log(a);
         }
         
         //Invoke or clear data on both LineData and QuestionData Scriptable objects;
