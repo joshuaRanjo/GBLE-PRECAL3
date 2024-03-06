@@ -87,7 +87,7 @@ public class FaceScripts : MonoBehaviour
             }
             float totalPercentage = (a+b+h+k)/count;
             int chosenImage = 3;
-            Debug.Log(totalPercentage);
+
 
             if(totalPercentage == 0)
             {chosenImage = 0;}

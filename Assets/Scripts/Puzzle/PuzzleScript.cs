@@ -8,7 +8,7 @@ using Fungus;
 public class PuzzleScript : MonoBehaviour
 {
     [Header("Puzzle ID")]
-    [SerializeField] private string puzzleID;
+    public string puzzleID;
 
     [Header("Question ScriptableObject")]
     [SerializeField] private QuestionData qdScriptableObject;
@@ -100,7 +100,7 @@ public class PuzzleScript : MonoBehaviour
     public void ExitPuzzle()
     {
         if(puzzleID == ldScriptableObject.puzzleID && inPuzzle == true)
-        {   Debug.Log("Exit Puzzle number = " + a);
+        {   
             inPuzzle = false;
             gridObject.SetActive(false);
             GetSaveLineData();

@@ -7,6 +7,13 @@ public class FlowchartController : MonoBehaviour
 {
     [SerializeField] private Flowchart fc;
 
+
+
+    public void RunBlock(string blockName)
+    {
+        fc.ExecuteBlock(blockName);
+    } 
+
     public void Converse(string blockName)
     {
         fc.ExecuteBlock(blockName);
