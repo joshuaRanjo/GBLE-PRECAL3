@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Fungus;
 
 public class PlayerInputController : MonoBehaviour
 {
@@ -24,15 +25,21 @@ public class PlayerInputController : MonoBehaviour
         EventManager.StopListening("ExitPuzzle", SwitchToPlayerMovement);
     }
 
-    private void SwitchToConversation()
+    public void SwitchToConversation()
     {
+        Debug.Log("SWitchtoConversation");
         controller.actions.FindActionMap("PlayerMovement").Disable();
         controller.actions.FindActionMap("Conversation").Enable();
     }
 
-    private void SwitchToPlayerMovement()
+    public void SwitchToPlayerMovement()
     {
-        controller.actions.FindActionMap("PlayerMovement").Enable();
-        controller.actions.FindActionMap("Conversation").Disable();
+        var sayDialog = Fungus.SayDialog.GetSayDialog(); 
+        if(!sayDialog.isActiveAndEnabled)
+        {
+            Debug.Log("SwitchToMove");
+            controller.actions.FindActionMap("PlayerMovement").Enable();
+            controller.actions.FindActionMap("Conversation").Disable();
+        }
     }
 }
