@@ -60,6 +60,7 @@ public class PuzzleScript : MonoBehaviour
     [SerializeField] private Transform workAreaTransform;
     [SerializeField] private GameObject gridObject;
     [SerializeField] private GameObject puzzleObject;
+    [SerializeField] private Transform teleport;
     [Header("Camera Offset")]
     [SerializeField] private float xOffset = 0;
     [SerializeField] private float yOffset = 0;
@@ -78,7 +79,7 @@ public class PuzzleScript : MonoBehaviour
     public void AttachToScriptableObjects()
     {
 
-        Debug.Log("A value = " + a);
+
         ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID);
         qdScriptableObject.AttachToQuestionData(prompt, 
                                                 allowCircle, allowEllipse, allowParabola, allowHyperbola
@@ -90,7 +91,11 @@ public class PuzzleScript : MonoBehaviour
                                                 , xOffset, yOffset
                                                 );
         
-        Debug.Log("Enter Puzzle");
+        if(teleport != null)
+        {
+            TeleportToPoint();
+        }
+
         gridObject.SetActive(true);
         inPuzzle = true;
         EventManager.TriggerEvent("EnterPuzzle");
@@ -169,6 +174,12 @@ public class PuzzleScript : MonoBehaviour
         Debug.Log("Checked answer " + eaNumber);
 
         fc.SetIntegerVariable("CompletionState", eaNumber);
+    }
+
+    public void TeleportToPoint()
+    {
+        GameObject player = GameObject.Find("Player");
+        player.transform.position = teleport.position;
     }
 
 }

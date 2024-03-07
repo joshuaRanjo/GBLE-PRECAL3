@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
     public Transform player;
     public Transform target;
     public Transform target2;
+    private Transform savedTarget2;
     [SerializeField] private LineData ld;
     [SerializeField] private QuestionData qd;
     [SerializeField] private Vector3 cameraOffset;
@@ -64,6 +65,14 @@ public class FollowPlayer : MonoBehaviour
 
     private void Follow()
     {
+        if(target2 != null)
+        {
+            target = target2;
+        }
+        else{
+            if(followingPlayer)
+                target = player;
+        }
             Vector3 finalPosition = target.position + cameraOffset;
 
             ///
@@ -78,14 +87,6 @@ public class FollowPlayer : MonoBehaviour
     
     }
 
-    private void Begin()
-    {
-        target = target2;
-
-        Vector3 offset = cameraOffset;
-        offset.y = 0f;
-        cameraOffset = offset;
-    }
 
     private void OtherFocus()
     {
@@ -95,14 +96,31 @@ public class FollowPlayer : MonoBehaviour
         offset.y = qd.yOffset;
         offset.x = -3.2f + qd.xOffset;
         cameraOffset = offset;
+        followingPlayer = false;
+        if(target2 != null)
+        {
+            savedTarget2 = target2;
+            target2 = null;
+        }
+    }
+
+    public void FocusOnTransform(Transform newTarget)
+    {
+        target2 = newTarget;
     }
     private void ExitPuzzle()
     {
         target = player;
-
+        followingPlayer = true;
         Vector3 offset = cameraOffset;
         offset.y = 5f;
         offset.x = 0f;
         cameraOffset = offset;
+
+        if(savedTarget2 != null)
+        {
+            target2 = savedTarget2;
+            savedTarget2 = null;
+        }
     }
 }   

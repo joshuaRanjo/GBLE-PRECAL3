@@ -10,7 +10,7 @@ public class NumberLineGenerator : MonoBehaviour
     public Color numberColor;
     public Color circleColor;
     public float fontSize = 2.5f;
-    public int skipNumbers;
+    public int skipNumbers = 1;
     public float verticalNumberOffsetX = 0f;
     public float verticalNumberOffsetY = 0f;
     public float horizontalNumberOffsetY = 0f;
