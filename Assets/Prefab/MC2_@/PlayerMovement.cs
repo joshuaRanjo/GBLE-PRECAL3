@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     private void FlipCharacter()
     {
         facingRight = !facingRight;
-        transform.Rotate(0f, 180f, 0f);
+        sprite.transform.Rotate(0f, 180f, 0f);
     }
 
     public void DisableMovement(){

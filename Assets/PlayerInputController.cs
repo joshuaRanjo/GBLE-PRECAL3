@@ -7,6 +7,7 @@ using Fungus;
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField] private PlayerInput controller;
+    [SerializeField] private bool storyConversation = false;
 
     private void OnEnable() {
         EventManager.StartListening("EnterConversation", SwitchToConversation);
@@ -27,19 +28,28 @@ public class PlayerInputController : MonoBehaviour
 
     public void SwitchToConversation()
     {
-        Debug.Log("SWitchtoConversation");
         controller.actions.FindActionMap("PlayerMovement").Disable();
         controller.actions.FindActionMap("Conversation").Enable();
     }
 
     public void SwitchToPlayerMovement()
     {
-        var sayDialog = Fungus.SayDialog.GetSayDialog(); 
-        if(!sayDialog.isActiveAndEnabled)
-        {
-            Debug.Log("SwitchToMove");
+        if(!storyConversation)
+        {   
             controller.actions.FindActionMap("PlayerMovement").Enable();
             controller.actions.FindActionMap("Conversation").Disable();
         }
     }
+
+    public void SwitchToStoryMoment()
+    {
+        storyConversation = true;
+    }
+
+    public void SwitchOutOfStoryMoment()
+    {
+        storyConversation = false;
+    }
+
+
 }

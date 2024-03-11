@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+    
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class FollowPlayer : MonoBehaviour
     private GameObject bounds;
 
     public bool followingPlayer = true;
+    public bool following = true;
 
 
     private void OnEnable() {
@@ -56,7 +58,7 @@ public class FollowPlayer : MonoBehaviour
         minValues = new Vector3(w,s,-10);
         maxValues = new Vector3(e,n,-10);
         */
-
+            if(following)
             Follow();
         
         
@@ -72,6 +74,7 @@ public class FollowPlayer : MonoBehaviour
         else{
             if(followingPlayer)
                 target = player;
+            
         }
             Vector3 finalPosition = target.position + cameraOffset;
 
@@ -106,6 +109,7 @@ public class FollowPlayer : MonoBehaviour
 
     public void FocusOnTransform(Transform newTarget)
     {
+        Debug.Log("Focusing");
         target2 = newTarget;
     }
     private void ExitPuzzle()
@@ -122,5 +126,15 @@ public class FollowPlayer : MonoBehaviour
             target2 = savedTarget2;
             savedTarget2 = null;
         }
+    }
+
+    public void StartFollowing()
+    {
+        following = true;
+    }
+
+    public void StopFollowing()
+    {
+        following = false;
     }
 }   
