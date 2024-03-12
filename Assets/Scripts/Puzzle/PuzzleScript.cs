@@ -131,14 +131,17 @@ public class PuzzleScript : MonoBehaviour
         foreach(ExpectedAnswer ea in expectedAnswers)
         {
             bool solved = true;
+            Debug.Log("Checking Expected answer " + x);
             // Check A
                 if((ea.minA != -99f && ea.maxA != -99f)  && ((a < ea.minA) ||  (a > ea.maxA)))
                 {
+                    Debug.Log("Checking Expected answer " + x + "A");
                     solved = false;
                 }
             // Check B
                 if((ea.minB != -99f && ea.maxB != -99f)  && ((b < ea.minB) ||  (b > ea.maxB)))
                 {
+                    Debug.Log("Checking Expected answer " + x + "B");
                     solved = false;
                 }
             // Check H

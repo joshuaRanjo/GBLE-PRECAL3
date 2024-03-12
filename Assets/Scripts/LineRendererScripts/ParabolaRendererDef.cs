@@ -105,7 +105,6 @@ public class ParabolaRendererDef : MonoBehaviour
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
 
         float shapeHeight = 1;
-        Debug.Log("Shape height = " + shapeHeight);
         shape.spline.Clear();
 
         List<Vector3> points = DrawParabola();
