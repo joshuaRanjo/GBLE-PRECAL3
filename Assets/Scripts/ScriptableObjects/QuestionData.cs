@@ -49,7 +49,7 @@ public class QuestionData : ScriptableObject
         allowK = newAllowK;
 
         allowOrientation = newAllowOrientation;
-        newCeiling = newCeiling;
+        ceiling = newCeiling;
 
         maxA = newMaxA;
         minA = newMinA;

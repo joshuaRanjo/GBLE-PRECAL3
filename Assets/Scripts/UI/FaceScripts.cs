@@ -117,7 +117,7 @@ public class FaceScripts : MonoBehaviour
         else
         {
             float distanceToSmallerRange = Mathf.Min(Mathf.Abs(number - smallMin), Mathf.Abs(number - smallMax));
-            float percentage;
+            
             if((largeMax - smallMax) > (smallMin - largeMin))
                 return (distanceToSmallerRange / Mathf.Abs(largeMax - smallMax));
             else

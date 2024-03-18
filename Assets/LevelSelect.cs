@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelSelect : MonoBehaviour
 {
-public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
+    public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
     public Color endColor = Color.blue;
     public float lerpDuration = 2f;
 
@@ -14,12 +14,6 @@ public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
     {
         if (spriteShapeRenderer == null)
         {
-            // Assuming the SpriteShapeRenderer is on the same GameObject as this script
-            spriteShapeRenderer = GetComponent<UnityEngine.U2D.SpriteShapeRenderer>();
-        }
-
-        if (spriteShapeRenderer == null)
-        {
             Debug.LogError("SpriteShapeRenderer not found. Attach the script to a GameObject with a SpriteShapeRenderer component.");
         }
 
@@ -27,7 +21,7 @@ public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
         startColor = spriteShapeRenderer.color;
     }
 
-    private void StartColorLerp()
+    public void StartColorLerp()
     {
         // Stop any existing coroutine before starting a new one
         startColor = spriteShapeRenderer.color;
@@ -37,6 +31,7 @@ public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
 
     private IEnumerator LerpColorCoroutine()
     {
+        Debug.Log("Changing color");
         float elapsed_time = 0f;
 
         while (elapsed_time < lerpDuration)
@@ -58,7 +53,5 @@ public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
         // Ensure the final color is set
         spriteShapeRenderer.color = endColor;
 
-        // Restart the coroutine for continuous looping
-        StartColorLerp();
     }
 }

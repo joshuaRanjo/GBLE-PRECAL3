@@ -23,7 +23,7 @@ public class MenuMover : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
-    private void ShowDevice()
+    public void ShowDevice()
     {
         if(!puzzleMode)
         {
@@ -34,7 +34,7 @@ public class MenuMover : MonoBehaviour
         }
     }
 
-    private void HideDevice()
+    public void HideDevice()
     {
         if(puzzleMode)
         {
