@@ -27,4 +27,16 @@ public class InteractedCircleRenderer : MonoBehaviour
         lineObject = null;
 
     }
+
+    public void UpdateLine(GameObject puzzleObject, float a)
+    {
+       Vector3 scale = puzzleObject.transform.localScale;
+       puzzleObject.transform.localScale = new Vector3(a*2, a*2, scale.z);
+    }
+
+    public void UpdateLine(GameObject puzzleObject, float a, float b)
+    {
+        Vector3 scale = puzzleObject.transform.localScale;
+       puzzleObject.transform.localScale = new Vector3(a*2, b*2, scale.z);
+    }
 }

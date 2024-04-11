@@ -11,7 +11,7 @@ public class EquationController : MonoBehaviour
     [SerializeField] private TEXDraw equationText;
 
     [Header("Line Data")]
-    [SerializeField] private LineData lineDataScriptableObject;
+    [SerializeField] private LineData2 lineDataScriptableObject;
 
     private int equationType = 0;
     public bool isVertical = true;
@@ -20,6 +20,8 @@ public class EquationController : MonoBehaviour
     private string hColor = "#48A655";
     private string kColor = "#2582B7";
 
+    private bool inPuzzle = false;
+
 #region EVENT_LISTENERS
 
 
@@ -27,6 +29,7 @@ public class EquationController : MonoBehaviour
     {
         lineDataScriptableObject.dataChangeEvent.AddListener(UpdateEquation);
         lineDataScriptableObject.attachedDataEvent.AddListener(UpdateEquation);
+        EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ResetVariables);
 
     }
@@ -35,13 +38,23 @@ public class EquationController : MonoBehaviour
     {
         lineDataScriptableObject.dataChangeEvent.RemoveListener(UpdateEquation);
         lineDataScriptableObject.attachedDataEvent.RemoveListener(UpdateEquation);
+        EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ResetVariables);
     } 
 
 #endregion
 
+
     private void Start() {
         equationType = 0;
+    }
+
+    private void LateUpdate()
+    {}
+
+    private void EnterPuzzle()
+    {
+        inPuzzle = true;
     }
 
     public void SetEquationType(int type)
@@ -57,6 +70,7 @@ public class EquationController : MonoBehaviour
     {
         isVertical = true;
         equationText.text = "";
+        inPuzzle = false;
     }
 
     private void UpdateEquation()

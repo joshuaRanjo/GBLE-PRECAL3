@@ -26,7 +26,21 @@ public class ObjectMover : MonoBehaviour
 
         currentPosition.x = h;
         currentPosition.y = k;
+        currentPosition.z = 0.1f;
+
         lineObject.transform.localPosition = currentPosition;
+        //Debug.Log("ObjectMover" + h + " and " +k);
+    }
+
+    public void UpdateLine(GameObject newObject, float h, float k)
+    {
+        Vector3 currentPosition = newObject.transform.position;
+
+        currentPosition.x = h;
+        currentPosition.y = k;
+        currentPosition.z = 0.1f;
+        
+        newObject.transform.localPosition = currentPosition;
         //Debug.Log("ObjectMover" + h + " and " +k);
     }
 

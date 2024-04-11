@@ -95,7 +95,11 @@ public class PuzzleScript : MonoBehaviour
             TeleportToPoint();
         }
 
-        gridObject.SetActive(true);
+        if(gridObject != null)
+        {
+            gridObject.SetActive(true);
+        }
+        
         inPuzzle = true;
         EventManager.TriggerEvent("EnterPuzzle");
     }

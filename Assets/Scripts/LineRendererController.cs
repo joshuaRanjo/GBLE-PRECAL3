@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class LineRendererController : MonoBehaviour
 {
     [Header("Line Data")]
-    [SerializeField] private LineData ldScriptableObject;
+    [SerializeField] private LineData2 ldScriptableObject;
     [Header("Question Data")]
-    [SerializeField] private QuestionData qdScriptableObject;
+    [SerializeField] private QuestionData2 qdScriptableObject;
 
     [Header("Line Scripts")]
     [SerializeField] private CircleRenderer circleRenderer;
@@ -31,15 +31,15 @@ public class LineRendererController : MonoBehaviour
 
     private void AttachData()
     {
-        objectMoverScript.SetLineObject(ldScriptableObject.lineObject, ldScriptableObject.workArea);
+        objectMoverScript.SetLineObject(ldScriptableObject.puzzleObject, ldScriptableObject.workArea);
         if(ldScriptableObject.conicType == 1)
         {
              
             //Circle
             if(qdScriptableObject.puzzleType) //True == Interact type puzzle // False == Line type puzzle;
             {
-
-                interactedCircleRenderer.SetLineObject(ldScriptableObject.lineObject);
+                Debug.Log("Circle Attached");
+                interactedCircleRenderer.SetLineObject(ldScriptableObject.puzzleObject);
             }
             else 
             {
@@ -51,7 +51,7 @@ public class LineRendererController : MonoBehaviour
             //Ellipse
             if(qdScriptableObject.puzzleType) //True == Interact type puzzle // False == Line type puzzle;
             {
-                interactedCircleRenderer.SetLineObject(ldScriptableObject.lineObject);
+                interactedCircleRenderer.SetLineObject(ldScriptableObject.puzzleObject);
             }
             else 
             {
@@ -63,7 +63,7 @@ public class LineRendererController : MonoBehaviour
             //Parabola
             if(qdScriptableObject.puzzleType) //True == Interact type puzzle // False == Line type puzzle;
             {
-               parabolaRenderer.SetLineObject(ldScriptableObject.lineObject);
+               parabolaRenderer.SetLineObject(ldScriptableObject.puzzleObject);
             }
             else 
             {
@@ -119,7 +119,7 @@ public class LineRendererController : MonoBehaviour
 
     public void SetPuzzleObject()
     {
-        puzzleObject = ldScriptableObject.lineObject;
+        puzzleObject = ldScriptableObject.puzzleObject;
     }
 
 

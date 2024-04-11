@@ -15,6 +15,7 @@ public class NumberLineGenerator : MonoBehaviour
     public float verticalNumberOffsetY = 0f;
     public float horizontalNumberOffsetY = 0f;
     public float horizontalNumberOffsetX = 0f;
+    public float horizontalTwoDigitOffsetX = 0f;
 
     void Start()
     {
@@ -57,8 +58,13 @@ public class NumberLineGenerator : MonoBehaviour
             }
             else
             {
+                float twoDigitOffset = 0f;
+                if(Mathf.Abs(i) >= 10f)
+                {
+                    twoDigitOffset = horizontalTwoDigitOffsetX;
+                }
                 // Position the number object in a line
-                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(0+horizontalNumberOffsetX, -0.18f + horizontalNumberOffsetY, 0);
+                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(horizontalNumberOffsetX + twoDigitOffset , -0.18f + horizontalNumberOffsetY, 0);
             }
             numberObject.GetComponent<TextMeshPro>().text = i.ToString();
             numberObject.GetComponent<TextMeshPro>().fontSize = fontSize;

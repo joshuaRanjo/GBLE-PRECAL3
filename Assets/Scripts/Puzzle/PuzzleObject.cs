@@ -4,16 +4,16 @@ using UnityEngine;
 using Fungus;
 
 
-public class PuzzleObject : MonoBehaviour
+public class PuzzleObject : LevelProp
 {
     [Header("Puzzle ID")]
-    [SerializeField] private string puzzleID;
+    public string puzzleID;
 
     [Header("Question ScriptableObject")]
-    [SerializeField] private QuestionData qdScriptableObject;
+    [SerializeField] private QuestionData2 qdScriptableObject;
 
     [Header("LineData ScriptableObject")]
-    [SerializeField] private LineData ldScriptableObject;
+    [SerializeField] private LineData2 ldScriptableObject;
 
     [Header("Fungus Flowchart")]
     [SerializeField] private Flowchart fc;
@@ -23,6 +23,7 @@ public class PuzzleObject : MonoBehaviour
     [SerializeField] private string prompt;
     
     [SerializeField] private bool allowCircle, allowEllipse, allowParabola, allowHyperbola;
+    [Tooltip("// True = interact with object, false = line creation")]
     [SerializeField] private bool puzzleType; // True = interact with object, false = line creation
     [SerializeField] private bool allowA, allowB, allowH, allowK, allowOrientation;
     [Header("For Parabolas")]
@@ -30,27 +31,51 @@ public class PuzzleObject : MonoBehaviour
 
 
     [Header("Saved values")]
-    [SerializeField] private float a;
-    [SerializeField] private float b,h,k;
-    [SerializeField] private bool orientation; //true = horizontal , false = vertical
-    [SerializeField] private int conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
+    [SerializeField] public float a;
+    [SerializeField] public float b,h,k;
+
+    [Tooltip("True = Horizontal, False = Vertical")]
+    [SerializeField] public bool orientation; //true = horizontal , false = vertical
+    [Tooltip("1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola")]
+    [SerializeField] public int conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
 
     [Header("Default values")]
     [SerializeField] private float default_a;
     [SerializeField] private float default_b,default_h,default_k;
+    [Tooltip("True = Horizontal, False = Vertical")]
     [SerializeField] private bool default_orientation; //true = horizontal , false = vertical
+    [Tooltip("1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola")]
     [SerializeField] private int default_conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
-        [Header("Max Values")]
+
+    [Header("Max Values")]
     [SerializeField] private float maxA;
     [SerializeField] private float minA,maxB,minB,maxH,minH,maxK,minK;
+
+
+    [Header("Expected Answer")]
+    [SerializeField] private List<ExpectedAnswer> expectedAnswers = new List<ExpectedAnswer>();
 
     [Header("Puzzle Parts")]
     [SerializeField] private Transform workAreaTransform;
     [SerializeField] private GameObject gridObject;
-    [SerializeField] private GameObject puzzleObject;
+    [SerializeField] public GameObject puzzleObject;
+    
+    [Header("Camera Offset")]
+    [SerializeField] private float xOffset = 0;
+    [SerializeField] private float yOffset = 0;
+
+    private bool inPuzzle = false;
+
+    [SerializeField] private LineRendererController2 lrController;
 
     private void OnEnable() {
+        base.OnEnable();
+
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
+        lrController = GameObject.Find("Game").GetComponent<LineRendererController2>();
+
+        h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
+        k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
     }
 
     private void OnDisable() {
@@ -59,27 +84,42 @@ public class PuzzleObject : MonoBehaviour
 
     public void AttachToScriptableObjects()
     {
-        ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID);
-        /*
-        qdScriptableObject.AttachToQuestionData(prompt, allowCircle, allowEllipse, allowParabola, allowHyperbola 
-                                                , null, puzzleType
-                                                , allowA, allowB, allowH, allowK
-                                                , allowOrientation, ceiling
-                                                , maxA,minA, maxB,minB, maxH,minH, maxK,minK
-                                                , default_a,default_b,default_h,default_k
-                                                );
-        */
-        
+        if(!inPuzzle)
+        {
+            h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
+            k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
 
-        gridObject.SetActive(true);
-        EventManager.TriggerEvent("EnterPuzzle");
+            ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID,this);
+            qdScriptableObject.AttachToQuestionData(allowCircle, allowEllipse, allowParabola, allowHyperbola
+                                                    , puzzleType
+                                                    , allowA, allowB, allowH, allowK
+                                                    , allowOrientation, ceiling
+                                                    , maxA,minA, maxB,minB, maxH,minH, maxK,minK
+                                                    ,default_a, default_b,default_h,default_k
+                                                    , xOffset, yOffset
+                                                    );
+            
+
+            if(gridObject != null)
+            {
+                gridObject.SetActive(true);
+            }
+            inPuzzle = true;
+            EventManager.TriggerEvent("EnterPuzzle");
+        }
+
     }
 
 
     public void ExitPuzzle()
     {
-        gridObject.SetActive(false);
-        GetSaveLineData(); //Get Line Data to save
+        if(puzzleID == ldScriptableObject.puzzleID && inPuzzle == true)
+        {   
+            inPuzzle = false;
+            gridObject.SetActive(false);
+           // GetSaveLineData();
+        }
+        
         //Invoke or clear data on both LineData and QuestionData Scriptable objects;
     }
 
@@ -91,7 +131,53 @@ public class PuzzleObject : MonoBehaviour
         k = ldScriptableObject.k;
         conicType = ldScriptableObject.conicType;
         orientation = ldScriptableObject.orientation; 
+    }
+
+    private void UpdateObject()
+    {
+        lrController.UpdateObject(this);
+    }
+
+    public void SetA(float newA)
+    {
         
+        a = newA;
+        UpdateObject();
+    }
+
+    public void SetB(float newB)
+    {
+        b = newB;
+        UpdateObject();
+    }
+    public void SetH(float newH)
+    {
+        h = newH;
+        UpdateObject();
+    }
+
+    public void SetK(float newK)
+    {
+        k = newK;
+        UpdateObject();
+    }
+
+    public void SetAll(float newA, float newB, float newH, float newK)
+    {
+        a = newA;
+        b = newB;
+        h = newH;
+        k = newK;
+        UpdateObject();
+    }
+    public void ResetObject()
+    {
+        a = default_a;
+        b = default_b;
+        h = default_h;
+        k = default_k;
+
+        UpdateObject();
     }
 
 }

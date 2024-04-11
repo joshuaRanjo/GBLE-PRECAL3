@@ -81,9 +81,9 @@ public class InteractableObject : MonoBehaviour
     public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
     public Color startColor = Color.white;
     public Color endColor = new Color(191f / 255f, 191f / 255f, 191f / 255f); // #BFBFBF in RGB
-    public float lerpDuration = 0.5f;
+    private float lerpDuration = 0.25f;
 
-    private bool lerpingForward = true;
+    //private bool lerpingForward = true;
 
 
 

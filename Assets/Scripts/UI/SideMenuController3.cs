@@ -8,13 +8,9 @@ using UnityEngine.UI;
 public class SideMenuController3 : MonoBehaviour
 {
     [Header("Question Data Scriptable Object")]
-    [SerializeField] private QuestionData qdScriptableObject;
+    [SerializeField] private QuestionData2 qdScriptableObject;
     [Header("Line Data Scriptable Object")]
-    [SerializeField] private LineData ldScriptableObject;
-
-    [Header("Question Box")]
-    [SerializeField] private TEXDraw questionText;
-
+    [SerializeField] private LineData2 ldScriptableObject;
 
     [Header("Vertex Form Inputs")]
 
@@ -43,8 +39,14 @@ public class SideMenuController3 : MonoBehaviour
     [Header("Back Button")]
     [SerializeField] private Button backButton;
 
+    private bool inPuzzle = false;
+
     private void Start() {
         InputStartListening();
+    }
+
+    private void LateUpdate() {
+        
     }
 
     private void OnEnable() {
@@ -129,7 +131,7 @@ public class SideMenuController3 : MonoBehaviour
         InputStartListening();
         UpdateUI();
         
-        
+        inPuzzle = true;
         
     }
 
@@ -140,6 +142,8 @@ public class SideMenuController3 : MonoBehaviour
 
         backButton.interactable = false;
         backButton.onClick.RemoveListener( () => {EventManager.TriggerEvent("ExitPuzzle");});
+
+        inPuzzle = false;
     }
 
     private void InputStartListening()
@@ -337,7 +341,7 @@ public class SideMenuController3 : MonoBehaviour
         hSlider.value = 0.5f;
         kSlider.value = 0.5f;
         
-        /*
+        
         aSlider.minValue = 0;
         aSlider.maxValue = 1f;
         bSlider.minValue = 0;
@@ -345,7 +349,7 @@ public class SideMenuController3 : MonoBehaviour
         hSlider.minValue = 0;
         hSlider.maxValue = 1f;
         kSlider.minValue = 0;
-        kSlider.maxValue = 1f;*/
+        kSlider.maxValue = 1f;
         InputStartListening();
     }
 
@@ -377,28 +381,28 @@ public class SideMenuController3 : MonoBehaviour
     {
         InputStopListening();
         inputA.text = newValue.ToString("F2");
-        ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f);
+        ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
     }
     private void SliderBChange(float newValue)
     {
         InputStopListening();
         inputB.text = newValue.ToString("F2");
-        ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f);
+        ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
     }
     private void SliderHChange(float newValue)
     {
         InputStopListening();
         inputH.text = newValue.ToString("F2");
-        ldScriptableObject.SetH(Mathf.Round(newValue*100f)/100f);
+        ldScriptableObject.SetH(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
     }
     private void SliderKChange(float newValue)
     {
         InputStopListening();
         inputK.text = newValue.ToString("F2");
-        ldScriptableObject.SetK(Mathf.Round(newValue*100f)/100f);
+        ldScriptableObject.SetK(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
     }
 
