@@ -85,87 +85,64 @@ public class ParabolaRendererDef : MonoBehaviour
         return points;
     }
 
-    public void UpdateLine(float newA, bool newIsVertical)
-    {
-        a = newA;
-        isVertical = newIsVertical;
 
-        
-        lineRenderer.SetPositions(DrawParabola().ToArray());
+
+
+    public void UpdateLineSpriteShape(GameObject lineObject)
+    {
+        ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
     }
 
-    public void UpdateLine()
+    public void UpdateLineLineRenderer(GameObject lineObject)
     {
-        a = ldScriptableObject.a;
-        isVertical = !ldScriptableObject.orientation;
-        ceiling = qdScriptableObject.ceiling;
-
-        
-        
-        SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
-
-        float shapeHeight = 1;
-        shape.spline.Clear();
-
-        List<Vector3> points = DrawParabola();
-
-        // if LineObject is terrain / has a sprite shape
-        if(shape != null)
-        {
-            if(isVertical)
-            {
-                if(ceiling)
-                {
-                    int k = 0;
-                    for(int i = points.Count - 1; i >= 0 ; i--)
-                    {
-                        shape.spline.InsertPointAt(k, points[i]);
-                        shape.spline.SetHeight(k, shapeHeight);
-                        shape.spline.SetTangentMode(k, ShapeTangentMode.Continuous);
-                        k++;
-                    }
-                    
-                }
-                else { 
-                    for(int i = 0; i < points.Count; i++)
-                    {
-                        int count = shape.spline.GetPointCount();
-                        if(count > 0 )
-                        {
-                               
-                            if(Vector3.Distance(shape.spline.GetPosition(count-1), points[i]) > 0.1f
-                                && Vector3.Distance(shape.spline.GetPosition(0), points[i]) > 0.1f  )
-                            {
-                                shape.spline.InsertPointAt(count, points[i]);
-                                shape.spline.SetHeight(count, shapeHeight);
-                                shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
-                            }                             
-                        }
-                        else{
-                                shape.spline.InsertPointAt(count, points[i]);
-                                shape.spline.SetHeight(count, shapeHeight);
-                                shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
-                        }
-                        
-                    }
-                }
-                if(lineObject.CompareTag("Terrain"))
-                { 
-                    if(ceiling)
-                    {
-                        shape.spline.InsertPointAt(0, new Vector3(points[points.Count - 1].x, 20f,0f));
-                        shape.spline.InsertPointAt(shape.spline.GetPointCount(), new Vector3(points[0].x, 20f, 0f));
-                    }
-                    else
-                    {
-                        shape.spline.InsertPointAt(0, new Vector3(points[0].x, -20f, 0f));
-                        shape.spline.InsertPointAt(shape.spline.GetPointCount(), new Vector3(points[points.Count - 1].x, -20f,0f));
-                    }
-                }
-            }
-        }
-        
-        
-    }
+        ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
+    } 
     
+    public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY)
+    {
+        List<Vector3> points = new List<Vector3>();
+        if(a != 0)
+        {
+            
+
+            float xStep = (maxX - -maxX) / (pointCount - 1);
+            // If vertical Axis
+            for (int i = 0; i < pointCount; i++)
+            {
+                float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
+                float y = a * x * x;
+
+                if ( y >= -maxY && y <= maxY)
+                {
+                    Vector3 point = new Vector3(x, y, 0);
+                    points.Add(point);
+                }
+                
+            }
+
+            int verticalModifier = 1;
+            if(a < 0)
+            {
+                verticalModifier = -1;
+            }
+
+            float lastX = Mathf.Sqrt(verticalModifier*maxY/a);
+            points.Insert(0, new Vector3(-lastX,maxY*verticalModifier,0));
+            points.Add(new Vector3(lastX,maxY*verticalModifier,0));
+        }
+        else
+        {
+
+            float x,y;
+            if(isVertical){ x = 3; y = 0;}
+            else{ x = 0; y = 3;}
+
+            points.Insert(0, new Vector3(-x,-y,0));
+            points.Insert(1, new Vector3(x,y,0));
+        }
+        return points;
+        
+    }
 }

@@ -47,14 +47,13 @@ public class LineData2 : ScriptableObject
     public void SetOrientation(bool newOrientation){ orientation = newOrientation;  dataChangeEvent.Invoke();}
 
 
-    public void AttachToLineData(float newA, float newB, float newH,float newK,bool  newOrientation, int newConicType, GameObject newPuzzleObject, Transform newWorkArea, string newPuzzleID
+    public void AttachToLineData(float newA, float newB, float newH,float newK,bool  newOrientation, int newConicType, GameObject newPuzzleObject,  string newPuzzleID
                                 , PuzzleObject poScript)
     {
         a = newA; b = newB; h = newH; k = newK; 
         orientation = newOrientation; 
         conicType = newConicType; 
         puzzleObject = newPuzzleObject; 
-        workArea = newWorkArea; 
         puzzleID = newPuzzleID;
         puzzleObjectScript = poScript;
 

@@ -108,7 +108,7 @@ public class LineRendererController : MonoBehaviour
             if(qdScriptableObject.puzzleType) //True == Interactable Type Puzzle, False == Line renderer Type puzzle
             {
                 //parabolaRenderer.UpdateLine(ldScriptableObject.a,ldScriptableObject.orientation, qdScriptableObject.ceiling);
-                parabolaRenderer.UpdateLine();
+                //parabolaRenderer.UpdateLine();
             }
         }
         if(ldScriptableObject.conicType == 4)

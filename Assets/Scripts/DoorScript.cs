@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DoorScript : LevelProp
 {
-
+    public GameObject triggerObject;
     public bool openStatus = false;
     public bool defaultStatus = false;
 
-    public float duration = 1f;
+    public float speed = 1f;
 
     private Vector3 closedPosition = Vector3.zero;
     private Vector3 openPosition = new Vector3(0,2,0);
@@ -53,31 +53,32 @@ public class DoorScript : LevelProp
 
     IEnumerator MoveObject(Vector3 targetPosition)
     {
-
         Transform objectToMove = doorObject.transform;
-        float timeElapsed = 0f;
         Vector3 startingPosition = objectToMove.localPosition;
+        float distanceToTarget = Vector3.Distance(startingPosition, targetPosition);
 
-        while (timeElapsed < duration)
+        while (Vector3.Distance(objectToMove.localPosition, targetPosition) > 0.01f)
         {
-            // Calculate the normalized progress of the movement
-            float normalizedTime = timeElapsed / duration;
+            // Calculate the direction towards the target
+            Vector3 direction = (targetPosition - objectToMove.localPosition).normalized;
 
-            // Interpolate the position between starting and target positions
-            objectToMove.localPosition = Vector3.Lerp(startingPosition, targetPosition, normalizedTime);
+            // Calculate the distance to move this frame based on speed
+            float distanceToMove = speed * Time.deltaTime;
 
-            // Increment time elapsed
-            timeElapsed += Time.deltaTime;
+            // Ensure distanceToMove doesn't exceed remaining distance to target
+            distanceToMove = Mathf.Min(distanceToMove, distanceToTarget);
+
+            // Move the object towards the target
+            objectToMove.localPosition += direction * distanceToMove;
 
             yield return null; // Wait for the end of frame
+
+            // Update the remaining distance to the target
+            distanceToTarget = Vector3.Distance(objectToMove.localPosition, targetPosition);
         }
 
         // Ensure the object reaches the exact target position at the end
         objectToMove.localPosition = targetPosition;
     }
-    /*
-    private void OnEnable() {
-        if(transform.parent.gameObject.name != "LevelProps")
-            transform.parent = GameObject.Find("LevelProps").transform;
-    }*/
+
 }

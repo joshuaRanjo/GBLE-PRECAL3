@@ -21,7 +21,38 @@ public class LineRendererController2 : MonoBehaviour
         objectMoverScript.UpdateLine(puzzleObject.puzzleObject, puzzleObject.h, puzzleObject.k);
         if(puzzleObject.conicType == 1)
         {
-            interactedCircleRenderer.UpdateLine(puzzleObject.puzzleObject, puzzleObject.a);
+            
+            if(puzzleObject.puzzleType) //True == Sprite renderer puzzle, False == Line renderer Type puzzle
+            {
+                interactedCircleRenderer.UpdateLine(puzzleObject.puzzleObject, puzzleObject.a);
+            }
+            else
+            {
+
+            }
+        }
+        if(puzzleObject.conicType == 2)
+        {
+            //Ellipse
+            if(puzzleObject.puzzleType) //True == Sprite renderer puzzle, False == Line renderer Type puzzle
+            {
+                interactedCircleRenderer.UpdateLine(puzzleObject.puzzleObject, puzzleObject.a, puzzleObject.b);
+            }
+        }
+        if(puzzleObject.conicType == 3)
+        {
+            if(puzzleObject.puzzleType) //True == SpriteShapeRenderer, False == Line renderer Type puzzle
+            {
+                //parabolaRenderer.UpdateLine(ldScriptableObject.a,ldScriptableObject.orientation, qdScriptableObject.ceiling);
+                parabolaRenderer.UpdateLineSpriteShape(puzzleObject.puzzleObject); 
+            }
+            else{
+                
+            }
+        }
+        if(puzzleObject.conicType == 4)
+        {
+            //Hyperbola
         }
     }
 

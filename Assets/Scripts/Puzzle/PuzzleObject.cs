@@ -14,20 +14,13 @@ public class PuzzleObject : LevelProp
 
     [Header("LineData ScriptableObject")]
     [SerializeField] private LineData2 ldScriptableObject;
-
-    [Header("Fungus Flowchart")]
-    [SerializeField] private Flowchart fc;
-
-    [Header("Question Details")]
-
-    [SerializeField] private string prompt;
     
     [SerializeField] private bool allowCircle, allowEllipse, allowParabola, allowHyperbola;
     [Tooltip("// True = interact with object, false = line creation")]
-    [SerializeField] private bool puzzleType; // True = interact with object, false = line creation
+    [SerializeField] public bool puzzleType; // True = interact with object, false = line creation
     [SerializeField] private bool allowA, allowB, allowH, allowK, allowOrientation;
-    [Header("For Parabolas")]
-    [SerializeField] private bool ceiling;
+
+
 
 
     [Header("Saved values")]
@@ -43,7 +36,7 @@ public class PuzzleObject : LevelProp
     [SerializeField] private float default_a;
     [SerializeField] private float default_b,default_h,default_k;
     [Tooltip("True = Horizontal, False = Vertical")]
-    [SerializeField] private bool default_orientation; //true = horizontal , false = vertical
+    [SerializeField] public bool default_orientation; //true = horizontal , false = vertical
     [Tooltip("1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola")]
     [SerializeField] private int default_conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
 
@@ -52,24 +45,31 @@ public class PuzzleObject : LevelProp
     [SerializeField] private float minA,maxB,minB,maxH,minH,maxK,minK;
 
 
-    [Header("Expected Answer")]
-    [SerializeField] private List<ExpectedAnswer> expectedAnswers = new List<ExpectedAnswer>();
 
     [Header("Puzzle Parts")]
-    [SerializeField] private Transform workAreaTransform;
-    [SerializeField] private GameObject gridObject;
     [SerializeField] public GameObject puzzleObject;
+
+    [Header("For Parabolas")]
+    [SerializeField] private bool ceiling;
+
     
-    [Header("Camera Offset")]
-    [SerializeField] private float xOffset = 0;
-    [SerializeField] private float yOffset = 0;
+    //[Header("Camera Offset")]
+     private float xOffset = 0;
+     private float yOffset = 0;
 
     private bool inPuzzle = false;
 
     [SerializeField] private LineRendererController2 lrController;
 
+    private void LateUpdate() {
+        h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
+        k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
+    }
+
     private void OnEnable() {
         base.OnEnable();
+
+        puzzleObject = this.gameObject;
 
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
         lrController = GameObject.Find("Game").GetComponent<LineRendererController2>();
@@ -89,7 +89,7 @@ public class PuzzleObject : LevelProp
             h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
             k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
 
-            ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, workAreaTransform, puzzleID,this);
+            ldScriptableObject.AttachToLineData(a,b,h,k, orientation, conicType, puzzleObject, puzzleID,this);
             qdScriptableObject.AttachToQuestionData(allowCircle, allowEllipse, allowParabola, allowHyperbola
                                                     , puzzleType
                                                     , allowA, allowB, allowH, allowK
@@ -100,10 +100,7 @@ public class PuzzleObject : LevelProp
                                                     );
             
 
-            if(gridObject != null)
-            {
-                gridObject.SetActive(true);
-            }
+
             inPuzzle = true;
             EventManager.TriggerEvent("EnterPuzzle");
         }
@@ -116,7 +113,6 @@ public class PuzzleObject : LevelProp
         if(puzzleID == ldScriptableObject.puzzleID && inPuzzle == true)
         {   
             inPuzzle = false;
-            gridObject.SetActive(false);
            // GetSaveLineData();
         }
         

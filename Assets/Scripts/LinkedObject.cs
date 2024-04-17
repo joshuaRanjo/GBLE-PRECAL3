@@ -13,6 +13,9 @@ public class LinkedObject : LevelProp
     public List<PuzzleObject> puzzleObjectsGroup1 = new List<PuzzleObject>();
     public List<PuzzleObject> puzzleObjectsGroup2 = new List<PuzzleObject>();
 
+    //public List<GameObject> gameObjectsGroup1 = new List<GameObject>();
+    //public List<GameObject> gameObjectsGroup2 = new List<GameObject>();
+
     private void OnEnable() {
         base.OnEnable();
 

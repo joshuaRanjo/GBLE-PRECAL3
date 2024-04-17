@@ -8,7 +8,8 @@ public class ParabolaCreator : MonoBehaviour
 {
     public float maxX = 5.0f;  // Maximum x value
     public float maxY = 5.0f;  // Maximum y value
-    public int pointCount = 30;
+        public float maxLength;
+    public int pointCount = 50;
     private bool isVertical = true;
     public float a = 1;
     public bool spriteShape = false;
@@ -16,11 +17,13 @@ public class ParabolaCreator : MonoBehaviour
     public bool line = false;
     public bool terrain = false;
     public bool ceiling = false;
+
     public void CreateObject()
     {
         // Instantiate the object
         GameObject newObject = new GameObject("NewObject");
         List<Vector3> points = DrawParabola();
+        points = AdjustLineLength(points);
 
         if(!spriteShape)
         {
@@ -59,30 +62,9 @@ public class ParabolaCreator : MonoBehaviour
         {
             UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer = newObject.AddComponent<UnityEngine.U2D.SpriteShapeRenderer>();
             SpriteShapeController shape = newObject.AddComponent<SpriteShapeController>();
-            
+            shape.fillPixelsPerUnit = 512;
             shape.spline.Clear();
-            /*if(ceiling || a < 0)
-            {
-                int k = 0;
-                for(int i = points.Count - 1; i >= 0 ; i--)
-                {
-                    shape.spline.InsertPointAt(k, points[i]);
-                    shape.spline.SetHeight(k, 1f);
-                    shape.spline.SetTangentMode(k, ShapeTangentMode.Continuous);
-                    k++;
-                }
-                
-            }
-            else { 
-                
-                for(int i = 0; i < points.Count; i++)
-                {
-                    shape.spline.InsertPointAt(i, points[i]);
-                    shape.spline.SetHeight(i, 1f);
-                    shape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
-                }
-            }
-            */
+
             if(ceiling )
             {
                 points.Reverse();
@@ -91,7 +73,7 @@ public class ParabolaCreator : MonoBehaviour
             for(int i = 0; i < points.Count; i++)
                 {
                     shape.spline.InsertPointAt(i, points[i]);
-                    shape.spline.SetHeight(i, 1f);
+                    shape.spline.SetHeight(i, 0.2f);
                     shape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
                 }
                 
@@ -162,6 +144,39 @@ public class ParabolaCreator : MonoBehaviour
         }
         return points;
         
+    }
+
+    private List<Vector3> AdjustLineLength(List<Vector3> points)
+    {
+        float totalLength = CalculateLineLength(points);
+
+        while (totalLength > maxLength && points.Count > 2)
+        {
+            points = RemoveFirstAndLastPoints(points);
+            totalLength = CalculateLineLength(points);
+        }
+
+        Debug.Log("Final length of the line: " + totalLength);
+        return points;
+    }
+
+    private List<Vector3> RemoveFirstAndLastPoints(List<Vector3> points)
+    {
+        points.RemoveAt(0); // Remove first point
+        points.RemoveAt(points.Count - 1); // Remove last point
+        return points;
+    }
+
+    private float CalculateLineLength(List<Vector3> points)
+    {
+        float totalLength = 0f;
+
+        for (int i = 1; i < points.Count; i++)
+        {
+            totalLength += Vector3.Distance(points[i - 1], points[i]);
+        }
+
+        return totalLength;
     }
 }
 
