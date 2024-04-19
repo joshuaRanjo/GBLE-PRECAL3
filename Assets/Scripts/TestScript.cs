@@ -7,6 +7,7 @@ public class TestScript : MonoBehaviour
 {
     public GameObject object1;
     private void Start() {
-        PuzzleObject objectP = object1.GetComponent<PuzzleObject>();
+        GameObject obj =Instantiate(object1,transform.position, Quaternion.identity);
+        obj.transform.SetParent(this.transform);
     }
 }

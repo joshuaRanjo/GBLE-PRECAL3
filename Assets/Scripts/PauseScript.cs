@@ -13,6 +13,8 @@ public class PauseScript : MonoBehaviour
     private void OnEnable() {
        EventManager.StartListening("EnterPuzzle", HideDevice);
        EventManager.StartListening("ExitPuzzle", ShowDevice);
+
+       EventManager.TriggerEvent("EnterMainMenu");
     }
 
     private void OnDisable() {
@@ -89,5 +91,11 @@ public class PauseScript : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        HidePauseScreen();
+        EventManager.TriggerEvent("EnterMainMenu");
     }
 }

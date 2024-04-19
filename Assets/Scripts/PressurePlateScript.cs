@@ -80,7 +80,7 @@ bool moveDown = false;
     }
 
     private void OnEnable() {
-        transform.parent.parent = GameObject.Find("LevelProps").transform;
+        //transform.parent.parent = GameObject.Find("LevelProps").transform;
     }
 
 

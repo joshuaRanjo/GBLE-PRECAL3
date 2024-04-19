@@ -9,6 +9,10 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField] private PlayerInput controller;
     [SerializeField] private bool storyConversation = false;
 
+    private void Start() {
+        DisableMovement();
+    }
+
     private void OnEnable() {
         EventManager.StartListening("EnterConversation", SwitchToConversation);
         EventManager.StartListening("ExitConversation", SwitchToPlayerMovement);
@@ -16,6 +20,11 @@ public class PlayerInputController : MonoBehaviour
         EventManager.StartListening("EnterPuzzle", SwitchToConversation);
         EventManager.StartListening("ExitPuzzle", SwitchToPlayerMovement);
         
+        EventManager.StartListening("DisableMovement", DisableMovement);
+        EventManager.StartListening("EnableMovement", EnableMovement);
+
+        EventManager.StartListening("EnterMainMenu", DisableMovement);
+        EventManager.StartListening("ExitMainMenu", EnableMovement);
     }
 
     private void OnDisable() {
@@ -24,6 +33,12 @@ public class PlayerInputController : MonoBehaviour
 
         EventManager.StopListening("EnterPuzzle", SwitchToConversation);
         EventManager.StopListening("ExitPuzzle", SwitchToPlayerMovement);
+
+        EventManager.StopListening("DisableMovement", DisableMovement);
+        EventManager.StopListening("EnableMovement", EnableMovement);
+
+        EventManager.StopListening("EnterMainMenu", DisableMovement);
+        EventManager.StopListening("ExitMainMenu", EnableMovement);
     }
 
     public void SwitchToConversation()
@@ -39,6 +54,16 @@ public class PlayerInputController : MonoBehaviour
             controller.actions.FindActionMap("PlayerMovement").Enable();
             controller.actions.FindActionMap("Conversation").Disable();
         }
+    }
+
+    public void DisableMovement()
+    {
+        controller.actions.FindActionMap("PlayerMovement").Disable();
+    }
+
+    public void EnableMovement()
+    {
+        controller.actions.FindActionMap("PlayerMovement").Enable();
     }
 
     public void SwitchToStoryMoment()

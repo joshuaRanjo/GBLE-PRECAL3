@@ -92,12 +92,39 @@ public class ParabolaRendererDef : MonoBehaviour
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
         List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
+        points = AdjustLineLength(points, puzzleObject.maxLineLength);
+
+        SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
+        shape.spline.Clear();
+
+        for(int i = 0; i < points.Count; i++)
+        {
+            int count = shape.spline.GetPointCount();
+            if(count > 0 )
+            {
+                    
+                if(Vector3.Distance(shape.spline.GetPosition(count-1), points[i]) > 0.1f
+                    && Vector3.Distance(shape.spline.GetPosition(0), points[i]) > 0.1f  )
+                {
+                    shape.spline.InsertPointAt(count, points[i]);
+                    shape.spline.SetHeight(count, 0.2f);
+                    shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+                }                             
+            }
+            else{
+                    shape.spline.InsertPointAt(count, points[i]);
+                    shape.spline.SetHeight(count, 0.2f);
+                    shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+            }
+            
+        }
     }
 
     public void UpdateLineLineRenderer(GameObject lineObject)
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
         List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
+        points = AdjustLineLength(points, puzzleObject.maxLineLength);
     } 
     
     public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY)
@@ -144,5 +171,38 @@ public class ParabolaRendererDef : MonoBehaviour
         }
         return points;
         
+    }
+
+    private List<Vector3> AdjustLineLength(List<Vector3> points, float maxLength)
+    {
+        float totalLength = CalculateLineLength(points);
+
+        while (totalLength > maxLength && points.Count > 2)
+        {
+            points = RemoveFirstAndLastPoints(points);
+            totalLength = CalculateLineLength(points);
+        }
+
+        //Debug.Log("Final length of the line: " + totalLength);
+        return points;
+    }
+
+    private List<Vector3> RemoveFirstAndLastPoints(List<Vector3> points)
+    {
+        points.RemoveAt(0); // Remove first point
+        points.RemoveAt(points.Count - 1); // Remove last point
+        return points;
+    }
+
+    private float CalculateLineLength(List<Vector3> points)
+    {
+        float totalLength = 0f;
+
+        for (int i = 1; i < points.Count; i++)
+        {
+            totalLength += Vector3.Distance(points[i - 1], points[i]);
+        }
+
+        return totalLength;
     }
 }

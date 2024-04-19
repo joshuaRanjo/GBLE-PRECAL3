@@ -67,7 +67,10 @@ public class PuzzleObject : LevelProp
     }
 
     private void OnEnable() {
-        base.OnEnable();
+
+        //Transform levelprops = GameObject.Find("LevelProps").transform;
+        //    transform.SetParent(levelprops);
+        //base.OnEnable();
 
         puzzleObject = this.gameObject;
 

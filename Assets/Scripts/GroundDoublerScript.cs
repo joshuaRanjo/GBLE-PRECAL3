@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 public class GroundDoublerScript : MonoBehaviour
 {
     public bool duplicateBool = false;
-    private void Awake()
+    private void OnEnable()
     {
         if(duplicateBool == false)
         {
@@ -15,7 +15,7 @@ public class GroundDoublerScript : MonoBehaviour
             duplicate.GetComponent<CompositeCollider2D>().isTrigger = true;
             duplicate.GetComponent<GroundDoublerScript>().duplicateBool = true;
             duplicate.GetComponent<TilemapRenderer>().enabled = false;
-            duplicate.transform.parent = transform.parent;
+            duplicate.transform.SetParent(transform);
             duplicate.GetComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
 
             // Remove children from the duplicate

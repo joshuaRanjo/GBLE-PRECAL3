@@ -50,6 +50,7 @@ public class WeightScript : MonoBehaviour
           if(collision.gameObject.CompareTag("Ground"))
           {
               //Object Entered ground
+              //Debug.Log("Object Entered ground");
           } 
     }
 
@@ -59,6 +60,7 @@ public class WeightScript : MonoBehaviour
                //Object is still in ground
                resetCoroutine = StartCoroutine(ResetObject());
                inGround = true;
+              // Debug.Log("Object still in ground");
           } 
     }
 
@@ -70,6 +72,7 @@ public class WeightScript : MonoBehaviour
                inGround = false;
                if(resetCoroutine != null)
                     StopCoroutine(resetCoroutine);
+               //Debug.Log("Object left ground");
           } 
     }
 

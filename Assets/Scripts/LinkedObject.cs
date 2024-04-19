@@ -17,7 +17,7 @@ public class LinkedObject : LevelProp
     //public List<GameObject> gameObjectsGroup2 = new List<GameObject>();
 
     private void OnEnable() {
-        base.OnEnable();
+        //base.OnEnable();
 
         ldScriptableObject.dataChangeEvent.AddListener(UpdateLine);
     }

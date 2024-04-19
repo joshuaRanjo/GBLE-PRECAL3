@@ -18,7 +18,7 @@ public class DoorScript : LevelProp
     [SerializeField] private GameObject doorObject;
 
     private void Start() {
-
+        base.Start();
         if(defaultStatus) //If the default status of the door is Open, open the door
         {
             Open();
