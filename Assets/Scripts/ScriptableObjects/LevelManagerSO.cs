@@ -33,10 +33,12 @@ public class LevelManagerSO: ScriptableObject
         else
         {
             EventManager.TriggerEvent("EnterMainMenu");
-        }    
-    
+        }      
+    }
 
-            
+    public void ReloadLevel()
+    {
+        levelChangeEvent.Invoke();
     }
 
 }

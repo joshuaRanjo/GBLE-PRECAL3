@@ -91,7 +91,7 @@ public class ParabolaRendererDef : MonoBehaviour
     public void UpdateLineSpriteShape(GameObject lineObject)
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
-        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation);
         points = AdjustLineLength(points, puzzleObject.maxLineLength);
 
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
@@ -123,41 +123,66 @@ public class ParabolaRendererDef : MonoBehaviour
     public void UpdateLineLineRenderer(GameObject lineObject)
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
-        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit);
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation);
         points = AdjustLineLength(points, puzzleObject.maxLineLength);
     } 
     
-    public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY)
+    public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY, bool orientation)
     {
         List<Vector3> points = new List<Vector3>();
         if(a != 0)
         {
             
-
+            
             float xStep = (maxX - -maxX) / (pointCount - 1);
-            // If vertical Axis
-            for (int i = 0; i < pointCount; i++)
+            // If vertical axis
+            if(!orientation)
             {
-                float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
-                float y = a * x * x;
-
-                if ( y >= -maxY && y <= maxY)
+                for (int i = 0; i < pointCount; i++)
                 {
-                    Vector3 point = new Vector3(x, y, 0);
-                    points.Add(point);
+                    float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
+                    float y = a * x * x;
+
+                    if ( y >= -maxY && y <= maxY)
+                    {
+                        Vector3 point = new Vector3(x, y, 0);
+                        points.Add(point);
+                    }
+                    
                 }
-                
-            }
 
-            int verticalModifier = 1;
-            if(a < 0)
+                int verticalModifier = 1;
+                if(a < 0)
+                {
+                    verticalModifier = -1;
+                }
+
+                float lastX = Mathf.Sqrt(verticalModifier*maxY/a);
+                points.Insert(0, new Vector3(-lastX,maxY*verticalModifier,0));
+                points.Add(new Vector3(lastX,maxY*verticalModifier,0));
+            }
+            else //if Horizontal axis
             {
-                verticalModifier = -1;
+                float yStep = (maxY- - maxY) / (pointCount - 1);
+                for(int i = 0; i < pointCount; i++)
+                {
+                    float y = -maxY + i * yStep;
+                    float x = a * y * y;
+                    if (x >= -maxX && x <= maxX)
+                    {
+                        Vector3 point = new Vector3(x,y,0);
+                        points.Add(point);
+                    }
+                }
+                int horizontalModifier = 1;
+                if(a < 0 )
+                {
+                    horizontalModifier = -1;
+                }
+                float lastY = Mathf.Sqrt(horizontalModifier*maxX/a);
+                points.Insert(0, new Vector3(-lastY,maxX*horizontalModifier,0));
+                points.Add(new Vector3(lastY, maxX*horizontalModifier,0));
             }
-
-            float lastX = Mathf.Sqrt(verticalModifier*maxY/a);
-            points.Insert(0, new Vector3(-lastX,maxY*verticalModifier,0));
-            points.Add(new Vector3(lastX,maxY*verticalModifier,0));
         }
         else
         {

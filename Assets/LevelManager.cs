@@ -54,4 +54,9 @@ public class LevelManager : MonoBehaviour
         levelManagerSO.NextLevel();
 
     }
+
+    public void ReloadLevel()
+    {
+        levelManagerSO.ReloadLevel();
+    }
 }

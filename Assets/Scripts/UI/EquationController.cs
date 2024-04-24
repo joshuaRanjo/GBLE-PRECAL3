@@ -117,7 +117,10 @@ public class EquationController : MonoBehaviour
     private void HyperbolaUpdate()
     {
         //Debug.Log("Equation Updated H");
-        equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  lineDataScriptableObject.a + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+        if(lineDataScriptableObject.orientation)
+            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  lineDataScriptableObject.a + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+        else
+            equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  lineDataScriptableObject.b + "\\color{#000000}^2} - \\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" + lineDataScriptableObject.a + "\\color{#000000}^2} = 1";
     }
     
 }

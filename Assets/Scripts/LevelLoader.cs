@@ -51,7 +51,7 @@ public class LevelLoader : MonoBehaviour
         if (buttonText != null)
         {
             buttonText.text = prefab.name;
-            Debug.Log(buttonText.text);
+            //Debug.Log(buttonText.text);
         }
 
         // Add a click listener to the button to instantiate the prefab

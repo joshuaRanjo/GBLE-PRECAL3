@@ -193,12 +193,19 @@ public class SideMenuController3 : MonoBehaviour
         }
         else if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxA != -99) && (qdScriptableObject.maxA < floatValue || qdScriptableObject.minA > floatValue))
+            if((qdScriptableObject.maxA != -99) 
+                && (qdScriptableObject.maxA < floatValue || qdScriptableObject.minA > floatValue)
+                || ((ldScriptableObject.conicType != 3) == (floatValue == 0f))
+              )
             {
-                inputA.text = qdScriptableObject.defaultA.ToString();
-                ldScriptableObject.SetA(qdScriptableObject.defaultA, "input");
-                aSlider.value = qdScriptableObject.defaultA;
+                {
+                    inputA.text = qdScriptableObject.defaultA.ToString();
+                    ldScriptableObject.SetA(qdScriptableObject.defaultA, "input");
+                    aSlider.value = qdScriptableObject.defaultA;
+                }
+                
             }
+                       
         }
         InputStartListening();
     }
@@ -214,7 +221,15 @@ public class SideMenuController3 : MonoBehaviour
         }
         else if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxB != -99) && (qdScriptableObject.maxB < floatValue || qdScriptableObject.minB > floatValue))
+            if((qdScriptableObject.maxB != -99) 
+                && (qdScriptableObject.maxB < floatValue || qdScriptableObject.minB > floatValue)
+              )
+            {
+                inputB.text = qdScriptableObject.defaultB.ToString();
+                ldScriptableObject.SetB(qdScriptableObject.defaultB, "input");
+                bSlider.value = qdScriptableObject.defaultB;
+            }
+            if(floatValue == 0f)
             {
                 inputB.text = qdScriptableObject.defaultB.ToString();
                 ldScriptableObject.SetB(qdScriptableObject.defaultB, "input");
@@ -261,7 +276,7 @@ public class SideMenuController3 : MonoBehaviour
                 inputK.text = qdScriptableObject.defaultK.ToString();
                 ldScriptableObject.SetK(qdScriptableObject.defaultK, "input");
                 kSlider.value = qdScriptableObject.defaultK;
-                Debug.Log("Setting to Default: Invalid");
+                //Debug.Log("Setting to Default: Invalid");
             }
         }
         InputStartListening();
@@ -271,14 +286,15 @@ public class SideMenuController3 : MonoBehaviour
         if(float.TryParse(newValue, out float floatValue))
         {         
 
-            if((qdScriptableObject.maxA != -99) && (qdScriptableObject.maxA >= floatValue && qdScriptableObject.minA <= floatValue))
+            if((qdScriptableObject.maxA != -99)  
+                && (qdScriptableObject.maxA >= floatValue && qdScriptableObject.minA <= floatValue)
+                && (floatValue != 0 || ((floatValue == 0f) && (ldScriptableObject.conicType == 3)))
+              )
             {
                 InputStopListening();
                 ldScriptableObject.SetA(floatValue, "input");
-                
                 aSlider.value = floatValue;
                 InputStartListening();
-                Debug.Log("Valid Input");
             }
         }
         
@@ -287,7 +303,10 @@ public class SideMenuController3 : MonoBehaviour
     {
         if(float.TryParse(newValue, out float floatValue))
         {
-            if((qdScriptableObject.maxB != -99) && (qdScriptableObject.maxB >= floatValue && qdScriptableObject.minB <= floatValue))
+            if((qdScriptableObject.maxB != -99) 
+                && (qdScriptableObject.maxB >= floatValue && qdScriptableObject.minB <= floatValue)
+                && (floatValue != 0f)
+              )
             {
                 ldScriptableObject.SetB(floatValue, "input");
                  InputStopListening();
@@ -381,14 +400,19 @@ public class SideMenuController3 : MonoBehaviour
     {
         InputStopListening();
         inputA.text = newValue.ToString("F2");
-        ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f, "slider");
+        if(newValue != 0 || ((newValue == 0f) && (ldScriptableObject.conicType == 3)))
+        {
+            ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f, "slider");
+        }
+            
         InputStartListening();
     }
     private void SliderBChange(float newValue)
     {
         InputStopListening();
         inputB.text = newValue.ToString("F2");
-        ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f, "slider");
+        if(newValue != 0)
+            ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
     }
     private void SliderHChange(float newValue)

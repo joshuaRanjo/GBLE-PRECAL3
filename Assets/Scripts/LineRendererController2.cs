@@ -53,6 +53,11 @@ public class LineRendererController2 : MonoBehaviour
         if(puzzleObject.conicType == 4)
         {
             //Hyperbola
+            if(puzzleObject.puzzleType)
+            {
+                Debug.Log("Updating Sprite Shape");
+                hyperbolaRenderer.UpdateLine(puzzleObject.puzzleObject);
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public class LineDataController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inPuzzle)
+        if(inPuzzle && ldScriptableObject.puzzleObject != null)
         {
             if(previousPosition != ldScriptableObject.puzzleObject.transform.localPosition)
             {

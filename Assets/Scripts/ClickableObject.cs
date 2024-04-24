@@ -37,6 +37,10 @@ public class ClickableObject : MonoBehaviour
             {
                 StartCoroutine(LerpColorSpriteShapeCoroutine());
             }
+            if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
+            {
+                lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
+            }
         }
         
     }
@@ -62,6 +66,7 @@ public class ClickableObject : MonoBehaviour
         {
             spriteShapeRenderer.color = startColor;
         }
+
         Debug.Log("Stoppedlerping");
     }
 
@@ -84,6 +89,7 @@ public class ClickableObject : MonoBehaviour
 
     public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
     public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
+    public List<UnityEngine.U2D.SpriteShapeRenderer> spriteShapeRenderers;
     public Color startColor = Color.white;
     public Color endColor = new Color(191f / 255f, 191f / 255f, 191f / 255f); // #BFBFBF in RGB
     private float lerpDuration = 0.25f;
@@ -132,18 +138,22 @@ public class ClickableObject : MonoBehaviour
     IEnumerator LerpColorSpriteShape(Color startColor, Color targetColor, float duration)
     {
         float elapsedTime = 0f;
-        Debug.Log("Spriteshape is lerping");
+        Debug.Log("Spriteshape is lerping2");
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-            Color lerpedColor = Color.Lerp(startColor, targetColor, t);
-            spriteShapeRenderer.color = lerpedColor;
+            foreach(UnityEngine.U2D.SpriteShapeRenderer renderer in spriteShapeRenderers)
+            {
+                renderer.color = Color.Lerp(startColor, targetColor, t);
+            }
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Ensure the final color value is set
-        spriteShapeRenderer.color = targetColor;
+        foreach(UnityEngine.U2D.SpriteShapeRenderer renderer in spriteShapeRenderers)
+        {
+            renderer.color = endColor;
+        }
     }
 
     public void StopLerpCoroutine()

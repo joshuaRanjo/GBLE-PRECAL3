@@ -10,6 +10,7 @@ public class PauseScript : MonoBehaviour
     private bool puzzleMode = true;
     private Vector2 targetPosition;
     private RectTransform rectTransform;
+    [SerializeField] private Vector2 originalPosition;
     private void OnEnable() {
        EventManager.StartListening("EnterPuzzle", HideDevice);
        EventManager.StartListening("ExitPuzzle", ShowDevice);
@@ -24,6 +25,7 @@ public class PauseScript : MonoBehaviour
 
     private void Start() {
         rectTransform = GetComponent<RectTransform>();
+        originalPosition = rectTransform.anchoredPosition;
     }
 
     private void ShowDevice()
@@ -32,7 +34,7 @@ public class PauseScript : MonoBehaviour
         {
             puzzleMode = true;
 
-            targetPosition = new Vector2(-25,-25);
+            targetPosition = originalPosition;
             StartCoroutine(MoveToTarget());
         }
     }
@@ -43,7 +45,7 @@ public class PauseScript : MonoBehaviour
         {
             puzzleMode = false;
 
-            targetPosition = new Vector2(hidePositionX,0);
+            targetPosition = new Vector2(rectTransform.anchoredPosition.x,hidePositionX);
             StartCoroutine(MoveToTarget());
         }
     }
