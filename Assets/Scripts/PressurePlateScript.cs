@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PressurePlateScript : LevelProp
+public class PressurePlateScript : MonoBehaviour
 {
 
 private Vector3 originalPos = new Vector3(0,0.4f,0);
@@ -79,8 +79,8 @@ bool moveDown = false;
         }
     }
 
-    private void OnEnable() {
-        //transform.parent.parent = GameObject.Find("LevelProps").transform;
+    private void Start() {
+        transform.parent.parent = GameObject.Find("LevelProps").transform;
     }
 
 

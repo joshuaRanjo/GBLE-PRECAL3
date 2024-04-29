@@ -7,10 +7,13 @@ using UnityEngine.Events;
 public class ClickableObject : MonoBehaviour
 {
     public UnityEvent interaction;
+    
     [SerializeField] private GameObject outlineObject;
 
     private Coroutine lerpCoroutine;
     private Coroutine lerpCoroutine2;
+
+    public LayerMask blockingLayer = 10;
 
     private bool inPuzzle = false;
 
@@ -24,23 +27,31 @@ public class ClickableObject : MonoBehaviour
     private void OnMouseOver() {
         if(!inPuzzle)
         {
-            if(outlineObject != null)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        // Check if the ray hits something on the blocking layer
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("InterferenceLayer"));
+            if(hit.collider == null)
             {
-                //outlineObject.SetActive(true);
+                if(outlineObject != null)
+                {
+                    //outlineObject.SetActive(true);
+                }
+                if(spriteRenderers.Count > 0 && lerpCoroutine == null)
+                {
+                    lerpCoroutine = StartCoroutine(LerpColorCoroutine());
+                    Debug.Log("Startlerping");
+                }
+                if(spriteShapeRenderer != null)
+                {
+                    StartCoroutine(LerpColorSpriteShapeCoroutine());
+                }
+                if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
+                {
+                    lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
+                }
             }
-            if(spriteRenderers.Count > 0 && lerpCoroutine == null)
-            {
-                lerpCoroutine = StartCoroutine(LerpColorCoroutine());
-                Debug.Log("Startlerping");
-            }
-            if(spriteShapeRenderer != null)
-            {
-                StartCoroutine(LerpColorSpriteShapeCoroutine());
-            }
-            if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
-            {
-                lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
-            }
+            
         }
         
     }

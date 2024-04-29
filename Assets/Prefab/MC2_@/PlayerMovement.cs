@@ -15,12 +15,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float slopeCheckDistance;
     [SerializeField] private GameObject sprite;
     [SerializeField] private PhysicsMaterial2D noFriction;
+    [SerializeField] private PhysicsMaterial2D someFriction;
     [SerializeField] private PhysicsMaterial2D fullFriction;
     
     
-
-
-
 
     private bool allowedMoving = true;
     private bool isJumping = false;
@@ -137,24 +135,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void SlopeCheck()
     {
-        Vector2 checkPos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+        Vector2 checkPos = transform.position - new Vector3(0f, (colliderSize.y / 2) -0.4f);
 
         SlopeCheckHorizontal(checkPos);
         SlopeCheckVertical(checkPos);
+
     }
 
     private void SlopeCheckHorizontal(Vector2 checkPos)
     {
+        
         RaycastHit2D frontHit = Physics2D.Raycast(checkPos, Vector2.left, slopeCheckDistance, groundObjects);
         RaycastHit2D backHit = Physics2D.Raycast(checkPos, -Vector2.left, slopeCheckDistance, groundObjects);
 
         if(frontHit)
         {
+           
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(frontHit.normal, Vector2.up);
         }
         else if(backHit)
         {
+
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(backHit.normal, Vector2.up);
         }
@@ -167,10 +169,35 @@ public class PlayerMovement : MonoBehaviour
     private void SlopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundObjects);
+        Vector2 check2 = checkPos - new Vector2(-0.1f,0f);
+        Vector2 check3 = checkPos - new Vector2(0.1f,0f);
 
+        RaycastHit2D hit2 = Physics2D.Raycast(check2, Vector2.down, slopeCheckDistance, groundObjects);
+        RaycastHit2D hit3 = Physics2D.Raycast(check3, Vector2.down, slopeCheckDistance, groundObjects);
+        
+        int numHits = 0;
         if(hit)
         {
+            numHits++;
             slopeNormalPerpendicular = Vector2.Perpendicular(hit.normal).normalized;
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+           ;
+            if(slopeDownAngle > 0f)
+            {
+                isOnSlope = true;
+            }
+
+            slopeDownAngleOld = slopeDownAngle;
+
+            Debug.DrawRay(hit.point, slopeNormalPerpendicular, Color.red);
+            Debug.DrawRay(hit.point, hit.normal,Color.green);
+            
+        }
+        if(hit2)
+        {
+            numHits++;
+            slopeNormalPerpendicular = Vector2.Perpendicular(hit2.normal).normalized;
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
@@ -181,17 +208,43 @@ public class PlayerMovement : MonoBehaviour
 
             slopeDownAngleOld = slopeDownAngle;
 
-            Debug.DrawRay(hit.point, slopeNormalPerpendicular, Color.red);
-            Debug.DrawRay(hit.point, hit.normal,Color.green);
+            Debug.DrawRay(hit2.point, slopeNormalPerpendicular, Color.red);
+            Debug.DrawRay(hit2.point, hit2.normal,Color.green);
+        }
+        if(hit3)
+        {
+            numHits++;
+            slopeNormalPerpendicular = Vector2.Perpendicular(hit3.normal).normalized;
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if(slopeDownAngle != slopeDownAngleOld)
+            {
+                isOnSlope = true;
+            }
+
+            slopeDownAngleOld = slopeDownAngle;
+
+            Debug.DrawRay(hit3.point, slopeNormalPerpendicular, Color.red);
+            Debug.DrawRay(hit3.point, hit3.normal,Color.green);
         }
 
         if(isOnSlope && moveInput == 0.0f)
         {
+            
             rigidBody2D.sharedMaterial = fullFriction;
+            if(slopeDownAngle > 15f || numHits < 3)
+            {
+                 rigidBody2D.sharedMaterial = someFriction;
+            }
+
         }
-        else{
+        else
+        {
             rigidBody2D.sharedMaterial = noFriction;
         }
     }
+
+
     
 }

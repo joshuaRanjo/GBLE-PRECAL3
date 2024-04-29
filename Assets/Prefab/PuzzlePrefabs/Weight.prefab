@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912016613055522621}
   - component: {fileID: 4912016613055522620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912016614030020738}
   - component: {fileID: 4912016614030020741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4912016614502092193}
   - component: {fileID: 4912016614502092127}
   - component: {fileID: 4912016614502092126}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weight
   m_TagString: Weight
   m_Icon: {fileID: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: Weight
+  objectId: 
   puzzleID: Object
   qdScriptableObject: {fileID: 11400000, guid: cd4c3b06a02b24b44819c8385fd0fcb4, type: 2}
   ldScriptableObject: {fileID: 11400000, guid: cdedd1e3e03dc4241aaf06927d2e4849, type: 2}
@@ -269,7 +270,6 @@ MonoBehaviour:
   allowH: 1
   allowK: 1
   allowOrientation: 0
-  ceiling: 0
   a: 1
   b: 0
   h: 0
@@ -290,9 +290,8 @@ MonoBehaviour:
   minH: -5
   maxK: 5
   minK: -5
-  workAreaTransform: {fileID: 0}
-  gridObject: {fileID: 0}
   puzzleObject: {fileID: 4912016614502092123}
+  ceiling: 0
   lrController: {fileID: 0}
 --- !u!114 &4912016614502092127
 MonoBehaviour:
@@ -334,8 +333,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   outlineObject: {fileID: 0}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 10
   spriteRenderers:
   - {fileID: 4912016614030020741}
   spriteShapeRenderer: {fileID: 0}
+  spriteShapeRenderers: []
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}

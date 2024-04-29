@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Interactor : MonoBehaviour
 {
 
-    private bool canInteract = false;
+    private bool canInteract = true;
     //[SerializeField] private BoxCollider2D interactionCollider;
     private GameObject interactable;
 
@@ -30,7 +30,15 @@ public class Interactor : MonoBehaviour
     }
     public void DoInteraction(InputAction.CallbackContext context){
         if(canInteract && (interactable != null) && context.performed){
-            interactable.GetComponent<InteractableObject>().DoAction();
+            if(interactable.GetComponent<InteractableObject>() != null)
+            {
+                interactable.GetComponent<InteractableObject>().DoAction();
+            }
+            if(interactable.GetComponent<InteractableButton>() != null)
+            {
+                interactable.GetComponent<InteractableButton>().DoAction();
+            }
+
         }
     }
 

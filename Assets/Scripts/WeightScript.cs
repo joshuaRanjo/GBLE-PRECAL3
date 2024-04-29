@@ -18,8 +18,9 @@ public class WeightScript : MonoBehaviour
     {
        if(collision.gameObject.CompareTag("PressurePlate"))
        {
-           
-            transform.parent = collision.transform.parent;
+          Debug.Log("ChangingParent to pressureplate");
+          //transform.SetParent(collision.transform.parent);
+          //transform.position = transform.position;
        }
 
 
@@ -30,18 +31,22 @@ public class WeightScript : MonoBehaviour
     {
           if(collision.gameObject.CompareTag("PressurePlate"))
           {
-               transform.parent = collision.transform.parent;
+               //Debug.Log("ChangingParent to pressureplate");
+               //transform.SetParent(collision.transform.parent);
+               //transform.parent = collision.transform.parent;
+               //transform.position = transform.position;
           }
 
 
 
     }
 
-    private void OnCollisionExit2D(Collision2D collision) 
+    private void OnCollisionExit2D(Collision2D collision)   
     {
         if(collision.gameObject.CompareTag("PressurePlate"))
        {
-            transform.parent = parent;
+          //Debug.Log("ChangingParent to original parent");
+          //transform.SetParent(parent,true);  
        }
     }
 
