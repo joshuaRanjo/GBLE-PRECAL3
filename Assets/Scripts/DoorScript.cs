@@ -11,7 +11,7 @@ public class DoorScript : LevelProp
     public float speed = 1f;
 
     private Vector3 closedPosition = Vector3.zero;
-    private Vector3 openPosition = new Vector3(0,2,0);
+    public Vector3 openPosition = new Vector3(0,2,0);
 
     private Coroutine moveDoor;
 
@@ -27,20 +27,23 @@ public class DoorScript : LevelProp
 
     public void Open()
     {
-        Debug.Log("Opening");
-        openStatus = true;
-
-        if(moveDoor != null)
+        if(!openStatus)
         {
-            StopCoroutine(moveDoor);
-        }
+            openStatus = true;
 
-        moveDoor = StartCoroutine(MoveObject(openPosition));
+            if(moveDoor != null)
+            {
+                StopCoroutine(moveDoor);
+            }
+
+            moveDoor = StartCoroutine(MoveObject(openPosition));
+        }
+        
     }
 
     public void Close()
     {
-        Debug.Log("Closing");
+        
         openStatus = false;
 
         if(moveDoor != null)

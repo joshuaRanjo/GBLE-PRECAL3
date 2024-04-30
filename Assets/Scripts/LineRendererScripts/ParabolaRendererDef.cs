@@ -95,6 +95,7 @@ public class ParabolaRendererDef : MonoBehaviour
         points = AdjustLineLength(points, puzzleObject.maxLineLength);
 
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
+        float height = shape.spline.GetHeight(0);
         shape.spline.Clear();
 
         for(int i = 0; i < points.Count; i++)
@@ -107,13 +108,13 @@ public class ParabolaRendererDef : MonoBehaviour
                     && Vector3.Distance(shape.spline.GetPosition(0), points[i]) > 0.1f  )
                 {
                     shape.spline.InsertPointAt(count, points[i]);
-                    shape.spline.SetHeight(count, 0.2f);
+                    shape.spline.SetHeight(count, height);
                     shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
                 }                             
             }
             else{
                     shape.spline.InsertPointAt(count, points[i]);
-                    shape.spline.SetHeight(count, 0.2f);
+                    shape.spline.SetHeight(count, height);
                     shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
             }
             

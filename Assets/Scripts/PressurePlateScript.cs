@@ -9,14 +9,18 @@ public class PressurePlateScript : MonoBehaviour
 private Vector3 originalPos = new Vector3(0,0.4f,0);
 bool moveBack = false;
 bool moveDown = false;
+
+private int numObjects = 0;
 [SerializeField] private UnityEvent pressInteraction;
 [SerializeField] private UnityEvent leaveInteraction;
+[SerializeField] private GameObject plate;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Weight") || collision.transform.name == "Weight")
        {
-            Debug.Log("pressing");
+            //Debug.Log("pressing");
             pressInteraction.Invoke();
             
             moveDown = true;
@@ -26,7 +30,7 @@ bool moveDown = false;
             {
                 collision.transform.parent = transform;
             }
-
+            numObjects++;
        }
     }
     
@@ -35,8 +39,7 @@ bool moveDown = false;
        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Weight") || collision.transform.name == "Weight")
        {
             
-            moveDown = true;
-            moveBack = false;
+
        }
     }
 
@@ -52,26 +55,29 @@ bool moveDown = false;
             {
                 collision.transform.parent = null;
             }
+            numObjects--;
        }
     }
 
     private void Update() {
         
-        if(moveDown)
+        if(numObjects > 0)
         {
-            if(transform.localPosition.y > 0.285f)
+            if(plate.transform.localPosition.y > 0.285f)
             {
-                transform.Translate(0,-0.01f,0);
+                
+                plate.transform.Translate(0,-0.005f,0);
             }
             else{
                 moveDown = false;
             }
         }
-        if(moveBack)
+        if(numObjects == 0)
         {
-            if(transform.localPosition.y < originalPos.y)
-            {
-                transform.Translate(0,0.01f,0);
+            if(plate.transform.localPosition.y < originalPos.y)
+            {   
+                
+                plate.transform.Translate(0,0.005f,0);
             }
             else{
                 moveBack = false;
