@@ -74,7 +74,7 @@ public class InterferenceZoneScript : LevelProp
         // Get the current color of the fill material
         Color startColor = spriteShapeRenderer.color;
         float elapsedTime = 0f;
-        Debug.Log("Transition time " + transitionDuration);
+        //Debug.Log("Transition time " + transitionDuration);
         // Loop until the desired transparency is reached
         while (elapsedTime < transitionDuration)
         {

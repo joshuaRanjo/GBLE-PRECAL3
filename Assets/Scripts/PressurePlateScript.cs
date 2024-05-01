@@ -25,11 +25,12 @@ private int numObjects = 0;
             
             moveDown = true;
             moveBack = false;
-
+            /*
             if(collision.gameObject.CompareTag("Player"))
             {
                 collision.transform.parent = transform;
             }
+            */
             numObjects++;
        }
     }
@@ -51,10 +52,12 @@ private int numObjects = 0;
            
            moveDown = false;
            moveBack = true;
+           /*
             if(collision.gameObject.CompareTag("Player"))
             {
                 collision.transform.parent = null;
             }
+            */
             numObjects--;
        }
     }

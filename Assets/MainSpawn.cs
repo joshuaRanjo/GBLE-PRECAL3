@@ -6,17 +6,23 @@ public class MainSpawn : MonoBehaviour
 {
     public Color gizmoColor = Color.red;
     private float gizmoRadius = 0.3f;
+    private GameObject player;
 
     private void OnEnable() {
+        player = GameObject.FindGameObjectWithTag("Player");
+
        EventManager.StartListening("EnterMainMenu", Teleport);
+       EventManager.StartListening("PlayerDeath", Teleport);
     }
     private void OnDisable() {
         EventManager.StopListening("EnterMainMenu", Teleport);
+        EventManager.StopListening("PlayerDeath", Teleport);
     }
+    
     private void Teleport() {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = this.transform.position;
     }
+
 
     private void OnDrawGizmos()
     {

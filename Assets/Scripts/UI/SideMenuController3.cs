@@ -137,13 +137,16 @@ public class SideMenuController3 : MonoBehaviour
 
     private void ExitPuzzle()
     {
-        DisableAll();
-        ClearInput();
+        if(inPuzzle)
+        {
+            DisableAll();
+            ClearInput();
 
-        backButton.interactable = false;
-        backButton.onClick.RemoveListener( () => {EventManager.TriggerEvent("ExitPuzzle");});
+            backButton.interactable = false;
+            backButton.onClick.RemoveListener( () => {EventManager.TriggerEvent("ExitPuzzle");});
 
-        inPuzzle = false;
+            inPuzzle = false;
+        }
     }
 
     private void InputStartListening()

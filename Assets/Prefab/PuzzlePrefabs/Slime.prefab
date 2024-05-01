@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff6a486bf013b8479eb24dc1c140bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounce: 30
+  bounce: 23
 --- !u!114 &8146168410824758603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +353,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   outlineObject: {fileID: 0}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 10
   spriteRenderers: []
   spriteShapeRenderer: {fileID: 8146168410824758613}
+  spriteShapeRenderers: []
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}

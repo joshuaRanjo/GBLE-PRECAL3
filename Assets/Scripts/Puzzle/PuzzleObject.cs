@@ -87,7 +87,7 @@ public class PuzzleObject : LevelProp
 
     public void AttachToScriptableObjects()
     {
-        if(!inPuzzle)
+        if(!inPuzzle && CheckVicinity())
         {
             h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
             k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
@@ -153,12 +153,16 @@ public class PuzzleObject : LevelProp
     {
         h = newH;
         UpdateObject();
+        if(!CheckVicinity())
+            EventManager.TriggerEvent("ExitPuzzle");
     }
 
     public void SetK(float newK)
     {
         k = newK;
         UpdateObject();
+        if(!CheckVicinity())
+            EventManager.TriggerEvent("ExitPuzzle");
     }
 
     public void SetAll(float newA, float newB, float newH, float newK)
@@ -177,6 +181,22 @@ public class PuzzleObject : LevelProp
         k = default_k;
 
         UpdateObject();
+    }
+
+    private bool CheckVicinity()
+    {
+        
+        Collider2D colliders = Physics2D.OverlapPoint(new Vector2(h,k), LayerMask.GetMask("InterferenceLayer"));
+        Debug.Log(colliders);
+        
+        if(colliders != null)
+        {
+            return  false;
+        }
+        else
+        {
+            return  true;
+        }
     }
 
 }

@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(GameObject levelPrefab)
     {
+        EventManager.TriggerEvent("ExitPuzzle");
         ClearLevel();
 
         GameObject instantiatedObj = Instantiate(levelPrefab,Vector3.zero, Quaternion.identity);

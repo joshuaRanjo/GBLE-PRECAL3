@@ -40,7 +40,7 @@ public class ClickableObject : MonoBehaviour
                 if(spriteRenderers.Count > 0 && lerpCoroutine == null)
                 {
                     lerpCoroutine = StartCoroutine(LerpColorCoroutine());
-                    Debug.Log("Startlerping");
+                    //Debug.Log("Startlerping");
                 }
                 if(spriteShapeRenderer != null)
                 {
@@ -78,7 +78,7 @@ public class ClickableObject : MonoBehaviour
             spriteShapeRenderer.color = startColor;
         }
 
-        Debug.Log("Stoppedlerping");
+        //Debug.Log("Stoppedlerping");
     }
 
     private void OnEnable() {
@@ -149,7 +149,7 @@ public class ClickableObject : MonoBehaviour
     IEnumerator LerpColorSpriteShape(Color startColor, Color targetColor, float duration)
     {
         float elapsedTime = 0f;
-        Debug.Log("Spriteshape is lerping2");
+        //Debug.Log("Spriteshape is lerping2");
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
