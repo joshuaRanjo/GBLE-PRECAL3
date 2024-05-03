@@ -6,6 +6,9 @@ using Fungus;
 
 public class PuzzleObject : LevelProp
 {
+    public delegate void UpdateObjectDelegate();
+    public event UpdateObjectDelegate updateObjectCalled;
+
     [Header("Puzzle ID")]
     public string puzzleID;
 
@@ -44,7 +47,8 @@ public class PuzzleObject : LevelProp
     [SerializeField] private float maxA;
     [SerializeField] private float minA,maxB,minB,maxH,minH,maxK,minK;
 
-
+    [Header("For Ellipse")]
+    [SerializeField] public bool simplifiedEllipse = false;
 
     [Header("Puzzle Parts")]
     [SerializeField] public GameObject puzzleObject;
@@ -67,10 +71,6 @@ public class PuzzleObject : LevelProp
     }
 
     private void OnEnable() {
-
-        //Transform levelprops = GameObject.Find("LevelProps").transform;
-        //    transform.SetParent(levelprops);
-        //base.OnEnable();
 
         puzzleObject = this.gameObject;
 
@@ -135,6 +135,7 @@ public class PuzzleObject : LevelProp
     private void UpdateObject()
     {
         lrController.UpdateObject(this);
+        updateObjectCalled?.Invoke();
     }
 
     public void SetA(float newA)
@@ -187,7 +188,7 @@ public class PuzzleObject : LevelProp
     {
         
         Collider2D colliders = Physics2D.OverlapPoint(new Vector2(h,k), LayerMask.GetMask("InterferenceLayer"));
-        Debug.Log(colliders);
+    
         
         if(colliders != null)
         {
