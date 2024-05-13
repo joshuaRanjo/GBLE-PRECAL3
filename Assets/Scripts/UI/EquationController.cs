@@ -31,6 +31,7 @@ public class EquationController : MonoBehaviour
         lineDataScriptableObject.attachedDataEvent.AddListener(UpdateEquation);
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ResetVariables);
+        //EventManager.StartListening("SwitchSimplifiedEllipse", UpdateEquation);
 
     }
 
@@ -40,6 +41,7 @@ public class EquationController : MonoBehaviour
         lineDataScriptableObject.attachedDataEvent.RemoveListener(UpdateEquation);
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ResetVariables);
+        //EventManager.StopListening("SwitchSimplifiedEllipse", UpdateEquation);
     } 
 
 #endregion
@@ -110,17 +112,41 @@ public class EquationController : MonoBehaviour
 
     private void EllipseUpdate()
     {
-        //Debug.Log("Equation Updated E");
-        equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + lineDataScriptableObject.a +  "\\color{#000000}^2} + \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+        
+        if(lineDataScriptableObject.simplifiedEllipse)
+        {
+            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + lineDataScriptableObject.a +  "\\color{#000000}} + \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}} = 1";
+        }
+        else
+        {
+            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + lineDataScriptableObject.a +  "\\color{#000000}^2} + \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+        }
     }
 
     private void HyperbolaUpdate()
     {
         //Debug.Log("Equation Updated H");
         if(lineDataScriptableObject.orientation)
-            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  lineDataScriptableObject.a + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+        {   
+            if(lineDataScriptableObject.simplifiedEllipse)
+            {
+                equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  lineDataScriptableObject.a + "\\color{#000000}} - \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}} = 1";
+            }
+            else{
+                equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  lineDataScriptableObject.a + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" + lineDataScriptableObject.b + "\\color{#000000}^2} = 1";
+            }
+            
+        }
         else
-            equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  lineDataScriptableObject.b + "\\color{#000000}^2} - \\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" + lineDataScriptableObject.a + "\\color{#000000}^2} = 1";
+        {
+            if(lineDataScriptableObject.simplifiedEllipse)
+            {
+                equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  lineDataScriptableObject.b + "\\color{#000000}} - \\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" + lineDataScriptableObject.a + "\\color{#000000}} = 1";
+            }
+            else{
+                equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  lineDataScriptableObject.b + "\\color{#000000}^2} - \\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{\\color{"+aColor+"}" + lineDataScriptableObject.a + "\\color{#000000}^2} = 1";
+            }
+        }
     }
     
 }

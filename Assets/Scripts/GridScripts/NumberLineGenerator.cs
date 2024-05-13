@@ -29,7 +29,7 @@ public class NumberLineGenerator : MonoBehaviour
             Debug.LogError("Parent transform is not assigned.");
             return;
         }
-
+        // x axis
         for (int i = numberOfNumbers * -1; i <= numberOfNumbers; i++)
         {
             // Instantiate a number object
@@ -63,15 +63,20 @@ public class NumberLineGenerator : MonoBehaviour
                 {
                     twoDigitOffset = horizontalTwoDigitOffsetX;
                 }
+                float offset = 0;
+                if(i<0)
+                {
+                    offset = -0.1f;
+                }
                 // Position the number object in a line
-                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(horizontalNumberOffsetX + twoDigitOffset , -0.18f + horizontalNumberOffsetY, 0);
+                numberObject.transform.localPosition = Vector3.right * i * spacing + new Vector3(horizontalNumberOffsetX + twoDigitOffset + offset , -0.18f + horizontalNumberOffsetY, 0);
             }
             numberObject.GetComponent<TextMeshPro>().text = i.ToString();
             numberObject.GetComponent<TextMeshPro>().fontSize = fontSize;
             i = i + skipNumbers -1;
         }
 
-
+        //Y-axis
         for (int i = numberOfNumbers * -1; i <= numberOfNumbers; i++)
         {
 
@@ -96,12 +101,13 @@ public class NumberLineGenerator : MonoBehaviour
                 {
                     Debug.Log("NumberLineGenerator.cd : Background Circle Not Found. ");
                 }
-
+                float offset = 0;
                 if(i < 0)
-                {
+                {   
+                    offset = 0.06f;
                     bgCircle.localScale = new Vector3(0.27f, bgCircle.localScale.y, bgCircle.localScale.z);
                 }
-                float offset = 0;
+                
                 if(i < -9)
                 {
                     offset = 0.06f;

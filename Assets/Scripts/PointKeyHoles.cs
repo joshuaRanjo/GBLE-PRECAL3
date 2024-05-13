@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointKeyHoles : MonoBehaviour
+public class PointKeyHoles : LevelProp
 {   
     [SerializeField] private bool isVertex;
     [SerializeField] private MultipleConditionSwitch mcsScript;
@@ -32,7 +32,7 @@ public class PointKeyHoles : MonoBehaviour
                 }
             }
         }
-        Debug.Log("TriggerEntered " + other.transform.name);
+        //Debug.Log("TriggerEntered " + other.transform.name);
     }
 
     private void OnTriggerExit2D(Collider2D other) 
@@ -49,5 +49,15 @@ public class PointKeyHoles : MonoBehaviour
             }
             Debug.Log("PointKey exited");
         }
+    }
+
+    private void TurnOnLight()
+    {
+
+    }
+
+    private void TurnOffLight()
+    {
+
     }
 }

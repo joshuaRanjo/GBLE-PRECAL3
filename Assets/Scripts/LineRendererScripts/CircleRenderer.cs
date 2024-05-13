@@ -1,36 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class CircleRenderer : MonoBehaviour
 {
 
-    public float radius = 1.0f;
+
     public int segments = 360;
-    [SerializeField] private LineRenderer lineRenderer;
 
-    private void DrawCircle()
+    public List<Vector3> GenerateCirclePoints(float radius)
     {
-        lineRenderer.positionCount = segments + 1;
-        lineRenderer.useWorldSpace = false;
+        List<Vector3> points = new List<Vector3>();
 
-        float deltaTheta = (2f * Mathf.PI) / segments;
-        float theta = 0f;
+        float angleStep = 360f / segments;
 
-        for (int i = 0; i < segments + 1; i++)
+        for (int i = 0; i < segments; i++)
         {
-            float x = radius * Mathf.Cos(theta);
-            float y = radius * Mathf.Sin(theta);
-
-            lineRenderer.SetPosition(i, new Vector3(x, y, 0f));
-
-            theta += deltaTheta;
+            float angle = i * angleStep;
+            float x = radius * Mathf.Cos(Mathf.Deg2Rad * angle);
+            float y = radius * Mathf.Sin(Mathf.Deg2Rad * angle);
+            points.Add(new Vector3(x, y, 0));
         }
+
+        return points;
     }
 
-    public void DrawCircle(float newRadius)
+    public void UpdateLine(GameObject lineObject)
     {
-        radius = newRadius;
-        DrawCircle();
+        PuzzleObject puzzleObject = lineObject.GetComponent<PuzzleObject>();
+        List<Vector3> points = GenerateCirclePoints(puzzleObject.a);
+
+        SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
+        float height = shape.spline.GetHeight(0);
+        shape.spline.Clear();
+
+        for(int i = 0; i < points.Count; i++)
+        {
+            int count = shape.spline.GetPointCount();
+            if(count > 0 )
+            {
+                    
+                if(Vector3.Distance(shape.spline.GetPosition(count-1), points[i]) > 0.1f
+                    && Vector3.Distance(shape.spline.GetPosition(0), points[i]) > 0.1f  )
+                {
+                    shape.spline.InsertPointAt(count, points[i]);
+                    shape.spline.SetHeight(count, height);
+                    shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+                }                             
+            }
+            else{
+                    shape.spline.InsertPointAt(count, points[i]);
+                    shape.spline.SetHeight(count, height);
+                    shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
+            }
+            
+        }
     }
 }

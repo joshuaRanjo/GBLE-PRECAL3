@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3158274582276829349}
   - component: {fileID: 3158274582276829350}
   - component: {fileID: 3158274582276829351}
+  - component: {fileID: -3587565565071219885}
+  - component: {fileID: 6215701699759759425}
   m_Layer: 0
   m_Name: fociPoint
   m_TagString: PointKey
@@ -124,6 +126,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3587565565071219885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158274582276829347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c00ddd704d61c4c9c6d8165a9c8dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction:
+    m_PersistentCalls:
+      m_Calls: []
+  outlineObject: {fileID: 0}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 10
+  spriteRenderers: []
+  spriteShapeRenderer: {fileID: 0}
+  spriteShapeRenderers: []
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+--- !u!114 &6215701699759759425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158274582276829347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a82b027b897a418c685b9e9969f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3158274582649692614
 GameObject:
   m_ObjectHideFlags: 0

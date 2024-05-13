@@ -31,6 +31,11 @@ public class HyperbolaRenderer : MonoBehaviour
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
         a = puzzleObject.a;
         b = puzzleObject.b;
+        if(puzzleObject.simplifiedEllipse)
+        {
+            a = Mathf.Sqrt(a);
+            b = Mathf.Sqrt(b);
+        }
         List<Vector3> line1;
         List<Vector3> line2;
         if(puzzleObject.orientation) // True = horizontal

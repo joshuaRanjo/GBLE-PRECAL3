@@ -22,6 +22,7 @@ public class ObjectMover : MonoBehaviour
 
     public void UpdateLine(float h, float k)
     {
+        /*
         Vector3 currentPosition = lineObject.transform.position;
 
         currentPosition.x = h;
@@ -29,19 +30,26 @@ public class ObjectMover : MonoBehaviour
         currentPosition.z = 0.1f;
 
         lineObject.transform.localPosition = currentPosition;
+        */
         //Debug.Log("ObjectMover" + h + " and " +k);
     }
 
     public void UpdateLine(GameObject newObject, float h, float k)
     {
-        Vector3 currentPosition = newObject.transform.position;
-
-        currentPosition.x = h;
-        currentPosition.y = k;
-        currentPosition.z = 0.1f;
+        //if(newObject.GetComponent<PuzzleObject>().conicType == 4)
         
-        newObject.transform.localPosition = currentPosition;
-        //Debug.Log("ObjectMover" + h + " and " +k);
+        {
+            Vector3 currentPosition = newObject.transform.position;
+
+            currentPosition.x = h;
+            currentPosition.y = k;
+            currentPosition.z = 0.1f;
+            
+            newObject.transform.localPosition = currentPosition;
+            
+        }
+        
+        
     }
 
     private void ExitPuzzle()

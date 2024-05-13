@@ -41,6 +41,8 @@ public class SideMenuController3 : MonoBehaviour
 
     private bool inPuzzle = false;
 
+    private float simplifiedEllipseModifier = 1f;
+
     private void Start() {
         InputStartListening();
     }
@@ -51,13 +53,16 @@ public class SideMenuController3 : MonoBehaviour
 
     private void OnEnable() {
         qdScriptableObject.questionUpdateEvent.AddListener(UpdateUI);
+        ldScriptableObject.dataChangeEvent.AddListener(UpdateUI);
 
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ExitPuzzle);
+        
     }
 
     private void OnDisable() {
         qdScriptableObject.questionUpdateEvent.RemoveListener(UpdateUI);
+        ldScriptableObject.dataChangeEvent.RemoveListener(UpdateUI);
 
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ExitPuzzle);
@@ -85,10 +90,10 @@ public class SideMenuController3 : MonoBehaviour
 
         //Set values of inputs and sliders
         InputStopListening();
+        AddSliderLimits();
         inputA.text = ldScriptableObject.a.ToString();
         inputH.text = ldScriptableObject.h.ToString();
         inputK.text = ldScriptableObject.k.ToString();
-
         aSlider.value = ldScriptableObject.a;
         hSlider.value = ldScriptableObject.h;
         kSlider.value = ldScriptableObject.k;
@@ -101,6 +106,9 @@ public class SideMenuController3 : MonoBehaviour
             bSlider.value = ldScriptableObject.b;
             inputB.text = ldScriptableObject.b.ToString();
         }
+        
+        
+
         InputStartListening();
     }
 
@@ -126,10 +134,9 @@ public class SideMenuController3 : MonoBehaviour
     {
         backButton.interactable = true;
         backButton.onClick.AddListener( () => {EventManager.TriggerEvent("ExitPuzzle");});
-        InputStopListening();
-        AddSliderLimits();
-        InputStartListening();
         UpdateUI();
+
+
         
         inPuzzle = true;
         

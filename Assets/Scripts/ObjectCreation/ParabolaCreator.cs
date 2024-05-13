@@ -8,9 +8,9 @@ public class ParabolaCreator : MonoBehaviour
 {
     public float maxX = 5.0f;  // Maximum x value
     public float maxY = 5.0f;  // Maximum y value
-        public float maxLength;
+    public float maxLength;
     public int pointCount = 50;
-    private bool isVertical = true;
+    public bool isVertical = true;
     public float a = 1;
     public bool spriteShape = false;
     public bool addCollider = false;
@@ -103,44 +103,69 @@ public class ParabolaCreator : MonoBehaviour
     public List<Vector3> DrawParabola()
     {
         List<Vector3> points = new List<Vector3>();
-        if(a != 0)
+        if(isVertical)
         {
-            
-
-            float xStep = (maxX - -maxX) / (pointCount - 1);
-            // If vertical Axis
-            for (int i = 0; i < pointCount; i++)
+            if(a != 0)
             {
-                float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
-                float y = a * x * x;
-
-                if ( y >= -maxY && y <= maxY)
-                {
-                    Vector3 point = new Vector3(x, y, 0);
-                    points.Add(point);
-                }
                 
-            }
 
-            int verticalModifier = 1;
-            if(a < 0)
+                float xStep = (maxX - -maxX) / (pointCount - 1);
+                // If vertical Axis
+                for (int i = 0; i < pointCount; i++)
+                {
+                    float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
+                    float y = a * x * x;
+
+                    if ( y >= -maxY && y <= maxY)
+                    {
+                        Vector3 point = new Vector3(x, y, 0);
+                        points.Add(point);
+                    }
+                    
+                }
+
+                int verticalModifier = 1;
+                if(a < 0)
+                {
+                    verticalModifier = -1;
+                }
+
+                float lastX = Mathf.Sqrt(verticalModifier*maxY/a);
+                points.Insert(0, new Vector3(-lastX,maxY*verticalModifier,0));
+                points.Add(new Vector3(lastX,maxY*verticalModifier,0));
+            }
+            else
             {
-                verticalModifier = -1;
-            }
 
-            float lastX = Mathf.Sqrt(verticalModifier*maxY/a);
-            points.Insert(0, new Vector3(-lastX,maxY*verticalModifier,0));
-            points.Add(new Vector3(lastX,maxY*verticalModifier,0));
+                float x,y;
+                if(isVertical){ x = 3; y = 0;}
+                else{ x = 0; y = 3;}
+
+                points.Insert(0, new Vector3(-x,-y,0));
+                points.Insert(1, new Vector3(x,y,0));
+            }
         }
         else
         {
-
-            float x,y;
-            if(isVertical){ x = 3; y = 0;}
-            else{ x = 0; y = 3;}
-
-            points.Insert(0, new Vector3(-x,-y,0));
-            points.Insert(1, new Vector3(x,y,0));
+            float yStep = (maxY- - maxY) / (pointCount - 1);
+            for(int i = 0; i < pointCount; i++)
+            {
+                float y = -maxY + i * yStep;
+                float x = a * y * y;
+                if (x >= -maxX && x <= maxX)
+                {
+                    Vector3 point = new Vector3(x,y,0);
+                    points.Add(point);
+                }
+            }
+            int horizontalModifier = 1;
+            if(a < 0 )
+            {
+                horizontalModifier = -1;
+            }
+            float lastY = Mathf.Sqrt(horizontalModifier*maxX/a);
+            points.Insert(0, new Vector3(-lastY,maxX*horizontalModifier,0));
+            points.Add(new Vector3(lastY, maxX*horizontalModifier,0));
         }
         return points;
         

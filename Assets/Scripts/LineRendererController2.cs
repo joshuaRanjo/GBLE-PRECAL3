@@ -28,7 +28,7 @@ public class LineRendererController2 : MonoBehaviour
             }
             else
             {
-
+                circleRenderer.UpdateLine(puzzleObject.puzzleObject);
             }
         }
         if(puzzleObject.conicType == 2)
@@ -37,6 +37,10 @@ public class LineRendererController2 : MonoBehaviour
             if(puzzleObject.puzzleType) //True == Sprite renderer puzzle, False == Line renderer Type puzzle
             {
                 interactedCircleRenderer.UpdateLine(puzzleObject.puzzleObject, puzzleObject.a, puzzleObject.b);
+            }
+            else
+            {
+                ellipseRenderer.UpdateLine(puzzleObject.puzzleObject);
             }
         }
         if(puzzleObject.conicType == 3)
@@ -55,7 +59,7 @@ public class LineRendererController2 : MonoBehaviour
             //Hyperbola
             if(puzzleObject.puzzleType)
             {
-                Debug.Log("Updating Sprite Shape");
+                //Debug.Log("Updating Sprite Shape");
                 hyperbolaRenderer.UpdateLine(puzzleObject.puzzleObject);
             }
         }

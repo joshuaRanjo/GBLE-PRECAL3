@@ -8,15 +8,19 @@ public class HyperbolaCreator : MonoBehaviour
 {
 
     public int pointCount = 100;
+    public float lineLength = 10f;
     public bool isVertical = true;
-    public float a = 1;
-    public float b = 1;
+    public bool simplified = false;
+    public float aSet = 1;
+    public float bSet = 1;
     public bool spriteShape = false;
     public bool split = true;
 
     public bool line = false;
     public bool terrain = false;
     public bool ceiling = false;
+    private float a;
+    private float b;
     public void CreateObject()
     {
         // Instantiate the object
@@ -27,7 +31,14 @@ public class HyperbolaCreator : MonoBehaviour
         SpriteShapeController shape1;
         SpriteShapeController shape2 = null;
 
+        a = aSet;
+        b = bSet;
 
+        if(simplified)
+        {
+            a = Mathf.Sqrt(a);
+            b = Mathf.Sqrt(b);
+        }
 
         GameObject child1;
         GameObject child2;
@@ -67,8 +78,8 @@ public class HyperbolaCreator : MonoBehaviour
             DrawHorizontalHyperbola(out line1, out line2);
         }
 
-        line1 = AdjustLineLength(line1, 20f);
-        line2 = AdjustLineLength(line2, 20f);
+        line1 = AdjustLineLength(line1, lineLength);
+        line2 = AdjustLineLength(line2, lineLength);
 
         line1.RemoveAt(0);
         line2.RemoveAt(0);
@@ -140,10 +151,10 @@ public class HyperbolaCreator : MonoBehaviour
         list1 = new List<Vector3>();
         list2 = new List<Vector3>();
         int position= 0;
-        for (float i = -10.0f; i <= 10.0f; i += 0.1f)
+        for (float i = -20.0f; i <= 20.0f; i += 0.1f)
         {
             
-            if (position < 200)
+            if (position < 400)
             {
                 float y = Mathf.Sqrt((b*b) + (((b*b)*(i*i))/(a*a)));
 

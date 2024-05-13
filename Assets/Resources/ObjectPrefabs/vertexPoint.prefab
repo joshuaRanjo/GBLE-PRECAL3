@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 3208724295239207917}
   - component: {fileID: 3208724295239207916}
   - component: {fileID: 3208724295239207919}
+  - component: {fileID: -2733360355864802147}
+  - component: {fileID: 9203243523080074497}
   m_Layer: 0
   m_Name: vertexPoint
   m_TagString: PointKey
@@ -186,3 +188,39 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-2733360355864802147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208724295239207914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c00ddd704d61c4c9c6d8165a9c8dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction:
+    m_PersistentCalls:
+      m_Calls: []
+  outlineObject: {fileID: 0}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 10
+  spriteRenderers: []
+  spriteShapeRenderer: {fileID: 0}
+  spriteShapeRenderers: []
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+--- !u!114 &9203243523080074497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208724295239207914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a82b027b897a418c685b9e9969f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

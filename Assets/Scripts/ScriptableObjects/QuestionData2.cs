@@ -14,6 +14,7 @@ public class QuestionData2 : ScriptableObject
     public float maxA,minA,maxB,minB,maxH,minH,maxK,minK;
     public float defaultA, defaultB, defaultH, defaultK;
     public float xOffset,yOffset;
+    public bool simplifiedEllipse;
 
     public bool puzzleType; // True = interact with object, false = line creation
 
@@ -27,6 +28,7 @@ public class QuestionData2 : ScriptableObject
                                     , float newMaxA, float newMinA, float newMaxB, float newMinB, float newMaxH, float newMinH, float newMaxK, float newMinK
                                     , float newDefaultA, float newDefaultB, float newDefaultH, float newDefaultK
                                     , float newXOffset, float newYOffset
+                                    , bool newSimplifiedEllipse
                                     )
     {        
         allowCircle = newAllowCircle;
@@ -60,6 +62,12 @@ public class QuestionData2 : ScriptableObject
 
         xOffset = newXOffset;
         yOffset = newYOffset;
+        simplifiedEllipse = newSimplifiedEllipse;
+
+        if(simplifiedEllipse)
+        {
+            SquareLimits();
+        }
        
         //Change UI
         questionUpdateEvent.Invoke();
@@ -80,6 +88,38 @@ public class QuestionData2 : ScriptableObject
         allowK = false;
 
         allowOrientation = false;
+    }
+
+    private void SquareLimits()
+    {
+        maxA *= maxA;
+        minA = 0.01f;
+        maxB *= maxB;
+        minB = 0.01f;
+    }
+
+    private void SquareRootLimits()
+    {
+        maxA = Mathf.Sqrt(maxA);
+        minA = -maxA;
+        maxB = Mathf.Sqrt(maxB);
+        minB = -maxB;
+    }
+
+    public void ModifyMaxMinSimplifiedEllipse()
+    {   
+        //convert to unsimplified
+        if(simplifiedEllipse)
+        {
+            simplifiedEllipse = false;
+            SquareRootLimits();
+
+        }
+        else // convert to simplified
+        {
+            simplifiedEllipse = true;
+            SquareLimits();
+        }
     }
 
 

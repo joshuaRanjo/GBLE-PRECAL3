@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flip
+  m_text: Simplify
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2135,6 +2135,7 @@ GameObject:
   - component: {fileID: 2377526752105940024}
   - component: {fileID: 2377526752105940025}
   - component: {fileID: 2377526752105940030}
+  - component: {fileID: 8572023155970438581}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2244,7 +2245,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2377526752105940025}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8572023155970438581}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8572023155970438581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377526752105940028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee5a69ff026f6d429ac79e5fc76b418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2612010510155686548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2869,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1658836861
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0.6901961, a: 1}
@@ -5463,6 +5488,7 @@ GameObject:
   - component: {fileID: 4193772966696016311}
   - component: {fileID: 6423382125612451086}
   - component: {fileID: 2187769263811989649}
+  - component: {fileID: 3169496844823449124}
   m_Layer: 5
   m_Name: SideMenuV3 Moving
   m_TagString: Untagged
@@ -5510,7 +5536,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qdScriptableObject: {fileID: 0}
   ldScriptableObject: {fileID: 0}
-  questionText: {fileID: 0}
   inputA: {fileID: 5039355706434437527}
   inputB: {fileID: 5039355706743819081}
   inputH: {fileID: 5039355705979672109}
@@ -5554,6 +5579,20 @@ MonoBehaviour:
   equationText: {fileID: 5039355707025513534}
   lineDataScriptableObject: {fileID: 0}
   isVertical: 1
+--- !u!114 &3169496844823449124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039355706906863005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a716cf3c12873f142b6a93d7ff409b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ldScriptableObject: {fileID: 0}
+  qdScriptableObject: {fileID: 0}
 --- !u!1 &5039355706996039236
 GameObject:
   m_ObjectHideFlags: 0
@@ -6877,7 +6916,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1658836861
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0.6901961, a: 1}
@@ -7496,7 +7535,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1658836861
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0.68712854, a: 1}

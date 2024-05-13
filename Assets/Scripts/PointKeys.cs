@@ -6,6 +6,7 @@ public class PointKeys : LevelProp
 {
 
     [SerializeField] private GameObject vertexPoint;
+    [SerializeField] private GameObject vertexPoint2;
     [SerializeField] private GameObject fociPoint1;
     [SerializeField] private GameObject fociPoint2;
 
@@ -27,10 +28,20 @@ public class PointKeys : LevelProp
 
         vertexPoint.transform.SetParent(transform.parent);
         fociPoint1.transform.SetParent(transform.parent);
+
+        vertexPoint.GetComponent<PointKeyScript>().SetUpClickableScript();
+        fociPoint1.GetComponent<PointKeyScript>().SetUpClickableScript();
         if(conicType != 3)
         {
             fociPoint2 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
             fociPoint2.transform.SetParent(transform.parent);
+            fociPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
+        }
+        if(conicType == 4)
+        {
+            vertexPoint2 = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
+            vertexPoint2.transform.SetParent(transform.parent);
+            vertexPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
         }
         UpdatePoints();
     }
@@ -60,6 +71,7 @@ public class PointKeys : LevelProp
             d = 0;
             if(!poScript.simplifiedEllipse)
             {
+
                 a = a*a;
                 b = b*b;
             }
@@ -102,10 +114,14 @@ public class PointKeys : LevelProp
             if(poScript.orientation)
             {
                 c = Mathf.Sqrt((a*a) + (b*b));
+                vertexPoint.transform.position = new Vector3(h+a,k, 0f);
+                vertexPoint2.transform.position = new Vector3(h-a,k, 0f);
             }
             else
             {
                 d = Mathf.Sqrt((a*a) + (b*b));
+                vertexPoint.transform.position = new Vector3(h,k+a, 0f);
+                vertexPoint2.transform.position = new Vector3(h,k-a, 0f);
             }
             x1 = h+c;
             y1 = k+d;

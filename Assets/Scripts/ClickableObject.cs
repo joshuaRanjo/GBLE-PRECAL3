@@ -100,7 +100,7 @@ public class ClickableObject : MonoBehaviour
 
     public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
     public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
-    public List<UnityEngine.U2D.SpriteShapeRenderer> spriteShapeRenderers;
+    public List<UnityEngine.U2D.SpriteShapeRenderer> spriteShapeRenderers = new List<UnityEngine.U2D.SpriteShapeRenderer>();
     public Color startColor = Color.white;
     public Color endColor = new Color(191f / 255f, 191f / 255f, 191f / 255f); // #BFBFBF in RGB
     private float lerpDuration = 0.25f;

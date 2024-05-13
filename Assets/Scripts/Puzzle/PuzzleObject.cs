@@ -56,6 +56,9 @@ public class PuzzleObject : LevelProp
     [Header("For Parabolas")]
     [SerializeField] private bool ceiling;
 
+    private Vector3 targetPosition;
+    private float speed = 1f;
+
     
     //[Header("Camera Offset")]
      private float xOffset = 0;
@@ -73,16 +76,36 @@ public class PuzzleObject : LevelProp
     private void OnEnable() {
 
         puzzleObject = this.gameObject;
+        targetPosition = this.transform.position;
 
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
+
+        EventManager.StartListening("SwitchSimplifiedEllipse",SwitchSimplifiedEllipse);
+
         lrController = GameObject.Find("Game").GetComponent<LineRendererController2>();
 
         h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
         k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
+
+        if(conicType == 1 && puzzleType)
+        {
+            a = puzzleObject.transform.localScale.x / 2;
+        }
+        if(conicType == 2 && puzzleType)
+        {
+            a = puzzleObject.transform.localScale.x / 2;
+            b = puzzleObject.transform.localScale.y / 2;
+            if(simplifiedEllipse)
+            {
+                a *= a;
+                b *= b;
+            }
+        }
     }
 
     private void OnDisable() {
          EventManager.StopListening("ExitPuzzle",ExitPuzzle);
+         EventManager.StopListening("SwitchSimplifiedEllipse",SwitchSimplifiedEllipse);
     }
 
     public void AttachToScriptableObjects()
@@ -100,6 +123,7 @@ public class PuzzleObject : LevelProp
                                                     , maxA,minA, maxB,minB, maxH,minH, maxK,minK
                                                     ,default_a, default_b,default_h,default_k
                                                     , xOffset, yOffset
+                                                    , simplifiedEllipse
                                                     );
             
 
@@ -153,17 +177,27 @@ public class PuzzleObject : LevelProp
     public void SetH(float newH)
     {
         h = newH;
+        
         UpdateObject();
+        //targetPosition = new Vector3(h,k,0.1f);
+        //StopAllCoroutines();
+        //StartCoroutine(MoveToTarget());
         if(!CheckVicinity())
             EventManager.TriggerEvent("ExitPuzzle");
+        
     }
 
     public void SetK(float newK)
     {
         k = newK;
+        
         UpdateObject();
+        //targetPosition = new Vector3(h,k,0.1f);
+        //StopAllCoroutines();
+        //StartCoroutine(MoveToTarget());
         if(!CheckVicinity())
             EventManager.TriggerEvent("ExitPuzzle");
+        
     }
 
     public void SetAll(float newA, float newB, float newH, float newK)
@@ -173,6 +207,29 @@ public class PuzzleObject : LevelProp
         h = newH;
         k = newK;
         UpdateObject();
+    }
+
+    public void SwitchSimplifiedEllipse()
+    {
+        if(ldScriptableObject.puzzleObjectScript == this)
+        {
+            simplifiedEllipse = !simplifiedEllipse;
+
+            if(simplifiedEllipse)
+            {
+                a *= a;
+                b *= b;
+            }
+            else
+            {
+                a = Mathf.Sqrt(a);
+                b = Mathf.Sqrt(b);
+            }
+            ldScriptableObject.SetA(a);
+            ldScriptableObject.SetB(b);
+            ldScriptableObject.SetSimplifiedEllipse(simplifiedEllipse);
+        }
+        
     }
     public void ResetObject()
     {
@@ -199,5 +256,25 @@ public class PuzzleObject : LevelProp
             return  true;
         }
     }
+/*
+    private IEnumerator MoveToTarget()
+    {
+        Debug.Log("Moving Coroutine");
+        
+        Debug.Log(transform.position + " target = " + targetPosition);
+        Vector3 initialPosition = transform.position;
+        float journeyLength = Vector3.Distance(initialPosition, targetPosition);
+        float startTime = Time.time;
 
+        while (transform.position != targetPosition)
+        {
+            float distCovered = (Time.time - startTime) * speed;
+            float fracJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(initialPosition, targetPosition, fracJourney);
+            yield return null;
+        }
+        
+        yield return null;
+    }
+*/
 }
