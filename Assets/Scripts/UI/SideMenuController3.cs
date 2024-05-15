@@ -53,6 +53,7 @@ public class SideMenuController3 : MonoBehaviour
 
     private void OnEnable() {
         qdScriptableObject.questionUpdateEvent.AddListener(UpdateUI);
+        ldScriptableObject.simplifiedEquationChange.AddListener(UpdateUI);
         ldScriptableObject.dataChangeEvent.AddListener(UpdateUI);
 
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
@@ -62,6 +63,7 @@ public class SideMenuController3 : MonoBehaviour
 
     private void OnDisable() {
         qdScriptableObject.questionUpdateEvent.RemoveListener(UpdateUI);
+        ldScriptableObject.simplifiedEquationChange.RemoveListener(UpdateUI);
         ldScriptableObject.dataChangeEvent.RemoveListener(UpdateUI);
 
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
@@ -106,9 +108,6 @@ public class SideMenuController3 : MonoBehaviour
             bSlider.value = ldScriptableObject.b;
             inputB.text = ldScriptableObject.b.ToString();
         }
-        
-        
-
         InputStartListening();
     }
 
@@ -204,8 +203,10 @@ public class SideMenuController3 : MonoBehaviour
         else if(float.TryParse(newValue, out float floatValue))
         {
             if((qdScriptableObject.maxA != -99) 
-                && (qdScriptableObject.maxA < floatValue || qdScriptableObject.minA > floatValue)
-                || ((ldScriptableObject.conicType != 3) == (floatValue == 0f))
+                && (
+                    (qdScriptableObject.maxA < floatValue || qdScriptableObject.minA > floatValue)
+                //|| ((ldScriptableObject.conicType != 3) == (floatValue == 0f))
+                    )
               )
             {
                 {
@@ -217,6 +218,7 @@ public class SideMenuController3 : MonoBehaviour
             }
                        
         }
+
         InputStartListening();
     }
 
@@ -246,6 +248,7 @@ public class SideMenuController3 : MonoBehaviour
                 bSlider.value = qdScriptableObject.defaultB;
             }
         }
+
         InputStartListening();
     }
 
@@ -267,6 +270,7 @@ public class SideMenuController3 : MonoBehaviour
                 hSlider.value = qdScriptableObject.defaultH;
             }
         }
+
         InputStartListening();
     }
 
@@ -289,6 +293,7 @@ public class SideMenuController3 : MonoBehaviour
                 //Debug.Log("Setting to Default: Invalid");
             }
         }
+
         InputStartListening();
     }
     private void UpdateA(string newValue)
@@ -307,6 +312,10 @@ public class SideMenuController3 : MonoBehaviour
                 InputStartListening();
             }
         }
+        else
+        {
+
+        }
         
     }
     private void UpdateB(string newValue)
@@ -324,10 +333,14 @@ public class SideMenuController3 : MonoBehaviour
                 InputStartListening();
             }
         }
+        else
+        {
+
+        }
     }
     private void UpdateH(string newValue)
     {
-
+        
         if(float.TryParse(newValue, out float floatValue))
         {
             if((qdScriptableObject.maxH != -99) && (qdScriptableObject.maxH >= floatValue && qdScriptableObject.minH <= floatValue))
@@ -338,6 +351,11 @@ public class SideMenuController3 : MonoBehaviour
                 InputStartListening();
             }
         }
+        else
+        {
+
+        }
+        
         
     }
     private void UpdateK(string newValue)
@@ -351,9 +369,10 @@ public class SideMenuController3 : MonoBehaviour
                 kSlider.value = floatValue;
                 InputStartListening();
             }
-            else{
+        }
+        else
+        {
 
-            }
         }
     }
 

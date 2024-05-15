@@ -22,8 +22,8 @@ public class LineDataController : MonoBehaviour
         {
             if(previousPosition != ldScriptableObject.puzzleObject.transform.localPosition)
             {
-                ldScriptableObject.SetH(Mathf.Round(ldScriptableObject.puzzleObject.transform.localPosition.x *100) / 100);
-                ldScriptableObject.SetK(Mathf.Round(ldScriptableObject.puzzleObject.transform.localPosition.y *100) / 100);
+                //ldScriptableObject.SetH(Mathf.Round(ldScriptableObject.puzzleObject.transform.localPosition.x *100) / 100);
+                //ldScriptableObject.SetK(Mathf.Round(ldScriptableObject.puzzleObject.transform.localPosition.y *100) / 100);
             }
         }
     }

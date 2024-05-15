@@ -298,13 +298,14 @@ MonoBehaviour:
   allowH: 1
   allowK: 1
   allowOrientation: 0
-  a: -1
+  inverseAB: 0
+  a: -0.25
   b: 0
   h: 0
   k: 0
   orientation: 0
   conicType: 3
-  default_a: -1
+  default_a: -0.25
   default_b: 0
   default_h: 0
   default_k: 0
@@ -318,7 +319,8 @@ MonoBehaviour:
   minH: -8
   maxK: 8
   minK: -8
-  puzzleObject: {fileID: 0}
+  simplifiedEllipse: 0
+  puzzleObject: {fileID: 8146168410824758611}
   ceiling: 0
   lrController: {fileID: 0}
   maxLineLength: 3

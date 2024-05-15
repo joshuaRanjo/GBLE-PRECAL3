@@ -142,7 +142,8 @@ public class ParabolaRendererDef : MonoBehaviour
                 for (int i = 0; i < pointCount; i++)
                 {
                     float x = -maxX + i * xStep; // Vary 'x' from -1 to 1
-                    float y = a * x * x;
+                    //float y = a * x * x;
+                    float y = (x*x)/(4*a);// y = x^2/4a
 
                     if ( y >= -maxY && y <= maxY)
                     {
@@ -168,7 +169,8 @@ public class ParabolaRendererDef : MonoBehaviour
                 for(int i = 0; i < pointCount; i++)
                 {
                     float y = -maxY + i * yStep;
-                    float x = a * y * y;
+                    //float x = a * y * y;
+                    float x = (y*y)/(4*a); // x = y^2/4a
                     if (x >= -maxX && x <= maxX)
                     {
                         Vector3 point = new Vector3(x,y,0);

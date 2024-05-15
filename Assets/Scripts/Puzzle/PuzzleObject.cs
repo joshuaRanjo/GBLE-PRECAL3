@@ -23,7 +23,7 @@ public class PuzzleObject : LevelProp
     [SerializeField] public bool puzzleType; // True = interact with object, false = line creation
     [SerializeField] private bool allowA, allowB, allowH, allowK, allowOrientation;
 
-
+    [SerializeField] private bool inverseAB = false;
 
 
     [Header("Saved values")]
@@ -44,8 +44,8 @@ public class PuzzleObject : LevelProp
     [SerializeField] private int default_conicType; // 1 = circle , 2 = ellipse , 3 = parabola , 4 = hyperbola
 
     [Header("Max Values")]
-    [SerializeField] private float maxA;
-    [SerializeField] private float minA,maxB,minB,maxH,minH,maxK,minK;
+    [SerializeField] public float maxA;
+    [SerializeField] public float minA,maxB,minB,maxH,minH,maxK,minK;
 
     [Header("For Ellipse")]
     [SerializeField] public bool simplifiedEllipse = false;
@@ -101,6 +101,7 @@ public class PuzzleObject : LevelProp
                 b *= b;
             }
         }
+        puzzleObject = this.gameObject;
     }
 
     private void OnDisable() {
@@ -164,14 +165,40 @@ public class PuzzleObject : LevelProp
 
     public void SetA(float newA)
     {
-        
+        float oldA = a;
         a = newA;
+        if(inverseAB)
+        {
+            float rangeA = maxA - minA;
+            float rangeB = maxB - minB;
+
+            b = (rangeB * Mathf.Abs(((a-minA)/rangeA)-1)) + minB;
+
+            //float distanceMin = minA - a;
+            //b = maxA + distanceMin;
+            if(ldScriptableObject.puzzleObjectScript == this)
+                ldScriptableObject.SetB(b);
+        }
         UpdateObject();
     }
 
     public void SetB(float newB)
     {
+        float oldB = b;
         b = newB;
+        if(inverseAB)
+        {
+
+            float rangeA = maxA - minA;
+            float rangeB = maxB - minB;
+
+            a = (rangeA * Mathf.Abs(((b-minB)/rangeB)-1)) + minA;
+            //a = (rangeA * (b/rangeB) ) + minA;
+            //float distanceMin = minA - b;
+            //a = maxA + distanceMin;
+            if(ldScriptableObject.puzzleObjectScript == this)
+                ldScriptableObject.SetA(a);
+        }
         UpdateObject();
     }
     public void SetH(float newH)
@@ -179,9 +206,6 @@ public class PuzzleObject : LevelProp
         h = newH;
         
         UpdateObject();
-        //targetPosition = new Vector3(h,k,0.1f);
-        //StopAllCoroutines();
-        //StartCoroutine(MoveToTarget());
         if(!CheckVicinity())
             EventManager.TriggerEvent("ExitPuzzle");
         
@@ -190,11 +214,9 @@ public class PuzzleObject : LevelProp
     public void SetK(float newK)
     {
         k = newK;
-        
+
         UpdateObject();
-        //targetPosition = new Vector3(h,k,0.1f);
-        //StopAllCoroutines();
-        //StartCoroutine(MoveToTarget());
+
         if(!CheckVicinity())
             EventManager.TriggerEvent("ExitPuzzle");
         
@@ -256,25 +278,4 @@ public class PuzzleObject : LevelProp
             return  true;
         }
     }
-/*
-    private IEnumerator MoveToTarget()
-    {
-        Debug.Log("Moving Coroutine");
-        
-        Debug.Log(transform.position + " target = " + targetPosition);
-        Vector3 initialPosition = transform.position;
-        float journeyLength = Vector3.Distance(initialPosition, targetPosition);
-        float startTime = Time.time;
-
-        while (transform.position != targetPosition)
-        {
-            float distCovered = (Time.time - startTime) * speed;
-            float fracJourney = distCovered / journeyLength;
-            transform.position = Vector3.Lerp(initialPosition, targetPosition, fracJourney);
-            yield return null;
-        }
-        
-        yield return null;
-    }
-*/
 }

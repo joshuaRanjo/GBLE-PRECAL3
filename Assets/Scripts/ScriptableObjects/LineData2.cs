@@ -25,6 +25,8 @@ public class LineData2 : ScriptableObject
     public UnityEvent dataChangeEvent = new UnityEvent();
     [System.NonSerialized]
     public UnityEvent attachedDataEvent = new UnityEvent();
+    [System.NonSerialized]
+    public UnityEvent simplifiedEquationChange = new UnityEvent();
 
     public PuzzleObject puzzleObjectScript;
 
@@ -40,12 +42,12 @@ public class LineData2 : ScriptableObject
     public void SetH(float newH, string changeType){h = newH;  this.changeType = changeType; puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); }
     public void SetK(float newK, string changeType){k = newK;  this.changeType = changeType; puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); }
 
-    public void SetA(float newA){a = newA;  this.changeType = "none";  }
-    public void SetB(float newB){b = newB;  this.changeType = "none"; }
-    public void SetH(float newH){h = newH;  this.changeType = "none"; }
-    public void SetK(float newK){k = newK;  this.changeType = "none"; }
+    public void SetA(float newA){a = newA;  this.changeType = "none";  dataChangeEvent.Invoke();}
+    public void SetB(float newB){b = newB;  this.changeType = "none"; dataChangeEvent.Invoke();}
+    public void SetH(float newH){h = newH;  this.changeType = "none"; dataChangeEvent.Invoke();}
+    public void SetK(float newK){k = newK;  this.changeType = "none"; dataChangeEvent.Invoke();}
 
-    public void SetSimplifiedEllipse(bool newBool) {simplifiedEllipse = newBool; dataChangeEvent.Invoke();}
+    public void SetSimplifiedEllipse(bool newBool) {simplifiedEllipse = newBool; simplifiedEquationChange.Invoke();}
 
     public void SetType(int newType){ conicType = newType; ResetValues();  dataChangeEvent.Invoke();}
     public void SetOrientation(bool newOrientation){ orientation = newOrientation;  dataChangeEvent.Invoke();}

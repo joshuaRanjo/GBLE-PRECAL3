@@ -7,14 +7,21 @@ public class PointKeyScript : MonoBehaviour
     private ClickableObject selfClickable;
     private ClickableObject parentClickable;
 
+    public ParabolaObject parabolaObject;
+    public PuzzleObject puzzleObject;
+
     public void SetUpClickableScript() {
         selfClickable = GetComponent<ClickableObject>();
-        parentClickable = transform.parent.gameObject.GetComponent<ClickableObject>();
+        parentClickable = puzzleObject.gameObject.GetComponent<ClickableObject>();
 
-        if(transform.parent.gameObject.GetComponent<PuzzleObject>().conicType == 4 && transform.parent.gameObject.GetComponent<ParabolaObject>().split)
+
+
+        if(parabolaObject != null)
+        if(puzzleObject.conicType == 4 && parabolaObject.split)
         {
-            parentClickable = transform.parent.Find("Child1").gameObject.GetComponent<ClickableObject>();
+            parentClickable = puzzleObject.gameObject.transform.Find("Child1").gameObject.GetComponent<ClickableObject>();
         }
+        
 
         if(parentClickable != null)
         {

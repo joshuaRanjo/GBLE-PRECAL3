@@ -54,25 +54,43 @@ public class LinkedObject : LevelProp
 
     private void UpdateObjs(List<PuzzleObject> group1, List<PuzzleObject> group2)
     {
+        PuzzleObject poScript = ldScriptableObject.puzzleObjectScript;
         foreach(PuzzleObject po in group1)
         {
             if(po.puzzleObject != ldScriptableObject.puzzleObject)
             {
+                float range1,range2;
                 if(connectionH)
                 {
-                    po.SetH(h);
+                    range1 = poScript.maxH - poScript.minH;
+                    range2 = po.maxH - poScript.minH;
+                    
+                    float h2 =  (range2 * ((h - poScript.minH)/(range1))) + po.minH;
+                    po.SetH(h2);
                 }
                 if(connectionK)
                 {
-                    po.SetK(k);
+                    range1 = poScript.maxK - poScript.minK;
+                    range2 = po.maxK - poScript.minK;
+                    
+                    float k2 =  (range2 * ((k - poScript.minK)/(range1))) + po.minK;
+                    po.SetK(k2);
                 }
                 if(connectionA)
                 {
-                    po.SetA(a);
+                    range1 = poScript.maxA - poScript.minA;
+                    range2 = po.maxA - poScript.minA;
+                    
+                    float a2 =  (range2 * ((a - poScript.minA)/(range1))) + po.minA;
+                    po.SetA(a2);
                 }
                 if(connectionB)
                 {
-                    po.SetB(b);
+                    range1 = poScript.maxB - poScript.minB;
+                    range2 = po.maxB - poScript.minB;
+                    
+                    float b2 =  (range2 * ((b - poScript.minB)/(range1))) + po.minB;
+                    po.SetB(b2);
                 }
             }
         }
@@ -81,21 +99,34 @@ public class LinkedObject : LevelProp
         {
             if(po.puzzleObject != ldScriptableObject.puzzleObject)
             {
+                float range1,range2;
                 if(connectionH)
                 {
-                    po.SetH(-h);
+                    range1 = poScript.maxH - poScript.minH;
+                    range2 = po.maxH - po.minH;
+                    float h2 = (range2 * Mathf.Abs(((h-poScript.minH)/range1)-1)) + po.minH;
+                    po.SetH(h2);
                 }
                 if(connectionK)
                 {
-                    po.SetK(-k);
+                    range1 = poScript.maxK - poScript.minK;
+                    range2 = po.maxK - po.minK;
+                    float k2 = (range2 * Mathf.Abs(((k-poScript.minK)/range1)-1)) + po.minK;
+                    po.SetK(k2);
                 }
                 if(connectionA)
                 {
-                    po.SetA(-a);
+                    range1 = poScript.maxA - poScript.minA;
+                    range2 = po.maxA - po.minA;
+                    float a2 = (range2 * Mathf.Abs(((a-poScript.minA)/range1)-1)) + po.minA;
+                    po.SetA(a2);
                 }
                 if(connectionB)
                 {
-                    po.SetB(-b);
+                    range1 = poScript.maxB - poScript.minB;
+                    range2 = po.maxB - po.minB;
+                    float b2 = (range2 * Mathf.Abs(((b-poScript.minB)/range1)-1)) + po.minB;
+                    po.SetB(b2);
                 }
             }
         }  

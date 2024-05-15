@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8661455200110536447
+--- !u!1 &5177896298574807250
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,72 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8661455200110536442}
-  - component: {fileID: 8661455200110536422}
-  - component: {fileID: 8661455200110536441}
-  - component: {fileID: 8661455200110536440}
-  - component: {fileID: 8661455200110536421}
+  - component: {fileID: 5177896298574807255}
+  - component: {fileID: 5177896298574807252}
+  - component: {fileID: 5177896298574807253}
+  - component: {fileID: 5177896298574807242}
+  - component: {fileID: 5177896298574807245}
+  - component: {fileID: 6971884087799257228}
+  - component: {fileID: 5075040587180981682}
   m_Layer: 0
-  m_Name: SlimeUninteractable
+  m_Name: KeySpriteShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8661455200110536442
+--- !u!4 &5177896298574807255
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661455200110536447}
+  m_GameObject: {fileID: 5177896298574807250}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.95, y: -6.1, z: 0}
+  m_LocalPosition: {x: 1.896, y: -0.271, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.0927712}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &8661455200110536422
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661455200110536447}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.91830057, y: -0.8434391}
-      - {x: -0.47435716, y: -0.23114626}
-      - {x: -0.049130585, y: -0.010490437}
-      - {x: 0.37791, y: -0.15241386}
-      - {x: 0.9182994, y: -0.8433608}
-      - {x: -0.8949658, y: -0.8433202}
-      - {x: -0.91830057, y: -0.8434391}
---- !u!1971053207 &8661455200110536441
+--- !u!1971053207 &5177896298574807252
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661455200110536447}
+  m_GameObject: {fileID: 5177896298574807250}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,8 +57,8 @@ SpriteShapeRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2ece6f1d4a2ec4741a74417a2883755b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,11 +79,11 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.0682497, b: 1, a: 0.14901961}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 2800000, guid: 471a3f275f16af542ba6f31313fee917, type: 3}
+  m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: f910c042db8d3314e85e775b670b67f6, type: 3}
+  - {fileID: 21300000, guid: 0ae2b74b1edd14bb18dd7b65ae916a54, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -123,15 +93,15 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.00038462877, y: -0.42690563, z: 0}
-    m_Extent: {x: 0.95206267, y: 0.45555586, z: 0}
---- !u!114 &8661455200110536440
+    m_Center: {x: 0.00036925077, y: -0.42690566, z: 0}
+    m_Extent: {x: 0.9507148, y: 0.45399335, z: 0}
+--- !u!114 &5177896298574807253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661455200110536447}
+  m_GameObject: {fileID: 5177896298574807250}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
@@ -144,104 +114,104 @@ MonoBehaviour:
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: -0.71428555, y: -0.51020384, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: -0.51020396, y: -0.2603081, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: -0.3061223, y: -0.09371086, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: -0.10204065, y: -0.0104122935, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: 0.10204099, y: -0.010412364, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: 0.30612263, y: -0.09371106, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: 0.51020426, y: -0.26030838, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: 0.7142859, y: -0.5102044, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
     - position: {x: 0.91836756, y: -0.843399, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 1
-      height: 0.2
+      height: 0.15
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 0
+      corner: 1
       m_CornerMode: 1
-  m_SpriteShape: {fileID: 11400000, guid: 06efe756c30448143b676374d01650d2, type: 2}
-  m_FillPixelPerUnit: 512
+  m_SpriteShape: {fileID: 11400000, guid: 5af57905619f9984e886b7bf2c44cabf, type: 2}
+  m_FillPixelPerUnit: 256
   m_StretchTiling: 1
   m_SplineDetail: 16
   m_AdaptiveUV: 1
@@ -249,23 +219,154 @@ MonoBehaviour:
   m_WorldSpaceUV: 0
   m_CornerAngleThreshold: 30
   m_ColliderDetail: 16
-  m_ColliderOffset: 0
+  m_ColliderOffset: 0.5
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
   m_OptimizeGeometry: 1
   m_EnableTangents: 0
   m_GeometryCached: 0
   m_UTess2D: 0
---- !u!114 &8661455200110536421
+--- !u!114 &5177896298574807242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661455200110536447}
+  m_GameObject: {fileID: 5177896298574807250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ff6a486bf013b8479eb24dc1c140bfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f58b8c0784d3f2478c9793aa3ef1eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounce: 20
+  prefabName: 
+  objectId: 
+  puzzleID: 
+  qdScriptableObject: {fileID: 11400000, guid: cd4c3b06a02b24b44819c8385fd0fcb4, type: 2}
+  ldScriptableObject: {fileID: 11400000, guid: cdedd1e3e03dc4241aaf06927d2e4849, type: 2}
+  allowCircle: 0
+  allowEllipse: 0
+  allowParabola: 0
+  allowHyperbola: 0
+  puzzleType: 1
+  allowA: 1
+  allowB: 0
+  allowH: 1
+  allowK: 1
+  allowOrientation: 0
+  a: -1
+  b: 0
+  h: 0
+  k: 0
+  orientation: 0
+  conicType: 3
+  default_a: -1
+  default_b: 0
+  default_h: 0
+  default_k: 0
+  default_orientation: 0
+  default_conicType: 3
+  maxA: 1
+  minA: -1
+  maxB: -99
+  minB: -99
+  maxH: 8
+  minH: -8
+  maxK: 8
+  minK: -8
+  simplifiedEllipse: 0
+  puzzleObject: {fileID: 0}
+  ceiling: 0
+  lrController: {fileID: 0}
+  maxLineLength: 3
+  xLimit: 5
+  yLimit: 5
+  split: 0
+--- !u!114 &5177896298574807245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177896298574807250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c00ddd704d61c4c9c6d8165a9c8dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5177896298574807242}
+        m_TargetAssemblyTypeName: PuzzleObject, Assembly-CSharp
+        m_MethodName: AttachToScriptableObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  outlineObject: {fileID: 0}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spriteRenderers: []
+  spriteShapeRenderer: {fileID: 5177896298574807252}
+  spriteShapeRenderers:
+  - {fileID: 5177896298574807252}
+  startColor: {r: 0.19999999, g: 0.25333327, b: 1, a: 0.14901961}
+  endColor: {r: 0.5, g: 0.5333333, b: 1, a: 0.2}
+--- !u!114 &6971884087799257228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177896298574807250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5447aaa05b5c29a42b178990a5167286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabName: 
+  objectId: 
+  vertexPoint: {fileID: 0}
+  vertexPoint2: {fileID: 0}
+  fociPoint1: {fileID: 0}
+  fociPoint2: {fileID: 0}
+--- !u!60 &5075040587180981682
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177896298574807250}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.9503456, y: -0.82381177}
+      - {x: -0.49812067, y: -0.20203593}
+      - {x: -0.049130574, y: 0.027087688}
+      - {x: 0.38274682, y: -0.10785318}
+      - {x: 0.81810105, y: -0.6079023}
+      - {x: 0.9477458, y: -0.81956714}
+      - {x: 0.8949662, y: -0.880899}
+      - {x: -0.8949658, y: -0.88089836}
+      - {x: -0.9503456, y: -0.82381177}

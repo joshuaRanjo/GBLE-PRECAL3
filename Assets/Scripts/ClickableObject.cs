@@ -57,6 +57,7 @@ public class ClickableObject : MonoBehaviour
     }
 
     private void OnMouseExit() {
+        
         StopLerpCoroutine();
     }
 
@@ -68,6 +69,7 @@ public class ClickableObject : MonoBehaviour
         }
         if(spriteRenderers.Count > 0)
         {
+            
             foreach(SpriteRenderer sr in spriteRenderers)
             {
                 sr.color = startColor;
@@ -76,6 +78,13 @@ public class ClickableObject : MonoBehaviour
         if(spriteShapeRenderer != null)
         {
             spriteShapeRenderer.color = startColor;
+        }
+        if(spriteShapeRenderers.Count > 0)
+        {
+            foreach(UnityEngine.U2D.SpriteShapeRenderer sr in spriteShapeRenderers)
+            {
+                sr.color = startColor;
+            }
         }
 
         //Debug.Log("Stoppedlerping");

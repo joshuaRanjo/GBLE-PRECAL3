@@ -29,9 +29,9 @@ public class EquationController : MonoBehaviour
     {
         lineDataScriptableObject.dataChangeEvent.AddListener(UpdateEquation);
         lineDataScriptableObject.attachedDataEvent.AddListener(UpdateEquation);
+        lineDataScriptableObject.simplifiedEquationChange.AddListener(UpdateEquation);
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ResetVariables);
-        //EventManager.StartListening("SwitchSimplifiedEllipse", UpdateEquation);
 
     }
 
@@ -39,9 +39,10 @@ public class EquationController : MonoBehaviour
     {
         lineDataScriptableObject.dataChangeEvent.RemoveListener(UpdateEquation);
         lineDataScriptableObject.attachedDataEvent.RemoveListener(UpdateEquation);
+        lineDataScriptableObject.simplifiedEquationChange.RemoveListener(UpdateEquation);
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ResetVariables);
-        //EventManager.StopListening("SwitchSimplifiedEllipse", UpdateEquation);
+        
     } 
 
 #endregion
@@ -100,8 +101,16 @@ public class EquationController : MonoBehaviour
 
     private void ParabolaUpdate()
     {
-
-        equationText.text = "\\rain y = {\\color{"+aColor+"}"  + lineDataScriptableObject.a + " \\color{#000000}( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2+\\color{"+kColor+"}"+ lineDataScriptableObject.k +"\\color{#000000}";
+        if(lineDataScriptableObject.orientation)
+        {
+            equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + lineDataScriptableObject.a + "\\color{#000000})} = ( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )";
+        }
+        else
+        {
+            //equationText.text = "\\rain y = {\\color{"+aColor+"}"  + lineDataScriptableObject.a + " \\color{#000000}( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2+\\color{"+kColor+"}"+ lineDataScriptableObject.k +"\\color{#000000}";
+            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + lineDataScriptableObject.a + "\\color{#000000})} = ( y - \\color{"+kColor+"}" + lineDataScriptableObject.k + "\\color{#000000} )";
+        }
+        
     }
 
     private void CircleUpdate()

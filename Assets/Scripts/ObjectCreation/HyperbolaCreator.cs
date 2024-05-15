@@ -9,6 +9,7 @@ public class HyperbolaCreator : MonoBehaviour
 
     public int pointCount = 100;
     public float lineLength = 10f;
+    public float height = 1f;
     public bool isVertical = true;
     public bool simplified = false;
     public float aSet = 1;
@@ -89,13 +90,13 @@ public class HyperbolaCreator : MonoBehaviour
             for(int i = 0; i < line2.Count; i++)
             {
                 shape1.spline.InsertPointAt(i, line2[i]);
-                shape1.spline.SetHeight(i, 0.1f);
+                shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
             for(int i = 0; i < line1.Count; i++)
             {
                 shape1.spline.InsertPointAt(i, line1[i]);
-                shape1.spline.SetHeight(i, 0.1f);
+                shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
         }
@@ -106,13 +107,13 @@ public class HyperbolaCreator : MonoBehaviour
                 for(int i = 0; i < line2.Count; i++)
                 {
                     shape2.spline.InsertPointAt(i, line2[i]);
-                    shape2.spline.SetHeight(i, 0.1f);
+                    shape2.spline.SetHeight(i, height);
                     shape2.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
                 }
                 for(int i = 0; i < line1.Count; i++)
                 {
                     shape1.spline.InsertPointAt(i, line1[i]);
-                    shape1.spline.SetHeight(i, 0.1f);
+                    shape1.spline.SetHeight(i, height);
                     shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
                 }
             }

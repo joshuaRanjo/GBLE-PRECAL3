@@ -18,7 +18,8 @@ public class PointKeys : LevelProp
     // Start is called before the first frame update
     private void Start()
     {
-        
+        PuzzleObject puzzleObject = GetComponent<PuzzleObject>();
+        ParabolaObject parabolaObject= GetComponent<ParabolaObject>();
         
         GameObject fociPoint = Resources.Load<GameObject>("ObjectPrefabs/" + "fociPoint");
         GameObject vertexPoint1 = Resources.Load<GameObject>("ObjectPrefabs/" + "vertexPoint");
@@ -29,18 +30,29 @@ public class PointKeys : LevelProp
         vertexPoint.transform.SetParent(transform.parent);
         fociPoint1.transform.SetParent(transform.parent);
 
+
+        vertexPoint.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+        vertexPoint.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
+
+        fociPoint1.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+        fociPoint1.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
+
         vertexPoint.GetComponent<PointKeyScript>().SetUpClickableScript();
         fociPoint1.GetComponent<PointKeyScript>().SetUpClickableScript();
         if(conicType != 3)
         {
             fociPoint2 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
             fociPoint2.transform.SetParent(transform.parent);
+            fociPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+            fociPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
             fociPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
         }
         if(conicType == 4)
         {
             vertexPoint2 = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
             vertexPoint2.transform.SetParent(transform.parent);
+            vertexPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+            vertexPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
             vertexPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
         }
         UpdatePoints();
@@ -94,23 +106,37 @@ public class PointKeys : LevelProp
         
         if(conicType == 3)
         {
-            if(poScript.orientation)
+            if(a != 0f)
             {
-                x1 = (h + (1/(4*a)));
-                y1 = k;
-                fociPoint1.transform.position = new Vector3(x1, y1,0);
+                if(poScript.orientation)
+                {
+                    //x1 = (h + (1/(4*a)));
+                    x1 = h+a;
+                    y1 = k;
+                    fociPoint1.transform.position = new Vector3(x1, y1,0);
+                }
+                else
+                {
+                    x1 = h;
+                    //y1 = (k + (1/(4*a)));
+                    y1 = k + a;
+                    fociPoint1.transform.position = new Vector3(x1, y1,0);
+                }
             }
             else
             {
-                x1 = h;
-                y1 = (k + (1/(4*a)));
-                fociPoint1.transform.position = new Vector3(x1, y1,0);
+                fociPoint1.transform.position = new Vector3(h, k,0);
             }
         }
         if(conicType == 4)
         {
             c = 0;
             d = 0;
+            if(poScript.simplifiedEllipse)
+            {
+                a = Mathf.Sqrt(a);
+                b = Mathf.Sqrt(b);
+            }
             if(poScript.orientation)
             {
                 c = Mathf.Sqrt((a*a) + (b*b));
@@ -120,8 +146,8 @@ public class PointKeys : LevelProp
             else
             {
                 d = Mathf.Sqrt((a*a) + (b*b));
-                vertexPoint.transform.position = new Vector3(h,k+a, 0f);
-                vertexPoint2.transform.position = new Vector3(h,k-a, 0f);
+                vertexPoint.transform.position = new Vector3(h,k+b, 0f);
+                vertexPoint2.transform.position = new Vector3(h,k-b, 0f);
             }
             x1 = h+c;
             y1 = k+d;

@@ -60,6 +60,7 @@ public class HyperbolaRenderer : MonoBehaviour
 
             SpriteShapeController shape1 = child1.GetComponent<SpriteShapeController>();
             SpriteShapeController shape2 = child2.GetComponent<SpriteShapeController>();
+            float height = shape1.spline.GetHeight(0);
 
             shape1.spline.Clear();
             shape2.spline.Clear();
@@ -67,31 +68,31 @@ public class HyperbolaRenderer : MonoBehaviour
             for(int i = 0; i < line2.Count; i++)
             {
                 shape2.spline.InsertPointAt(i, line2[i]);
-                shape2.spline.SetHeight(i, 0.2f);
+                shape2.spline.SetHeight(i, height);
                 shape2.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
             for(int i = 0; i < line1.Count; i++)
             {
                 shape1.spline.InsertPointAt(i, line1[i]);
-                shape1.spline.SetHeight(i, 0.2f);
+                shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
         }
         else
         {
             SpriteShapeController shape1 = puzzleObject.GetComponent<SpriteShapeController>();
-            
+            float height = shape1.spline.GetHeight(0);
             shape1.spline.Clear();
             for(int i = 0; i < line2.Count; i++)
             {
                 shape1.spline.InsertPointAt(i, line2[i]);
-                shape1.spline.SetHeight(i, 0.1f);
+                shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
             for(int i = 0; i < line1.Count; i++)
             {
                 shape1.spline.InsertPointAt(i, line1[i]);
-                shape1.spline.SetHeight(i, 0.1f);
+                shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
 
