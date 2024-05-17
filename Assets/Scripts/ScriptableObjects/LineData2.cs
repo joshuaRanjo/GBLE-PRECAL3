@@ -24,6 +24,14 @@ public class LineData2 : ScriptableObject
     [System.NonSerialized]
     public UnityEvent dataChangeEvent = new UnityEvent();
     [System.NonSerialized]
+    public UnityEvent dataChangeEventA = new UnityEvent();
+    [System.NonSerialized]
+    public UnityEvent dataChangeEventB = new UnityEvent();
+    [System.NonSerialized]
+    public UnityEvent dataChangeEventH = new UnityEvent();
+    [System.NonSerialized]
+    public UnityEvent dataChangeEventK = new UnityEvent();
+    [System.NonSerialized]
     public UnityEvent attachedDataEvent = new UnityEvent();
     [System.NonSerialized]
     public UnityEvent simplifiedEquationChange = new UnityEvent();
@@ -42,10 +50,10 @@ public class LineData2 : ScriptableObject
     public void SetH(float newH, string changeType){h = newH;  this.changeType = changeType; puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); }
     public void SetK(float newK, string changeType){k = newK;  this.changeType = changeType; puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); }
 
-    public void SetA(float newA){a = newA;  this.changeType = "none";  dataChangeEvent.Invoke();}
-    public void SetB(float newB){b = newB;  this.changeType = "none"; dataChangeEvent.Invoke();}
-    public void SetH(float newH){h = newH;  this.changeType = "none"; dataChangeEvent.Invoke();}
-    public void SetK(float newK){k = newK;  this.changeType = "none"; dataChangeEvent.Invoke();}
+    public void SetA(float newA){a = newA;  this.changeType = "none";  dataChangeEventA.Invoke();}
+    public void SetB(float newB){b = newB;  this.changeType = "none"; dataChangeEventB.Invoke();}
+    public void SetH(float newH){h = newH;  this.changeType = "none"; dataChangeEventH.Invoke();}
+    public void SetK(float newK){k = newK;  this.changeType = "none"; dataChangeEventK.Invoke();}
 
     public void SetSimplifiedEllipse(bool newBool) {simplifiedEllipse = newBool; simplifiedEquationChange.Invoke();}
 

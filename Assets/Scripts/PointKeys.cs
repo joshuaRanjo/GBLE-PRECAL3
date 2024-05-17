@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PointKeys : LevelProp
 {
-
+    [SerializeField] private bool showFoci = true;
+    [SerializeField] private bool showVertex = true;
     [SerializeField] private GameObject vertexPoint;
     [SerializeField] private GameObject vertexPoint2;
     [SerializeField] private GameObject fociPoint1;
@@ -24,37 +25,51 @@ public class PointKeys : LevelProp
         GameObject fociPoint = Resources.Load<GameObject>("ObjectPrefabs/" + "fociPoint");
         GameObject vertexPoint1 = Resources.Load<GameObject>("ObjectPrefabs/" + "vertexPoint");
 
-        vertexPoint = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
-        fociPoint1 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
+        if(showVertex)
+        {
+            vertexPoint = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
+            vertexPoint.transform.SetParent(transform.parent);
+            vertexPoint.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+            vertexPoint.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
+            vertexPoint.GetComponent<PointKeyScript>().SetUpClickableScript();
 
-        vertexPoint.transform.SetParent(transform.parent);
-        fociPoint1.transform.SetParent(transform.parent);
-
-
-        vertexPoint.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
-        vertexPoint.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
-
-        fociPoint1.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
-        fociPoint1.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
-
-        vertexPoint.GetComponent<PointKeyScript>().SetUpClickableScript();
-        fociPoint1.GetComponent<PointKeyScript>().SetUpClickableScript();
+        }
+        
+        if(showFoci)
+        {
+            fociPoint1 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
+            fociPoint1.transform.SetParent(transform.parent);
+            fociPoint1.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+            fociPoint1.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;    
+            fociPoint1.GetComponent<PointKeyScript>().SetUpClickableScript();
+        }
+            
         if(conicType != 3)
         {
-            fociPoint2 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
-            fociPoint2.transform.SetParent(transform.parent);
-            fociPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
-            fociPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
-            fociPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
+            if(showFoci)
+            {
+                fociPoint2 = Instantiate(fociPoint, Vector3.zero, Quaternion.identity);
+                fociPoint2.transform.SetParent(transform.parent);
+                fociPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+                fociPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
+                fociPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
+            }
+            
         }
         if(conicType == 4)
-        {
-            vertexPoint2 = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
-            vertexPoint2.transform.SetParent(transform.parent);
-            vertexPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
-            vertexPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
-            vertexPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
+        {   
+            if(showVertex)
+            {
+                vertexPoint2 = Instantiate(vertexPoint1, Vector3.zero, Quaternion.identity);
+                vertexPoint2.transform.SetParent(transform.parent);
+                vertexPoint2.GetComponent<PointKeyScript>().puzzleObject = puzzleObject;
+                vertexPoint2.GetComponent<PointKeyScript>().parabolaObject = parabolaObject;
+                vertexPoint2.GetComponent<PointKeyScript>().SetUpClickableScript();
+            }
         }
+
+
+
         UpdatePoints();
     }
 
@@ -76,56 +91,63 @@ public class PointKeys : LevelProp
         k = poScript.k;
         a = poScript.a;
         b = poScript.b;
-        vertexPoint.transform.position = new Vector3(h,k, 0f);
+
+        if(showVertex)
+            vertexPoint.transform.position = new Vector3(h,k, 0f);
         if(conicType == 2)
         {
-            c = 0;
-            d = 0;
-            if(!poScript.simplifiedEllipse)
+            if(showFoci)
             {
+                c = 0;
+                d = 0;
+                if(!poScript.simplifiedEllipse)
+                {
 
-                a = a*a;
-                b = b*b;
+                    a = a*a;
+                    b = b*b;
+                }
+                if(a > b)
+                {
+                    c = Mathf.Sqrt(a-b);
+                }
+                if(a < b)
+                {
+                    d = Mathf.Sqrt(b-a);
+                }
+                x1 = h+c;
+                y1 = k+d;
+                x2 = h-c;
+                y2 = k-d;
+            
+                fociPoint1.transform.position = new Vector3(x1,y1,0f);
+                fociPoint2.transform.position = new Vector3(x2,y2,0f);  
             }
-            if(a > b)
-            {
-                c = Mathf.Sqrt(a-b);
-            }
-            if(a < b)
-            {
-                d = Mathf.Sqrt(b-a);
-            }
-            x1 = h+c;
-            y1 = k+d;
-            x2 = h-c;
-            y2 = k-d;
-            fociPoint1.transform.position = new Vector3(x1,y1,0f);
-            fociPoint2.transform.position = new Vector3(x2,y2,0f);
-
         }
         
         if(conicType == 3)
-        {
-            if(a != 0f)
+        {   if(showFoci)
             {
-                if(poScript.orientation)
+                if(a != 0f)
                 {
-                    //x1 = (h + (1/(4*a)));
-                    x1 = h+a;
-                    y1 = k;
-                    fociPoint1.transform.position = new Vector3(x1, y1,0);
+                    if(poScript.orientation)
+                    {
+                        //x1 = (h + (1/(4*a)));
+                        x1 = h+a;
+                        y1 = k;
+                        fociPoint1.transform.position = new Vector3(x1, y1,0);
+                    }
+                    else
+                    {
+                        x1 = h;
+                        //y1 = (k + (1/(4*a)));
+                        y1 = k + a;
+                        fociPoint1.transform.position = new Vector3(x1, y1,0);
+                    }
                 }
                 else
                 {
-                    x1 = h;
-                    //y1 = (k + (1/(4*a)));
-                    y1 = k + a;
-                    fociPoint1.transform.position = new Vector3(x1, y1,0);
+                    fociPoint1.transform.position = new Vector3(h, k,0);
                 }
-            }
-            else
-            {
-                fociPoint1.transform.position = new Vector3(h, k,0);
             }
         }
         if(conicType == 4)
@@ -137,24 +159,30 @@ public class PointKeys : LevelProp
                 a = Mathf.Sqrt(a);
                 b = Mathf.Sqrt(b);
             }
-            if(poScript.orientation)
+            if(showVertex)
             {
-                c = Mathf.Sqrt((a*a) + (b*b));
-                vertexPoint.transform.position = new Vector3(h+a,k, 0f);
-                vertexPoint2.transform.position = new Vector3(h-a,k, 0f);
+                if(poScript.orientation)
+                {
+                    c = Mathf.Sqrt((a*a) + (b*b));
+                    vertexPoint.transform.position = new Vector3(h+a,k, 0f);
+                    vertexPoint2.transform.position = new Vector3(h-a,k, 0f);
+                }
+                else
+                {
+                    d = Mathf.Sqrt((a*a) + (b*b));
+                    vertexPoint.transform.position = new Vector3(h,k+b, 0f);
+                    vertexPoint2.transform.position = new Vector3(h,k-b, 0f);
+                }
             }
-            else
+            if(showFoci)
             {
-                d = Mathf.Sqrt((a*a) + (b*b));
-                vertexPoint.transform.position = new Vector3(h,k+b, 0f);
-                vertexPoint2.transform.position = new Vector3(h,k-b, 0f);
+                x1 = h+c;
+                y1 = k+d;
+                x2 = h-c;
+                y2 = k-d;
+                fociPoint1.transform.position = new Vector3(x1,y1,0f);
+                fociPoint2.transform.position = new Vector3(x2,y2,0f);
             }
-            x1 = h+c;
-            y1 = k+d;
-            x2 = h-c;
-            y2 = k-d;
-            fociPoint1.transform.position = new Vector3(x1,y1,0f);
-            fociPoint2.transform.position = new Vector3(x2,y2,0f);
         }
 
     }

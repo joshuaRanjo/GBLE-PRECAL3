@@ -47,6 +47,8 @@ public class InterferenceZoneScript : LevelProp
 
     public void ActivateIntereferece()
     {
+        if(!activatedStatus)
+        {
         StartCoroutine( ChangeTransparencyCoroutine(0.3f,time1, () =>
                         {
                             StartCoroutine(ChangeTransparencyCoroutine(0.1f, time2, () =>
@@ -55,10 +57,16 @@ public class InterferenceZoneScript : LevelProp
                             }));
                         }));    
         collider.enabled = true;
+        activatedStatus = true;
+        }
     }
 
     public void DeactivateIntereferece()
     {
+        if(activatedStatus)
+        {
+
+        
         StartCoroutine( ChangeTransparencyCoroutine(0.1f,time1, () =>
                         {
                             StartCoroutine(ChangeTransparencyCoroutine(0.3f, time2, () =>
@@ -66,7 +74,9 @@ public class InterferenceZoneScript : LevelProp
                                 StartCoroutine(ChangeTransparencyCoroutine(0.0f,time3));
                             }));
                         }));
-        collider.enabled = false;                
+        collider.enabled = false;
+        activatedStatus = false;
+        }                
     }
 
     private IEnumerator ChangeTransparencyCoroutine(float targetAlpha, float transitionDuration, Action onComplete = null)

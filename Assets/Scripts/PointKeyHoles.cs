@@ -8,9 +8,13 @@ public class PointKeyHoles : LevelProp
     [SerializeField] private MultipleConditionSwitch mcsScript;
     private bool activated;
     private List<Collider2D> colliderList;
-
+    [SerializeField] private SpriteRenderer light;
     private void OnEnable() {
         colliderList = new List<Collider2D>();
+        if(isVertex)
+        {
+            light.color =  new Color(0.9725f, 0.4941f, 0.0314f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,6 +33,7 @@ public class PointKeyHoles : LevelProp
                     activated = true;
                     //if(mcsScript != null)
                         mcsScript?.IncreaseCondition();
+                    
                 }
             }
         }

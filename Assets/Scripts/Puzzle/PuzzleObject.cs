@@ -86,6 +86,8 @@ public class PuzzleObject : LevelProp
 
         h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
         k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
+        default_h = h;
+        default_k = k;
 
         if(conicType == 1 && puzzleType)
         {
@@ -95,12 +97,19 @@ public class PuzzleObject : LevelProp
         {
             a = puzzleObject.transform.localScale.x / 2;
             b = puzzleObject.transform.localScale.y / 2;
-            if(simplifiedEllipse)
-            {
-                a *= a;
-                b *= b;
-            }
+            
         }
+        if(simplifiedEllipse && (conicType == 2 || conicType == 4)) 
+        {
+            a *= a;
+            b *= b;
+
+            maxA *= maxA;
+            minA = 0.5f;
+            maxB *= maxB;
+            minB = 0.5f;
+        }
+
         puzzleObject = this.gameObject;
     }
 
@@ -241,11 +250,21 @@ public class PuzzleObject : LevelProp
             {
                 a *= a;
                 b *= b;
+                
+                maxA *= maxA;
+                minA = 0.5f;
+                maxB *= maxB;
+                minB = 0.5f;
             }
             else
             {
                 a = Mathf.Sqrt(a);
                 b = Mathf.Sqrt(b);
+
+                maxA = Mathf.Sqrt(maxA);
+                minA = -maxA;
+                maxB = Mathf.Sqrt(maxB);
+                minB = -maxB;
             }
             ldScriptableObject.SetA(a);
             ldScriptableObject.SetB(b);

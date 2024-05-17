@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 6581225073374006224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.032428812}
-  m_LocalScale: {x: 1, y: 1, z: 0.4918065}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.34, y: 0.34, z: 0.16721421}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6581225073954451497}
   m_RootOrder: 1
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 975833953
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 645cbf03fb3fcfb429db025dca2cd94b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bc239232ec55254e9ccc06d58d58858, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -270,24 +270,25 @@ MonoBehaviour:
   allowEllipse: 0
   allowParabola: 0
   allowHyperbola: 0
-  puzzleType: 0
+  puzzleType: 1
   allowA: 0
   allowB: 0
   allowH: 1
   allowK: 1
   allowOrientation: 0
+  inverseAB: 0
   a: -99
   b: -99
   h: 0
   k: 0
   orientation: 0
-  conicType: 0
+  conicType: 2
   default_a: 0
   default_b: 0
   default_h: 0
   default_k: 0
   default_orientation: 0
-  default_conicType: 0
+  default_conicType: 2
   maxA: -99
   minA: -99
   maxB: -99

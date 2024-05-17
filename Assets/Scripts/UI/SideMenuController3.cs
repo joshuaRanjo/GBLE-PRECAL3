@@ -54,7 +54,10 @@ public class SideMenuController3 : MonoBehaviour
     private void OnEnable() {
         qdScriptableObject.questionUpdateEvent.AddListener(UpdateUI);
         ldScriptableObject.simplifiedEquationChange.AddListener(UpdateUI);
-        ldScriptableObject.dataChangeEvent.AddListener(UpdateUI);
+        ldScriptableObject.dataChangeEventA.AddListener(SetA);
+        ldScriptableObject.dataChangeEventB.AddListener(SetB);
+        ldScriptableObject.dataChangeEventH.AddListener(SetH);
+        ldScriptableObject.dataChangeEventK.AddListener(SetK);
 
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ExitPuzzle);
@@ -64,7 +67,10 @@ public class SideMenuController3 : MonoBehaviour
     private void OnDisable() {
         qdScriptableObject.questionUpdateEvent.RemoveListener(UpdateUI);
         ldScriptableObject.simplifiedEquationChange.RemoveListener(UpdateUI);
-        ldScriptableObject.dataChangeEvent.RemoveListener(UpdateUI);
+        ldScriptableObject.dataChangeEventA.RemoveListener(SetA);
+        ldScriptableObject.dataChangeEventB.RemoveListener(SetB);
+        ldScriptableObject.dataChangeEventH.RemoveListener(SetH);
+        ldScriptableObject.dataChangeEventK.RemoveListener(SetK);
 
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ExitPuzzle);
@@ -457,6 +463,53 @@ public class SideMenuController3 : MonoBehaviour
         inputK.text = newValue.ToString("F2");
         ldScriptableObject.SetK(Mathf.Round(newValue*100f)/100f, "slider");
         InputStartListening();
+    }
+
+    private void SetA()
+    {
+        inputA.onValueChanged.RemoveListener(UpdateA);
+        aSlider.onValueChanged.RemoveListener(SliderAChange);
+
+        inputA.text = ldScriptableObject.a.ToString();
+        aSlider.value = ldScriptableObject.a;
+
+        inputA.onValueChanged.AddListener(UpdateA);
+        aSlider.onValueChanged.AddListener(SliderAChange);
+
+    }
+
+    private void SetB()
+    {
+        inputB.onValueChanged.RemoveListener(UpdateB);
+        bSlider.onValueChanged.RemoveListener(SliderBChange);
+
+        inputB.text = ldScriptableObject.b.ToString();
+        bSlider.value = ldScriptableObject.b;
+
+        inputB.onValueChanged.AddListener(UpdateB);
+        bSlider.onValueChanged.AddListener(SliderBChange);
+    }
+    private void SetH()
+    {
+        inputH.onValueChanged.RemoveListener(UpdateH);
+        hSlider.onValueChanged.RemoveListener(SliderHChange);
+
+        inputH.text = ldScriptableObject.h.ToString();
+        hSlider.value = ldScriptableObject.h;
+
+        inputH.onValueChanged.AddListener(UpdateH);
+        hSlider.onValueChanged.AddListener(SliderHChange);
+    }
+    private void SetK()
+    {
+        inputK.onValueChanged.RemoveListener(UpdateK);
+        kSlider.onValueChanged.RemoveListener(SliderKChange);
+
+        inputK.text = ldScriptableObject.k.ToString();
+        kSlider.value = ldScriptableObject.k;
+
+        inputA.onValueChanged.AddListener(UpdateK);
+        kSlider.onValueChanged.AddListener(SliderKChange);
     }
 
 }

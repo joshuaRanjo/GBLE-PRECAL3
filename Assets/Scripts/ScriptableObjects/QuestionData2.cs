@@ -63,11 +63,6 @@ public class QuestionData2 : ScriptableObject
         xOffset = newXOffset;
         yOffset = newYOffset;
         simplifiedEllipse = newSimplifiedEllipse;
-
-        if(simplifiedEllipse)
-        {
-            SquareLimits();
-        }
        
         //Change UI
         questionUpdateEvent.Invoke();
