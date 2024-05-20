@@ -460,6 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: 
   objectId: 
+  showFoci: 1
+  showVertex: 1
   vertexPoint: {fileID: 0}
   vertexPoint2: {fileID: 0}
   fociPoint1: {fileID: 0}
@@ -6299,9 +6301,15 @@ MonoBehaviour:
   objectId: 
   isVertex: 1
   mcsScript: {fileID: 5835677197301069552}
+  light: {fileID: 8750304840570725145}
 --- !u!4 &26227099697609486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
+  m_PrefabInstance: {fileID: 1325726046317638072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8750304840570725145 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7713187544546382497, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
   m_PrefabInstance: {fileID: 1325726046317638072}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436230379942729436

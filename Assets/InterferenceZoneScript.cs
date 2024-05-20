@@ -6,7 +6,7 @@ using System;
 public class InterferenceZoneScript : LevelProp
 {
     public bool defaultStatus = false;
-    public bool activatedStatus = false;
+    public bool activatedStatus = true;
 
     private float time1 = 0.35f;
     private float time2 = 0.35f;
@@ -26,16 +26,15 @@ public class InterferenceZoneScript : LevelProp
             activatedStatus = true;
         }
         else{
-            activatedStatus = false;
             DeactivateIntereferece();
         }
     }
 
     public void Switch()
     {
-        activatedStatus = !activatedStatus;
+        
 
-        if(activatedStatus)
+        if(!activatedStatus)
         {
             ActivateIntereferece();
         }
@@ -67,15 +66,15 @@ public class InterferenceZoneScript : LevelProp
         {
 
         
-        StartCoroutine( ChangeTransparencyCoroutine(0.1f,time1, () =>
-                        {
-                            StartCoroutine(ChangeTransparencyCoroutine(0.3f, time2, () =>
+            StartCoroutine( ChangeTransparencyCoroutine(0.1f,time1, () =>
                             {
-                                StartCoroutine(ChangeTransparencyCoroutine(0.0f,time3));
+                                StartCoroutine(ChangeTransparencyCoroutine(0.3f, time2, () =>
+                                {
+                                    StartCoroutine(ChangeTransparencyCoroutine(0.0f,time3));
+                                }));
                             }));
-                        }));
-        collider.enabled = false;
-        activatedStatus = false;
+            collider.enabled = false;
+            activatedStatus = false;
         }                
     }
 

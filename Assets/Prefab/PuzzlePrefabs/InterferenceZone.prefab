@@ -79,9 +79,9 @@ SpriteShapeRenderer:
   m_SortingOrder: 0
   m_Color: {r: 1, g: 0, b: 0, a: 0.29803923}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  m_ShapeTexture: {fileID: 2800000, guid: 7f3e36cc5de4c3b42a4d3acb29c66b2e, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: 0ae2b74b1edd14bb18dd7b65ae916a54, type: 3}
+  - {fileID: 21300000, guid: 685d4221915a15547a28f8736a6f073a, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -91,8 +91,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.7845664, y: -0.38210583, z: 0}
-    m_Extent: {x: 3.4845238, y: 2.5602214, z: 0}
+    m_Center: {x: 0.7853744, y: -0.38331485, z: 0}
+    m_Extent: {x: 3.502012, y: 2.5827756, z: 0}
 --- !u!114 &7625154232843091572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,11 +190,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -2.6999574, y: -2.9423273}
-      - {x: -1.9924378, y: 2.1781156}
-      - {x: 3.728085, y: 1.7411784}
-      - {x: 4.2690897, y: -2.795922}
-      - {x: -2.5539966, y: -2.939261}
-      - {x: -2.641338, y: -2.9410958}
+      - {x: -2.7078083, y: -2.816943}
+      - {x: -2.0236356, y: 2.1349778}
+      - {x: -1.9436319, y: 2.199461}
+      - {x: 3.6889806, y: 1.769238}
+      - {x: 3.7645307, y: 1.6467524}
+      - {x: 4.2873864, y: -2.738213}
+      - {x: 4.214489, y: -2.8220758}
+      - {x: -2.5534716, y: -2.9642553}
+      - {x: -2.6408129, y: -2.9660902}
       - {x: -2.6999574, y: -2.9423273}
 --- !u!114 &71635277297848049
 MonoBehaviour:
@@ -210,5 +214,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: 
   objectId: 
-  defaultStatus: 0
-  activatedStatus: 0
+  defaultStatus: 1
+  activatedStatus: 1
