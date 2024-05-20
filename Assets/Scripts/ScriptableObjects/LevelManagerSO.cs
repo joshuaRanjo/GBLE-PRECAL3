@@ -8,8 +8,9 @@ public class LevelManagerSO: ScriptableObject
 {
 
     public List<GameObject> levelList;
+
     public int currentLevel;
-    
+    public string currentLevelName;
     [System.NonSerialized]
     public UnityEvent levelChangeEvent = new UnityEvent();
     public void SetLevelList(List<GameObject> levelList)

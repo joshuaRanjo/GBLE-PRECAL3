@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
     public Transform gridTransform;
     public Transform levelPropsTransform;
     public LevelManagerSO levelManagerSO;
+    public PlayerData playerData;
+    public string levelName;
 
     private void OnEnable() {
         EventManager.StartListening("EnterMainMenu", ClearLevel);
@@ -16,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         EventManager.StopListening("EnterMainMenu", ClearLevel);
+        EventManager.StopListening("SaveComplete", NextLevel);
 
         levelManagerSO.levelChangeEvent.RemoveListener(LoadLevelSO);
     }
@@ -27,6 +30,9 @@ public class LevelManager : MonoBehaviour
 
         GameObject instantiatedObj = Instantiate(levelPrefab,Vector3.zero, Quaternion.identity);
         instantiatedObj.transform.SetParent(gridTransform);
+
+        playerData.currentLevel = levelPrefab.name;
+        EventManager.TriggerEvent("LevelLoaded");
     }
 
     public void LoadLevelSO()
@@ -52,12 +58,20 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevel()
     {
+        EventManager.StopListening("SaveComplete", NextLevel);
         levelManagerSO.NextLevel();
 
     }
 
     public void ReloadLevel()
     {
+        EventManager.TriggerEvent("LevelReloaded");
         levelManagerSO.ReloadLevel();
+    }
+
+    public void LevelCleared()
+    {
+        EventManager.StartListening("SaveComplete", NextLevel);
+        EventManager.TriggerEvent("LevelComplete");
     }
 }
