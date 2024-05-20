@@ -54,17 +54,20 @@ public class PlayerDataScript : MonoBehaviour
                     playerDataSO.completedLevels = new Dictionary<string,int>();
                 }
                 playerDataSO.completedLevels = completedLevels;
-                EventManager.TriggerEvent("LoadedPlayerData");
+                
+                Debug.Log("Player data loaded");
+                if(playerDataSO.completedLevels == null)
+                Debug.Log("completed Levels is null idk why");
             }
         }
         catch(System.IO.FileNotFoundException)
         {
-            EventManager.TriggerEvent("LoadedPlayerData");
             Debug.LogWarning("NoSaveFile found. Making new save");
             playerDataSO.completedLevels = new Dictionary<string,int>();
             
             SavePlayerData();
         }
+        EventManager.TriggerEvent("LoadedPlayerData");
     }
 
     public void SavePlayerData()

@@ -9,8 +9,16 @@ public class LevelSelectionButton : MonoBehaviour
 
     public void SetMoveCount(int number)
     {
-        //moveCount.text = number.ToString();
-        moveCount.text = "";
+        if(number < 0)
+        {
+            moveCount.text = "";
+        }
+        else
+        {
+             moveCount.text = number.ToString();
+        }
+       
+        
     }
     public void EnableCheckMark()
     {

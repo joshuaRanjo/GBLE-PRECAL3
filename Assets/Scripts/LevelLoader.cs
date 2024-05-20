@@ -14,16 +14,16 @@ public class LevelLoader : MonoBehaviour
 
     private Dictionary<string,int> completedLevelList;
 
+    
     private void OnEnable()
     {
         EventManager.StartListening("LoadedPlayerData", ListPrefabsInFolder);
-        EventManager.StartListening("EnterMainMenu",ListPrefabsInFolder);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening("LoadedPlayerData", ListPrefabsInFolder);
-        EventManager.StopListening("EnterMainMenu",ListPrefabsInFolder);
+
     }
      void ListPrefabsInFolder()
     {
@@ -42,6 +42,8 @@ public class LevelLoader : MonoBehaviour
         levelManagerSO.SetLevelList(list);
         
         EventManager.StopListening("LoadedPlayerData", ListPrefabsInFolder);
+        EventManager.StopListening("EnterMainMenu",ListPrefabsInFolder);
+        EventManager.StartListening("EnterMainMenu",ListPrefabsInFolder);
     }
 
      void ClearScrollView()
@@ -73,7 +75,8 @@ public class LevelLoader : MonoBehaviour
         }
 
         LevelSelectionButton buttonScript = buttonGO.GetComponent<LevelSelectionButton>();  
-        if(playerData.completedLevels != null)
+        
+
             if(playerData.completedLevels.TryGetValue(prefab.name, out int value))
             {
                 buttonScript.EnableCheckMark();
@@ -81,9 +84,18 @@ public class LevelLoader : MonoBehaviour
                 {
                     buttonScript.SetMoveCount(value);
                 }
-                
+                else
+                {
+                    buttonScript.SetMoveCount(-1);
+                }
+                Debug.Log("Got a completed level " + prefab.name + "");
             }
-        
+            else
+            {
+                buttonScript.SetMoveCount(-1);
+            }
+
+
     }
 
     private void OnButtonClick(GameObject prefab, int number)

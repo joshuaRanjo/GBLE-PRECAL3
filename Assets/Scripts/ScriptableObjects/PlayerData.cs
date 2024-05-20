@@ -30,7 +30,7 @@ public class PlayerData: ScriptableObject
         {
             if(precisionMode)
             {
-                if(completedLevels[currentLevel] > changeCount)
+                if(completedLevels[currentLevel] > changeCount && changeCount != -1)
                 {
                     completedLevels[currentLevel] = changeCount;
                 }
