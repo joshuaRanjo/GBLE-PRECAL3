@@ -65,6 +65,7 @@ public class PuzzleObject : LevelProp
      private float yOffset = 0;
 
     private bool inPuzzle = false;
+    private bool precisionMode = false;
 
     [SerializeField] private LineRendererController2 lrController;
 
@@ -182,14 +183,20 @@ public class PuzzleObject : LevelProp
             float rangeB = maxB - minB;
 
             b = (rangeB * Mathf.Abs(((a-minA)/rangeA)-1)) + minB;
-
-            //float distanceMin = minA - a;
-            //b = maxA + distanceMin;
             if(ldScriptableObject.puzzleObjectScript == this)
                 ldScriptableObject.SetB(b);
         }
-        UpdateObject();
+        if(!precisionMode)
+            UpdateObject();
+        else
+        {
+            precisionMode = false;
+            a = oldA;
+        }
+        
     }
+    public void SetAPrecision(float newA){ precisionMode = true; SetA(newA); }
+    public void SetBPrecision(float newB){ precisionMode = true; SetB(newB); }
 
     public void SetB(float newB)
     {
@@ -202,13 +209,17 @@ public class PuzzleObject : LevelProp
             float rangeB = maxB - minB;
 
             a = (rangeA * Mathf.Abs(((b-minB)/rangeB)-1)) + minA;
-            //a = (rangeA * (b/rangeB) ) + minA;
-            //float distanceMin = minA - b;
-            //a = maxA + distanceMin;
             if(ldScriptableObject.puzzleObjectScript == this)
                 ldScriptableObject.SetA(a);
         }
-        UpdateObject();
+        if(!precisionMode)
+            UpdateObject();
+        else
+        {
+            precisionMode = false;
+            b = oldB;
+        }
+       
     }
     public void SetH(float newH)
     {

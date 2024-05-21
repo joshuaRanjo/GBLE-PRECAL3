@@ -79,6 +79,7 @@ public class LevelLoader : MonoBehaviour
 
             if(playerData.completedLevels.TryGetValue(prefab.name, out int value))
             {
+                
                 buttonScript.EnableCheckMark();
                 if(value > 0)
                 {
@@ -88,7 +89,7 @@ public class LevelLoader : MonoBehaviour
                 {
                     buttonScript.SetMoveCount(-1);
                 }
-                Debug.Log("Got a completed level " + prefab.name + "");
+                //Debug.Log("Got a completed level " + prefab.name + " " +playerData.completedLevels[prefab.name]);
             }
             else
             {
@@ -101,7 +102,7 @@ public class LevelLoader : MonoBehaviour
     private void OnButtonClick(GameObject prefab, int number)
     {
         levelManagerSO.SetCurrentLevel(number);
-        Debug.Log("Clicked prefab " + prefab.name);
+        //Debug.Log("Clicked prefab " + prefab.name);
         EventManager.TriggerEvent("ExitMainMenu");
     }
 }

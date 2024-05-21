@@ -45,11 +45,46 @@ public class LineData2 : ScriptableObject
     }
 
     
-    public void SetA(float newA, string changeType){a = newA;  this.changeType = changeType; puzzleObjectScript.SetA(newA); dataChangeEvent.Invoke();}
-    public void SetB(float newB, string changeType){b = newB;  this.changeType = changeType; puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke();}
-    public void SetH(float newH, string changeType){h = newH;  this.changeType = changeType; puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); }
-    public void SetK(float newK, string changeType){k = newK;  this.changeType = changeType; puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); }
+    public void SetA(float newA, string changeType)
+    {   
+        a  = newA;  this.changeType = changeType;  
+        if(changeType != "PrecisionMode")
+        {
+            puzzleObjectScript.SetA(newA); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+        }
+        else
+        {
+            puzzleObjectScript.SetAPrecision(newA);
+        } 
+    }
+    public void SetB(float newB, string changeType)
+    {
+        b = newB;  this.changeType = changeType; 
+        if(changeType != "PrecisionMode")
+        {
+           puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+        } 
+        else
+        {
+            puzzleObjectScript.SetBPrecision(newB);
+        }
+        
+    }
+    public void SetH(float newH, string changeType)
+    {h = newH;  this.changeType = changeType; puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");}
+    public void SetK(float newK, string changeType)
+    {k = newK;  this.changeType = changeType; puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");}
 
+    public void SetAll(float newA, float newB, float newH, float newK)
+    {
+        a = newA; b = newB; h = newH; k = newK;
+        puzzleObjectScript.SetAll(a,b,h,k);
+
+
+        dataChangeEvent.Invoke(); 
+
+        EventManager.TriggerEvent("ChangeEvent");
+    }
     public void SetA(float newA){a = newA;  this.changeType = "none";  dataChangeEventA.Invoke();}
     public void SetB(float newB){b = newB;  this.changeType = "none"; dataChangeEventB.Invoke();}
     public void SetH(float newH){h = newH;  this.changeType = "none"; dataChangeEventH.Invoke();}

@@ -48,6 +48,7 @@ public class PlayerDataScript : MonoBehaviour
                 foreach(string levelName in pData.completedLevels)
                 {
                     completedLevels.Add(levelName, pData.changeCount[j]);
+                    j++;
                 }
                 if(playerDataSO.completedLevels == null)
                 {
@@ -56,8 +57,7 @@ public class PlayerDataScript : MonoBehaviour
                 playerDataSO.completedLevels = completedLevels;
                 
                 Debug.Log("Player data loaded");
-                if(playerDataSO.completedLevels == null)
-                Debug.Log("completed Levels is null idk why");
+
             }
         }
         catch(System.IO.FileNotFoundException)

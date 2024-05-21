@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerData: ScriptableObject
 {
     public string name;
-    public bool precisionMode = false;
+    public bool precisionMode = true; // leave True to always keep track of changeCount
     public string currentLevel;
     public int changeCount;
     public bool tutorial;
@@ -30,7 +30,7 @@ public class PlayerData: ScriptableObject
         {
             if(precisionMode)
             {
-                if(completedLevels[currentLevel] > changeCount && changeCount != -1)
+                if((completedLevels[currentLevel] > changeCount || completedLevels[currentLevel] < 0)  && changeCount > 0)
                 {
                     completedLevels[currentLevel] = changeCount;
                 }
