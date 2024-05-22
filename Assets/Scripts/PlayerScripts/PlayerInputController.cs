@@ -8,6 +8,9 @@ public class PlayerInputController : MonoBehaviour
 {
     [SerializeField] private PlayerInput controller;
     [SerializeField] private bool storyConversation = false;
+    private bool isPaused = false;
+    private bool inGame = false;
+    private bool inPuzzle = false;
 
     private void Start() {
         DisableMovement();
@@ -17,28 +20,36 @@ public class PlayerInputController : MonoBehaviour
         EventManager.StartListening("EnterConversation", SwitchToConversation);
         EventManager.StartListening("ExitConversation", SwitchToPlayerMovement);
 
-        EventManager.StartListening("EnterPuzzle", SwitchToConversation);
-        EventManager.StartListening("ExitPuzzle", SwitchToPlayerMovement);
+        EventManager.StartListening("EnterPuzzle", EnterPuzzle);
+        EventManager.StartListening("ExitPuzzle", ExitPuzzle);
         
         EventManager.StartListening("DisableMovement", DisableMovement);
         EventManager.StartListening("EnableMovement", EnableMovement);
 
-        EventManager.StartListening("EnterMainMenu", DisableMovement);
-        EventManager.StartListening("ExitMainMenu", EnableMovement);
+        EventManager.StartListening("EnterMainMenu", EnterMainMenu);
+        EventManager.StartListening("ExitMainMenu", ExitMainMenu);
+
+        EventManager.StartListening("PauseGame", PauseGame);
+        EventManager.StartListening("ResumeGame", ResumeGame);  
+        controller.actions.FindActionMap("Pause").Enable();
     }
 
     private void OnDisable() {
         EventManager.StopListening("EnterConversation", SwitchToConversation);
         EventManager.StopListening("ExitConversation", SwitchToPlayerMovement);
 
-        EventManager.StopListening("EnterPuzzle", SwitchToConversation);
-        EventManager.StopListening("ExitPuzzle", SwitchToPlayerMovement);
+        EventManager.StopListening("EnterPuzzle", EnterPuzzle);
+        EventManager.StopListening("ExitPuzzle", ExitPuzzle);
 
         EventManager.StopListening("DisableMovement", DisableMovement);
         EventManager.StopListening("EnableMovement", EnableMovement);
 
-        EventManager.StopListening("EnterMainMenu", DisableMovement);
-        EventManager.StopListening("ExitMainMenu", EnableMovement);
+        EventManager.StopListening("EnterMainMenu", EnterMainMenu);
+        EventManager.StopListening("ExitMainMenu", ExitMainMenu);
+
+        EventManager.StopListening("PauseGame", PauseGame);
+        EventManager.StopListening("ResumeGame", ResumeGame);  
+        
     }
 
     public void SwitchToConversation()
@@ -48,12 +59,9 @@ public class PlayerInputController : MonoBehaviour
     }
 
     public void SwitchToPlayerMovement()
-    {
-        if(!storyConversation)
-        {   
+    {  
             controller.actions.FindActionMap("PlayerMovement").Enable();
             controller.actions.FindActionMap("Conversation").Disable();
-        }
     }
 
     public void DisableMovement()
@@ -76,5 +84,68 @@ public class PlayerInputController : MonoBehaviour
         storyConversation = false;
     }
 
+    public void EnterMainMenu()
+    {
+        DisableMovement();
+        inGame = false;
+        isPaused = false;
+    }
 
+    public void ExitMainMenu()
+    {
+        EnableMovement();
+        inGame = true;
+        isPaused = false;
+    }
+
+    public void PauseGame(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        Debug.Log("Esc pressed");
+        if(inGame && !inPuzzle)
+        {   
+            if(isPaused)
+            {
+                isPaused = false;
+                EventManager.TriggerEvent("ResumeGame");
+            }
+            else
+            {
+                isPaused = true;
+                EventManager.TriggerEvent("PauseGame");
+            }
+        }
+    }
+
+    private void PauseGame()
+    {
+        DisableMovement();
+        isPaused = true;
+    }
+
+    private void ResumeGame()
+    {
+        EnableMovement();
+        isPaused = false;
+    }
+
+    private void EnterPuzzle()
+    {
+        SwitchToConversation();
+        inPuzzle = true;
+        controller.actions.FindActionMap("Pause").Disable();
+    }
+
+    private void ExitPuzzle()
+    {
+        SwitchToPlayerMovement();
+        inPuzzle = false;
+        controller.actions.FindActionMap("Pause").Enable();
+    }
+
+    public void ExitPuzzleMode(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        EventManager.TriggerEvent("ExitPuzzle");
+    }
 }

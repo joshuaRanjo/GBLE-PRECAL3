@@ -12,15 +12,20 @@ public class PauseScript : MonoBehaviour
     private RectTransform rectTransform;
     [SerializeField] private Vector2 originalPosition;
     private void OnEnable() {
-       EventManager.StartListening("EnterPuzzle", HideDevice);
-       EventManager.StartListening("ExitPuzzle", ShowDevice);
+        EventManager.StartListening("EnterPuzzle", HideDevice);
+        EventManager.StartListening("ExitPuzzle", ShowDevice);
+        EventManager.StartListening("PauseGame", ShowPauseScreen);
+        EventManager.StartListening("ResumeGame", HidePauseScreen);  
 
-       EventManager.TriggerEvent("EnterMainMenu");
+        EventManager.TriggerEvent("EnterMainMenu");
+       
     }
 
     private void OnDisable() {
         EventManager.StopListening("EnterPuzzle",HideDevice);
         EventManager.StopListening("ExitPuzzle", ShowDevice);
+        EventManager.StopListening("PauseGame", ShowPauseScreen);
+        EventManager.StopListening("ResumeGame", HidePauseScreen);  
     }
 
     private void Start() {
@@ -82,12 +87,33 @@ public class PauseScript : MonoBehaviour
 
     public void ShowPauseScreen()
     {
-        pausePanel.SetActive(true);
+        Debug.Log("ShowPauseScreen");
+        if(pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+            
+        }
+            
     }
 
     public void HidePauseScreen()
     {
-        pausePanel.SetActive(false);
+        Debug.Log("ShowHideScreen");
+        if(pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+            
+        }
+    }
+
+    public void PauseGame()
+    {
+        EventManager.TriggerEvent("PauseGame");
+    }
+
+    public void ResumeGame()
+    {
+        EventManager.TriggerEvent("ResumeGame");
     }
 
     public void QuitGame()
