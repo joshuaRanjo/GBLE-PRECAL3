@@ -48,26 +48,17 @@ public class LineData2 : ScriptableObject
     public void SetA(float newA, string changeType)
     {   
         a  = newA;  this.changeType = changeType;  
-        if(changeType != "PrecisionMode")
-        {
+
             puzzleObjectScript.SetA(newA); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
-        }
-        else
-        {
-            puzzleObjectScript.SetAPrecision(newA);
-        } 
+        
+
     }
     public void SetB(float newB, string changeType)
     {
         b = newB;  this.changeType = changeType; 
-        if(changeType != "PrecisionMode")
-        {
-           puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
-        } 
-        else
-        {
-            puzzleObjectScript.SetBPrecision(newB);
-        }
+
+        puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+
         
     }
     public void SetH(float newH, string changeType)

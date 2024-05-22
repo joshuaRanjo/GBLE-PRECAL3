@@ -22,18 +22,9 @@ public class ChangesCounter : MonoBehaviour
 
     private void UpdateChangeText()
     {
-        if(playerData.precisionMode)
-        {
             text.text = playerData.changeCount.ToString();
             precisionMode.SetActive(true);
-            changeButton.SetActive(true);
-            notPrecisionMode.SetActive(false);
-        }   
-        else
-        {
-            precisionMode.SetActive(false);
             changeButton.SetActive(false);
-            notPrecisionMode.SetActive(true);
-        }
+            notPrecisionMode.SetActive(false);
     }
 }

@@ -17,24 +17,14 @@ public class PlayerData: ScriptableObject
     {
         if(!completedLevels.ContainsKey(currentLevel))
         {
-            if(precisionMode)
-            {
                 completedLevels.Add(currentLevel, changeCount);
-            }
-            else
-            {
-                completedLevels.Add(currentLevel, -1);
-            }
         }
         else
         {
-            if(precisionMode)
-            {
                 if((completedLevels[currentLevel] > changeCount || completedLevels[currentLevel] < 0)  && changeCount > 0)
                 {
                     completedLevels[currentLevel] = changeCount;
                 }
-            }
         }
         changeCount = 0;
         EventManager.TriggerEvent("SaveData");
