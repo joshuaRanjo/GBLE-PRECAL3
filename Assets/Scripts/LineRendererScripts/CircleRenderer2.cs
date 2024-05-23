@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class CircleRenderer : MonoBehaviour
+public class CircleRenderer2 : MonoBehaviour
 {
 
 
@@ -54,17 +53,10 @@ public class CircleRenderer : MonoBehaviour
                         shape.spline.InsertPointAt(count, points[i]);
                         shape.spline.SetHeight(count, height);
                         shape.spline.SetTangentMode(count, ShapeTangentMode.Continuous);
-                }
-                 Debug.LogError("UpdatedCircle" + i);
+                } 
             }
-        }
-        else
-        {
-            shape.spline.InsertPointAt(0, new Vector3(0,0,0));
-            shape.spline.InsertPointAt(1, new Vector3(5,0,0));
-            shape.spline.InsertPointAt(2, new Vector3(5,5,0));
-            Debug.LogError("UpdatedCircle");
-        }
-        
+        }      
     }
 }
+
+

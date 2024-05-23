@@ -35,7 +35,7 @@ public class PlayerDataScript : MonoBehaviour
         name = "Apollo";
         try
         {
-            Debug.Log("Trying to load save");
+            //Debug.Log("Trying to load save");
             string filePath = Application.persistentDataPath+ "/"+ name + ".json";
             string pDataString = System.IO.File.ReadAllText(filePath);
             Debug.Log(filePath);
@@ -56,13 +56,13 @@ public class PlayerDataScript : MonoBehaviour
                 }
                 playerDataSO.completedLevels = completedLevels;
                 
-                Debug.Log("Player data loaded");
+                //Debug.Log("Player data loaded");
 
             }
         }
         catch(System.IO.FileNotFoundException)
         {
-            Debug.LogWarning("NoSaveFile found. Making new save");
+            //Debug.LogWarning("NoSaveFile found. Making new save");
             playerDataSO.completedLevels = new Dictionary<string,int>();
             
             SavePlayerData();
@@ -72,12 +72,12 @@ public class PlayerDataScript : MonoBehaviour
 
     public void SavePlayerData()
     {
-        Debug.Log("Trying to save");
+        //Debug.Log("Trying to save");
         PlayerDataFile pData = new PlayerDataFile(name, playerDataSO.completedLevels);
         string json = JsonUtility.ToJson(pData);
         string filePath = Application.persistentDataPath+ "/"+ name + ".json";
         System.IO.File.WriteAllText(filePath, json);
-        Debug.Log("Save Success");
+        //Debug.Log("Save Success");
         EventManager.TriggerEvent("SaveComplete");
     }
 

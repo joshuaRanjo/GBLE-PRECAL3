@@ -21,7 +21,7 @@ public class PointKeyHoles : LevelProp
     {
         if(other.gameObject.CompareTag("PointKey"))
         {
-            Debug.Log("PointKey entered");
+            //Debug.Log("PointKey entered");
             if( (isVertex && other.transform.name.Contains("vertexPoint")) 
                 || (!isVertex && ((other.transform.name.Contains("fociPoint"))))
               )
@@ -50,9 +50,9 @@ public class PointKeyHoles : LevelProp
                 activated = false;
                 if(mcsScript != null)
                     mcsScript.DecreaseCondition();
-                Debug.Log("No more valid keys in keyhole");
+                //Debug.Log("No more valid keys in keyhole");
             }
-            Debug.Log("PointKey exited");
+            //Debug.Log("PointKey exited");
         }
     }
 

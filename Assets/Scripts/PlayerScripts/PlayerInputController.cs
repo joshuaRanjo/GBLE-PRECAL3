@@ -13,6 +13,7 @@ public class PlayerInputController : MonoBehaviour
     private bool inPuzzle = false;
 
     private void Start() {
+        Debug.developerConsoleVisible = true;
         DisableMovement();
     }
 
@@ -101,7 +102,7 @@ public class PlayerInputController : MonoBehaviour
     public void PauseGame(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        Debug.Log("Esc pressed");
+        
         if(inGame && !inPuzzle)
         {   
             if(isPaused)

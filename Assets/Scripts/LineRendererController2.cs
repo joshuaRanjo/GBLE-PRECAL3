@@ -8,8 +8,8 @@ public class LineRendererController2 : MonoBehaviour
 
 
     [Header("Line Scripts")]
-    [SerializeField] private CircleRenderer circleRenderer;
-    [SerializeField] private EllipseRenderer ellipseRenderer;
+    [SerializeField] private CircleRenderer2 circleRenderer;
+    [SerializeField] private EllipseRenderer2 ellipseRenderer;
     [SerializeField] private ParabolaRendererDef parabolaRenderer;
     [SerializeField] private HyperbolaRenderer hyperbolaRenderer;
     [SerializeField] private InteractedCircleRenderer interactedCircleRenderer;
