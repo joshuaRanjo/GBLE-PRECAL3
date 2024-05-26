@@ -11,10 +11,12 @@ public class InteractableButton : LevelProp
     public UnityEvent interaction;
 
     [SerializeField] private GameObject redObject;
+    [SerializeField] private GameObject eInteractor;
     private InputAction.CallbackContext context;
 
     private BoxCollider2D boxCollider;
     private bool interactable = true;
+
 
 
     public void DoAction(){
@@ -31,9 +33,16 @@ public class InteractableButton : LevelProp
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.CompareTag("Interactor")){
             isInRange = true;
+            eInteractor.SetActive(true);
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.gameObject.CompareTag("Interactor")){
+            isInRange = false;
+            eInteractor.SetActive(false);
+        }
+    }
 
     private void OnEnable() {
         boxCollider = GetComponent<BoxCollider2D>();

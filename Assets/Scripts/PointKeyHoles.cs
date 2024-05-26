@@ -13,7 +13,7 @@ public class PointKeyHoles : LevelProp
         colliderList = new List<Collider2D>();
         if(isVertex)
         {
-            light.color =  new Color(0.9725f, 0.4941f, 0.0314f);
+            light.color =  new Color(0.996f, 0.996f, 0.114f);
         }
     }
 
