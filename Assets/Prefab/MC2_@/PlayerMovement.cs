@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool allowedMoving = true;
     private bool isJumping = false;
     private bool facingRight = false;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isOnSlope;
 
     private float moveInput;
@@ -66,16 +66,21 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyMovement()
     {
         rigidBody2D.velocity = new Vector2(moveInput*speed, rigidBody2D.velocity.y);
+
+        if(rigidBody2D.velocity.y <= 0.0f)
+        {
+            isJumping = false;
+        }
         
-        if(isGrounded && !isOnSlope)
+        if(IsGrounded() && !isOnSlope && !isJumping)
         {
             rigidBody2D.velocity = new Vector2(moveInput*speed, 0.0f);
         }
-        else if(isGrounded && isOnSlope)
+        else if(IsGrounded() && isOnSlope && !isJumping)
         {
-            rigidBody2D.velocity = new Vector2(slopeNormalPerpendicular.x * speed * -moveInput, rigidBody2D.velocity.y);
+            rigidBody2D.velocity = new Vector2(slopeNormalPerpendicular.x * speed * -moveInput, speed * slopeNormalPerpendicular.y * -moveInput);
         }
-        else if(!isGrounded)
+        else if(!IsGrounded())
         {
             rigidBody2D.velocity = new Vector2(moveInput*speed, rigidBody2D.velocity.y);
         }
@@ -91,9 +96,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+       
         if(context.performed && IsGrounded())
         {
+             Debug.Log("Jumps");
+            //Vector2 newforce.Set(0.0f, jumpForce);
             rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, jumpForce);
+            isJumping = true;
         }
 
         if(context.canceled && rigidBody2D.velocity.y > 0f)
@@ -130,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-       
+       isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObjects);
         return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObjects);
     }
 
@@ -173,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void SlopeCheckVertical(Vector2 checkPos)
     {
+        
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, groundObjects);
         Vector2 check2 = checkPos - new Vector2(-0.1f,0f);
         Vector2 check3 = checkPos - new Vector2(0.1f,0f);
@@ -238,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
             rigidBody2D.sharedMaterial = fullFriction;
-            if(slopeDownAngle > 15f || numHits < 3)
+            if(slopeDownAngle > 45f || numHits < 3)
             {
                  rigidBody2D.sharedMaterial = someFriction;
             }
@@ -248,8 +258,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidBody2D.sharedMaterial = noFriction;
         }
+        
     }
 
 
     
 }
+

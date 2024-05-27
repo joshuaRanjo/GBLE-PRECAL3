@@ -6174,6 +6174,7 @@ GameObject:
   - component: {fileID: 2187769263811989649}
   - component: {fileID: 3169496844823449124}
   - component: {fileID: 3741019952794658598}
+  - component: {fileID: 4353897253859783711}
   m_Layer: 5
   m_Name: SideMenuV3 Moving
   m_TagString: Untagged
@@ -6296,6 +6297,23 @@ MonoBehaviour:
   precisionMode: {fileID: 4364908540848718001}
   notPrecisionMode: {fileID: 2594086406120542528}
   changeButton: {fileID: 6555241219432620035}
+--- !u!114 &4353897253859783711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039355706906863005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d472da24292e0ee46b1b36436cbc8905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 5205322303167734195}
+  sprites:
+  - {fileID: 21300000, guid: 7f58bf54126451a40ab33c01d2837801, type: 3}
+  - {fileID: 21300000, guid: c5def3c3061fe9144835b6e86bb6fe33, type: 3}
+  - {fileID: 21300000, guid: 0f4f9c81ac9df714abfc3e56d13de388, type: 3}
 --- !u!1 &5039355706996039236
 GameObject:
   m_ObjectHideFlags: 0
@@ -8253,7 +8271,6 @@ GameObject:
   - component: {fileID: 4499488566886152260}
   - component: {fileID: 2756210095144817214}
   - component: {fileID: 5205322303167734195}
-  - component: {fileID: 1830421818273825059}
   m_Layer: 5
   m_Name: Face
   m_TagString: Untagged
@@ -8309,7 +8326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f4f9c81ac9df714abfc3e56d13de388, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f58bf54126451a40ab33c01d2837801, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8319,31 +8336,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1830421818273825059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6869752377356971415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a00fafd151e6744eb90a54fa83a871b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ld: {fileID: 11400000, guid: 54ca54ab797ba6b43ac35db53ae61238, type: 2}
-  qd: {fileID: 11400000, guid: 86ebc4a67b66d3845a195bbdcebe50ec, type: 2}
-  faceMovement: 0
-  imageChoices:
-  - {fileID: 21300000, guid: 0f4f9c81ac9df714abfc3e56d13de388, type: 3}
-  - {fileID: 21300000, guid: 1d88dec2902ae704e8aebca8b2f48977, type: 3}
-  - {fileID: 21300000, guid: 564f8d05e6f8bb54eaf88f544a5b0e05, type: 3}
-  - {fileID: 21300000, guid: 0ae19ad334c6fe14c9f0d7101822073f, type: 3}
-  fullSize: {x: 300, y: 300}
-  miniSize: {x: 100, y: 100}
-  cornerPosition: {x: 150, y: -150}
-  sizeChangeSpeed: 1
-  positionChangeSpeed: 2
 --- !u!1 &6882089459142140264
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 
 public class ClickableObject : MonoBehaviour
@@ -16,6 +17,7 @@ public class ClickableObject : MonoBehaviour
     public LayerMask blockingLayer = 10;
 
     private bool inPuzzle = false;
+    private bool entered = false;
 
     public void DoAction(){
         //Debug.Log("DoingAction");
@@ -27,31 +29,42 @@ public class ClickableObject : MonoBehaviour
     private void OnMouseOver() {
         if(!inPuzzle)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        // Check if the ray hits something on the blocking layer
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("InterferenceLayer"));
-            if(hit.collider == null)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                if(outlineObject != null)
-                {
-                    //outlineObject.SetActive(true);
-                }
-                if(spriteRenderers.Count > 0 && lerpCoroutine == null)
-                {
-                    lerpCoroutine = StartCoroutine(LerpColorCoroutine());
-                    //Debug.Log("Startlerping");
-                }
-                if(spriteShapeRenderer != null)
-                {
-                    StartCoroutine(LerpColorSpriteShapeCoroutine());
-                }
-                if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
-                {
-                    lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
-                }
+                //Debug.Log("Mouse is over UI");
+                return;
             }
-            
+            if(!entered)
+            {
+                //Debug.Log("MouseOver Object");
+                entered = true;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                
+                // Check if the ray hits something on the blocking layer
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("InterferenceLayer"));
+                if(hit.collider == null)
+                {
+                    if(outlineObject != null)
+                    {
+                        //outlineObject.SetActive(true);
+                    }
+                    if(spriteRenderers.Count > 0 && lerpCoroutine == null)
+                    {
+                        lerpCoroutine = StartCoroutine(LerpColorCoroutine());
+                        //Debug.Log("Startlerping");
+                    }
+                    if(spriteShapeRenderer != null)
+                    {
+                        StartCoroutine(LerpColorSpriteShapeCoroutine());
+                    }
+                    if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
+                    {
+                        lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
+                    }
+                    EventManager.TriggerEvent("PuzzleHover");
+                }
+                
+            }
         }
         
     }
@@ -59,6 +72,9 @@ public class ClickableObject : MonoBehaviour
     private void OnMouseExit() {
         
         StopLerpCoroutine();
+        if(!inPuzzle)
+            EventManager.TriggerEvent("PuzzleHoverExit");
+        entered = false;
     }
 
     private void ResetObjectSprite()
