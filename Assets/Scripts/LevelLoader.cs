@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Fungus;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class LevelLoader : MonoBehaviour
     public LevelManager levelManager;
     public GameObject buttonPrefab;
     public GameObject scrollViewContent;
-
+    public Flowchart fc;
     private Dictionary<string,int> completedLevelList;
 
     
@@ -28,7 +29,7 @@ public class LevelLoader : MonoBehaviour
      void ListPrefabsInFolder()
     {
         ClearScrollView();
-        
+        //Debug.Log("Listing prefabs");
         // Load all prefabs from the specified folder
         GameObject[] prefabs = Resources.LoadAll<GameObject>("Levels");
         int k = 0;
@@ -41,7 +42,7 @@ public class LevelLoader : MonoBehaviour
         list.AddRange(prefabs);
         levelManagerSO.SetLevelList(list);
         
-        EventManager.StopListening("LoadedPlayerData", ListPrefabsInFolder);
+        //EventManager.StopListening("LoadedPlayerData", ListPrefabsInFolder);
         EventManager.StopListening("EnterMainMenu",ListPrefabsInFolder);
         EventManager.StartListening("EnterMainMenu",ListPrefabsInFolder);
     }
@@ -101,8 +102,8 @@ public class LevelLoader : MonoBehaviour
 
     private void OnButtonClick(GameObject prefab, int number)
     {
-        levelManagerSO.SetCurrentLevel(number);
-        //Debug.Log("Clicked prefab " + prefab.name);
-        EventManager.TriggerEvent("ExitMainMenu");
+        levelManagerSO.SetCurrentLevelNoChange(number);
+        fc.ExecuteBlock("BeginLevel");
+        //EventManager.TriggerEvent("ExitMainMenu");
     }
 }

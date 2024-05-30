@@ -29,7 +29,7 @@ public class PointKeyHoles : LevelProp
                 colliderList.Add(other);
                 if(!activated)
                 {
-                    Debug.Log("PointKey entered, isVertex = " + isVertex);
+                    //Debug.Log("PointKey entered, isVertex = " + isVertex);
                     activated = true;
                     //if(mcsScript != null)
                         mcsScript?.IncreaseCondition();

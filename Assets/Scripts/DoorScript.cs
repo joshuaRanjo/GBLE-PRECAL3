@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorScript : LevelProp
 {
     public GameObject triggerObject;
-    public bool openStatus = false;
+    private bool openStatus = false;
     public bool defaultStatus = false;
 
     public float speed = 1f;
@@ -52,6 +52,18 @@ public class DoorScript : LevelProp
         }
 
         moveDoor = StartCoroutine(MoveObject(closedPosition));
+    }
+
+    public void Switch()
+    {
+        if(openStatus)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
     }
 
     IEnumerator MoveObject(Vector3 targetPosition)

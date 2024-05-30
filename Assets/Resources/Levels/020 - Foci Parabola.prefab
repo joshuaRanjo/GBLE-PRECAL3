@@ -632,22 +632,32 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4083257707072700021}
   m_Enabled: 1
-  m_Tiles: {}
+  m_Tiles:
+  - first: {x: 7, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: c378ad831adca5f47975b682930b1168, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 4798e7c24a506d34fadaefcb227345f5, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
@@ -685,27 +695,27 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 0
-  - m_RefCount: 0
+  - m_RefCount: 1
     m_Data:
-      e00: -1.2234855e-29
+      e00: 1
       e01: 0
-      e02: 2.0401127e+10
-      e03: 2.0401127e+10
-      e10: 9.35e-43
-      e11: 0
-      e12: 9.3e-43
-      e13: 9.3e-43
-      e20: -1.0805009e-30
-      e21: 1e-45
-      e22: -2.705217e-28
-      e23: 1.1874798e-19
-      e30: 4.5904e-41
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
       e31: 0
-      e32: 9.3e-43
-      e33: 9.35e-43
+      e32: 0
+      e33: 1
   m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: 4.733e-41, g: 4.733e-41, b: 4.733e-41, a: 4.733e-41}
+  - m_RefCount: 1
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -772,7 +782,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -3002,6 +3012,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
+  - first: {x: 0, y: -4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 17
+      m_TileSpriteIndex: 13
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 9, y: -4, z: 0}
     second:
       serializedVersion: 2
@@ -5568,8 +5588,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 5052ea03c8d59de4d8e93bdfd25cdc19, type: 2}
   - m_RefCount: 460
     m_Data: {fileID: 11400000, guid: 5f18d83db99a7b5489ce0d2908a5cb5b, type: 2}
   m_TileSpriteArray:
@@ -5599,8 +5619,8 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 7f3e36cc5de4c3b42a4d3acb29c66b2e, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 074dfdd02db8c5145abb9e75dbe9581d, type: 3}
   - m_RefCount: 176
     m_Data: {fileID: 21300000, guid: 685d4221915a15547a28f8736a6f073a, type: 3}
   - m_RefCount: 2
@@ -5610,7 +5630,7 @@ Tilemap:
   - m_RefCount: 16
     m_Data: {fileID: 21300000, guid: 479204d016f90e0459fa92e916131c49, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 335
+  - m_RefCount: 336
     m_Data:
       e00: 1
       e01: 0
@@ -5719,7 +5739,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 466
+  - m_RefCount: 467
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -5787,7 +5807,7 @@ TilemapRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 1.5, y: 1, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -6027,6 +6047,14 @@ CompositeCollider2D:
         Y: -7812500
       - X: 7109375
         Y: -7812500
+    - - X: 25000000
+        Y: -20000000
+      - X: -15000000
+        Y: -20000000
+      - X: -15000000
+        Y: -50000000
+      - X: 25000000
+        Y: -50000000
   m_CompositePaths:
     m_Paths:
     - - {x: -9.242199, y: 1}
@@ -6083,6 +6111,10 @@ CompositeCollider2D:
       - {x: -21, y: -1.2421983}
       - {x: -20.999992, y: -9.757821}
       - {x: -20.757801, y: -10}
+    - - {x: 2.499971, y: -5}
+      - {x: 2.499971, y: -2}
+      - {x: -1.5, y: -2.0000293}
+      - {x: -1.4999707, y: -5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &9012988407774947399
@@ -6268,7 +6300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6361,7 +6393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6864,7 +6896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1313012288147950262, guid: 402cf2939bc602148b0606ab90c22b19, type: 3}
       propertyPath: m_LocalPosition.y

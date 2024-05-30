@@ -166,7 +166,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0}
+  m_Offset: {x: -0.03, y: 0.05}
   m_Size: {x: 0.3, y: 1.85}
   m_Direction: 0
 --- !u!114 &4676921412071973024
@@ -181,17 +181,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc51e980a97495d48ae7d3a3558c976c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  groundCheckRadius: 0.08
+  speed: 0
   jumpForce: 10
-  slopeCheckDistance: 0.5
-  maxSlopeAngle: 0
+  maxSlopeAngle: 46
+  ceilingCheck: {fileID: 0}
   groundCheck: {fileID: 5136167205642032596}
-  whatIsGround:
+  groundObjects:
     serializedVersion: 2
-    m_Bits: 196
+    m_Bits: 0
+  checkRadius: 0
+  slopeCheckDistance: 0.5
+  sprite: {fileID: 0}
   noFriction: {fileID: 6200000, guid: 75d437fee2f50da46bb6b86e3172fb57, type: 2}
+  someFriction: {fileID: 0}
   fullFriction: {fileID: 6200000, guid: 95113fa681a266d479fbd7b31c683d77, type: 2}
+  isGrounded: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  npcLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5849381734083899097
 MonoBehaviour:
   m_ObjectHideFlags: 0

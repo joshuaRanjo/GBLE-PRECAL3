@@ -24,6 +24,11 @@ public class LevelManagerSO: ScriptableObject
         levelChangeEvent.Invoke();
     }
 
+    public void SetCurrentLevelNoChange(int currentLevel)
+    {
+        this.currentLevel = currentLevel;
+    }
+
     public void NextLevel()
     {
         currentLevel++;

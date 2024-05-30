@@ -57,7 +57,7 @@ public class PlayerDataScript : MonoBehaviour
                 playerDataSO.completedLevels = completedLevels;
                 
                 //Debug.Log("Player data loaded");
-
+                EventManager.TriggerEvent("LoadedPlayerData");
             }
         }
         catch(System.IO.FileNotFoundException)
@@ -66,8 +66,9 @@ public class PlayerDataScript : MonoBehaviour
             playerDataSO.completedLevels = new Dictionary<string,int>();
             
             SavePlayerData();
+            EventManager.TriggerEvent("LoadedPlayerData");
         }
-        EventManager.TriggerEvent("LoadedPlayerData");
+        
     }
 
     public void SavePlayerData()
@@ -79,6 +80,16 @@ public class PlayerDataScript : MonoBehaviour
         System.IO.File.WriteAllText(filePath, json);
         //Debug.Log("Save Success");
         EventManager.TriggerEvent("SaveComplete");
+    }
+
+    public void ResetPlayerData()
+    {
+        string filePath = Application.persistentDataPath+ "/"+ name + ".json";
+        if(System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
+        LoadPlayerData();
     }
 
     public void CompletedLevel()

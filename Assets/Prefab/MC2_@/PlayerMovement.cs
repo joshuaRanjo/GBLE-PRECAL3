@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float maxSlopeAngle;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundObjects; //Ground Objects
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        rigidBody2D.velocity = new Vector2(moveInput*speed, rigidBody2D.velocity.y);
+        //rigidBody2D.velocity = new Vector2(moveInput*speed, rigidBody2D.velocity.y);
 
         if(rigidBody2D.velocity.y <= 0.0f)
         {
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
        
         if(context.performed && IsGrounded())
         {
-             Debug.Log("Jumps");
+//             Debug.Log("Jumps");
             //Vector2 newforce.Set(0.0f, jumpForce);
             rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, jumpForce);
             isJumping = true;
@@ -244,18 +245,19 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(hit3.point, hit3.normal,Color.green);
         }
 
-        if(isOnSlope && moveInput == 0.0f)
+        if(isOnSlope && moveInput == 0.0f )
         {
             
             rigidBody2D.sharedMaterial = fullFriction;
-            if(slopeDownAngle > 45f || numHits < 3)
+            if(slopeDownAngle > maxSlopeAngle || numHits < 3 || slopeSideAngle > maxSlopeAngle)
             {
                  rigidBody2D.sharedMaterial = someFriction;
             }
-
+            //Debug.Log(slopeSideAngle + " " + slopeDownAngle  );
         }
         else
         {
+            
             rigidBody2D.sharedMaterial = noFriction;
         }
         

@@ -87,7 +87,7 @@ public class PauseScript : MonoBehaviour
 
     public void ShowPauseScreen()
     {
-        Debug.Log("ShowPauseScreen");
+        //Debug.Log("ShowPauseScreen");
         if(pausePanel != null)
         {
             pausePanel.SetActive(true);
@@ -98,7 +98,7 @@ public class PauseScript : MonoBehaviour
 
     public void HidePauseScreen()
     {
-        Debug.Log("ShowHideScreen");
+        //  Debug.Log("ShowHideScreen");
         if(pausePanel != null)
         {
             pausePanel.SetActive(false);
