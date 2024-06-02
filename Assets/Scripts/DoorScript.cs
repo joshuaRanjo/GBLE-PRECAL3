@@ -35,7 +35,7 @@ public class DoorScript : LevelProp
             {
                 StopCoroutine(moveDoor);
             }
-
+            //Debug.Log("Starting Coroutine");
             moveDoor = StartCoroutine(MoveObject(openPosition));
         }
         
@@ -56,6 +56,7 @@ public class DoorScript : LevelProp
 
     public void Switch()
     {
+        Debug.Log("Switch " + openStatus);
         if(openStatus)
         {
             Close();

@@ -46,13 +46,15 @@ public class FaceScripts2 : MonoBehaviour
 
     private void SetSleepy()
     {
-        SetSprite(0);
+        if(!inHelp)
+            SetSprite(0);
         inPuzzle = false;
     }
 
     private void SetInterest()
     {
-        SetSprite(1);
+        if(!inPuzzle && !inHelp)
+            SetSprite(1);
     }
     private void SetSprite(int face)
     {

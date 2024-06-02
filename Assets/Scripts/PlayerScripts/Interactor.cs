@@ -31,11 +31,12 @@ public class Interactor : MonoBehaviour
     public void DoInteraction(InputAction.CallbackContext context){
         if(canInteract && (interactable != null) && context.performed){
             if(interactable.GetComponent<InteractableObject>() != null)
-            {
+            {   Debug.Log("DOI 1");
                 interactable.GetComponent<InteractableObject>().DoAction();
             }
             if(interactable.GetComponent<InteractableButton>() != null)
             {
+                Debug.Log("DOI 2");
                 interactable.GetComponent<InteractableButton>().DoAction();
             }
 
