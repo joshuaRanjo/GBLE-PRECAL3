@@ -5,6 +5,8 @@ using UnityEngine;
 public class PauseScript : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private CanvasGroup panelBG;
+    [SerializeField] private RectTransform pauseTransform;
     [SerializeField] private float hidePositionX;
     [SerializeField] private float moveSpeed;
     private bool puzzleMode = true;
@@ -16,16 +18,18 @@ public class PauseScript : MonoBehaviour
         EventManager.StartListening("ExitPuzzle", ShowDevice);
         EventManager.StartListening("PauseGame", ShowPauseScreen);
         EventManager.StartListening("ResumeGame", HidePauseScreen);  
+        EventManager.StartListening("EnterHelpMode", HideDevice);
+        EventManager.StartListening("ExitHelpMode", ShowDevice);
 
-        EventManager.TriggerEvent("EnterMainMenu");
-       
     }
 
     private void OnDisable() {
         EventManager.StopListening("EnterPuzzle",HideDevice);
         EventManager.StopListening("ExitPuzzle", ShowDevice);
         EventManager.StopListening("PauseGame", ShowPauseScreen);
-        EventManager.StopListening("ResumeGame", HidePauseScreen);  
+        EventManager.StopListening("ResumeGame", HidePauseScreen);
+        EventManager.StopListening("EnterHelpMode", HideDevice);
+        EventManager.StopListening("ExitHelpMode", ShowDevice);  
     }
 
     private void Start() {
@@ -90,21 +94,32 @@ public class PauseScript : MonoBehaviour
         //Debug.Log("ShowPauseScreen");
         if(pausePanel != null)
         {
+            panelBG.alpha = 0;
             pausePanel.SetActive(true);
-            
+            panelBG.LeanAlpha(1,0.5f);
+
+            pauseTransform.localPosition = new Vector2(0, -Screen.height);
+            LeanTween.move(pauseTransform, new Vector3(0,0,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad);
         }
             
     }
 
     public void HidePauseScreen()
     {
-        //  Debug.Log("ShowHideScreen");
+         //Debug.Log("ShowHideScreen");
         if(pausePanel != null)
         {
-            pausePanel.SetActive(false);
+            panelBG.LeanAlpha(0, 0.5f);
+            LeanTween.move(pauseTransform, new Vector3(0,-Screen.height,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(DisablePausePanel);
             
         }
     }
+
+    void DisablePausePanel()
+    {
+        pausePanel.SetActive(false);
+    }
+
 
     public void PauseGame()
     {

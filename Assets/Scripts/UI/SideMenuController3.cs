@@ -51,6 +51,7 @@ public class SideMenuController3 : MonoBehaviour
 
     private void Start() {
         InputStartListening();
+        EventManager.TriggerEvent("EnterMainMenu");
     }
 
     private void LateUpdate() {

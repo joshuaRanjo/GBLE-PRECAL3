@@ -10,17 +10,22 @@ public class FaceScripts2 : MonoBehaviour
     // Array of sprites to switch between
     public Sprite[] sprites;
     private int curSprite = 0;
+    private bool inPuzzle = false;
+    private bool inHelp = false;
 
     /* 
     0 = sleepy
     1 = interest
     2 = awake/happy
+    3 = teacher
     */
     private void OnEnable() {
         EventManager.StartListening("PuzzleHover",SetInterest);
         EventManager.StartListening("PuzzleHoverExit",SetSleepy);
         EventManager.StartListening("EnterPuzzle", SetHappy);
         EventManager.StartListening("ExitPuzzle", SetSleepy);
+        EventManager.StartListening("EnterHelpMode", SetTeacher);
+        EventManager.StartListening("ExitHelpMode", SetTeacher);
     }
 
     private void OnDisable() {
@@ -28,16 +33,21 @@ public class FaceScripts2 : MonoBehaviour
         EventManager.StopListening("PuzzleHoverExit",SetSleepy);
         EventManager.StopListening("EnterPuzzle", SetHappy);
         EventManager.StopListening("ExitPuzzle", SetSleepy);
+        EventManager.StopListening("EnterHelpMode", SetTeacher);
+        EventManager.StopListening("ExitHelpMode", SetTeacher);
     }
 
     private void SetHappy()
     {
         SetSprite(2);
+
+        inPuzzle = true;
     }
 
     private void SetSleepy()
     {
         SetSprite(0);
+        inPuzzle = false;
     }
 
     private void SetInterest()
@@ -48,5 +58,26 @@ public class FaceScripts2 : MonoBehaviour
     {
         targetImage.sprite = sprites[face];
         curSprite = face;
+    }
+
+    private void SetTeacher()
+    {
+        if(inHelp)
+        {
+            inHelp = false;
+            if(inPuzzle)
+            {
+                SetHappy();
+            }
+            else
+            {
+                SetSleepy();
+            }
+        }
+        else
+        {
+            inHelp = true;
+            SetSprite(3);
+        }
     }
 }

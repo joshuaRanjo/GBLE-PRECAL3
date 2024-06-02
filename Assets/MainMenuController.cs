@@ -20,6 +20,7 @@ public class MainMenuController : MonoBehaviour
     private void ShowMainMenu()
     {
         mainMenuCanvas.SetActive(true);
+        Debug.Log("ShowMainMenu");
     }
 
     private void HideMainMenu()

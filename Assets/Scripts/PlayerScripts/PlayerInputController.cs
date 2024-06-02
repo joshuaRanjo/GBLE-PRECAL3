@@ -11,6 +11,7 @@ public class PlayerInputController : MonoBehaviour
     private bool isPaused = false;
     private bool inGame = false;
     private bool inPuzzle = false;
+    private bool inHelp = false;
 
     private void Start() {
         Debug.developerConsoleVisible = true;
@@ -29,6 +30,9 @@ public class PlayerInputController : MonoBehaviour
 
         EventManager.StartListening("EnterMainMenu", EnterMainMenu);
         EventManager.StartListening("ExitMainMenu", ExitMainMenu);
+        
+        EventManager.StartListening("EnterHelpMode",EnterHelpMode);
+        EventManager.StartListening("ExitHelpMode",ExitHelpMode);
 
         EventManager.StartListening("PauseGame", PauseGame);
         EventManager.StartListening("ResumeGame", ResumeGame);  
@@ -47,6 +51,9 @@ public class PlayerInputController : MonoBehaviour
 
         EventManager.StopListening("EnterMainMenu", EnterMainMenu);
         EventManager.StopListening("ExitMainMenu", ExitMainMenu);
+
+        EventManager.StopListening("EnterHelpMode",EnterHelpMode);
+        EventManager.StopListening("ExitHelpMode",ExitHelpMode);
 
         EventManager.StopListening("PauseGame", PauseGame);
         EventManager.StopListening("ResumeGame", ResumeGame);  
@@ -87,6 +94,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void EnterMainMenu()
     {
+        
         DisableMovement();
         inGame = false;
         isPaused = false;
@@ -94,6 +102,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void ExitMainMenu()
     {
+        Debug.Log("exitedMainMenu");
         EnableMovement();
         inGame = true;
         isPaused = false;
@@ -101,9 +110,9 @@ public class PlayerInputController : MonoBehaviour
 
     public void PauseGame(InputAction.CallbackContext context)
     {
-        if (!context.started) return;
         
-        if(inGame && !inPuzzle)
+        if (!context.started) return;
+        if(inGame && !inPuzzle && !inHelp)
         {   
             if(isPaused)
             {
@@ -115,6 +124,10 @@ public class PlayerInputController : MonoBehaviour
                 isPaused = true;
                 EventManager.TriggerEvent("PauseGame");
             }
+        }
+        if(inGame && inHelp)
+        {
+            EventManager.TriggerEvent("ExitHelpMode");
         }
     }
 
@@ -148,5 +161,20 @@ public class PlayerInputController : MonoBehaviour
     {
         if (!context.started) return;
         EventManager.TriggerEvent("ExitPuzzle");
+    }
+
+    public void EnterHelpMode()
+    {
+        SwitchToConversation();
+        inHelp = true;
+    }
+
+    public void ExitHelpMode()
+    {
+        if(!inPuzzle)
+        {
+            SwitchToPlayerMovement();
+        }
+        inHelp = false;
     }
 }
