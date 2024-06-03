@@ -17,7 +17,7 @@ public class InteractableButton : LevelProp
     private BoxCollider2D boxCollider;
     private bool interactable = true;
 
-
+    [SerializeField] private AudioSource src;
 
     public void DoAction(){
         if(interactable)
@@ -27,6 +27,7 @@ public class InteractableButton : LevelProp
             interactable = false;
             StartCoroutine(ButtonActivateCoroutine());
             StartCoroutine(ButtonAnimation());
+            src.Play();
         }
        
     }

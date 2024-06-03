@@ -6,8 +6,18 @@ public class MovingPlatform : LevelProp
 {
     public List<Vector3> positions;  // List of positions the platform will move to
     public float speed = 5f;         // Speed of the platform
-
+    private GameObject player;
     private Coroutine moveCoroutine;
+
+    private void OnDestroy() {
+        if(player != null)
+        {
+            player.transform.SetParent(null);
+        }
+    }
+
+    private void OnDisable() {
+    }
 
     public void MoveToTargetIndex(int index)
     {
@@ -43,6 +53,7 @@ public class MovingPlatform : LevelProp
         if(collision.gameObject.CompareTag("Player"))
         {
             collision.transform.parent = transform;
+            player = collision.gameObject;
         }
     }
 
@@ -51,6 +62,7 @@ public class MovingPlatform : LevelProp
         if(collision.gameObject.CompareTag("Player"))
         {
             collision.transform.parent = null;
+            player = null;
         }
     }
 }

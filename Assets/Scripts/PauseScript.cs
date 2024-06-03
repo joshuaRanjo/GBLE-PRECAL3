@@ -9,27 +9,29 @@ public class PauseScript : MonoBehaviour
     [SerializeField] private RectTransform pauseTransform;
     [SerializeField] private float hidePositionX;
     [SerializeField] private float moveSpeed;
-    private bool puzzleMode = true;
+    [SerializeField]private bool puzzleMode = false;
+    [SerializeField]private bool inHelp = false;
     private Vector2 targetPosition;
     private RectTransform rectTransform;
     [SerializeField] private Vector2 originalPosition;
+
     private void OnEnable() {
-        EventManager.StartListening("EnterPuzzle", HideDevice);
-        EventManager.StartListening("ExitPuzzle", ShowDevice);
+        EventManager.StartListening("EnterPuzzle", EnterPuzzle);
+        EventManager.StartListening("ExitPuzzle", ExitPuzzle);
         EventManager.StartListening("PauseGame", ShowPauseScreen);
         EventManager.StartListening("ResumeGame", HidePauseScreen);  
-        EventManager.StartListening("EnterHelpMode", HideDevice);
-        EventManager.StartListening("ExitHelpMode", ShowDevice);
+        EventManager.StartListening("EnterHelpMode", EnterHelpMode);
+        EventManager.StartListening("ExitHelpMode", ExitHelpMode);
 
     }
 
     private void OnDisable() {
-        EventManager.StopListening("EnterPuzzle",HideDevice);
-        EventManager.StopListening("ExitPuzzle", ShowDevice);
+        EventManager.StopListening("EnterPuzzle",EnterPuzzle);
+        EventManager.StopListening("ExitPuzzle", ExitPuzzle);
         EventManager.StopListening("PauseGame", ShowPauseScreen);
         EventManager.StopListening("ResumeGame", HidePauseScreen);
-        EventManager.StopListening("EnterHelpMode", HideDevice);
-        EventManager.StopListening("ExitHelpMode", ShowDevice);  
+        EventManager.StopListening("EnterHelpMode", EnterHelpMode);
+        EventManager.StopListening("ExitHelpMode", ExitHelpMode);  
     }
 
     private void Start() {
@@ -39,24 +41,14 @@ public class PauseScript : MonoBehaviour
 
     private void ShowDevice()
     {
-        if(!puzzleMode)
-        {
-            puzzleMode = true;
-
             targetPosition = originalPosition;
             StartCoroutine(MoveToTarget());
-        }
     }
 
     private void HideDevice()
     {
-        if(puzzleMode)
-        {
-            puzzleMode = false;
-
             targetPosition = new Vector2(rectTransform.anchoredPosition.x,hidePositionX);
             StartCoroutine(MoveToTarget());
-        }
     }
 
     IEnumerator MoveToTarget()
@@ -98,7 +90,7 @@ public class PauseScript : MonoBehaviour
             pausePanel.SetActive(true);
             panelBG.LeanAlpha(1,0.5f);
 
-            pauseTransform.localPosition = new Vector2(0, -Screen.height);
+            pauseTransform.localPosition = new Vector2(0, -Screen.height*2);
             LeanTween.move(pauseTransform, new Vector3(0,0,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad);
         }
             
@@ -110,7 +102,7 @@ public class PauseScript : MonoBehaviour
         if(pausePanel != null)
         {
             panelBG.LeanAlpha(0, 0.5f);
-            LeanTween.move(pauseTransform, new Vector3(0,-Screen.height,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(DisablePausePanel);
+            LeanTween.move(pauseTransform, new Vector3(0,-Screen.height*2,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(DisablePausePanel);
             
         }
     }
@@ -140,5 +132,35 @@ public class PauseScript : MonoBehaviour
     {
         HidePauseScreen();
         EventManager.TriggerEvent("EnterMainMenu");
+    }
+
+    private void EnterPuzzle()
+    {
+        puzzleMode = true;
+        HideDevice();
+    }
+    private void ExitPuzzle()
+    {
+        puzzleMode = false;
+        if(!inHelp)
+        {
+            ShowDevice();
+        }
+
+    }
+
+    private void EnterHelpMode()
+    {
+        inHelp = true;
+        HideDevice();
+    }
+
+    private void ExitHelpMode()
+    {
+        inHelp = false;
+        if(!puzzleMode)
+        {
+            ShowDevice();
+        }
     }
 }

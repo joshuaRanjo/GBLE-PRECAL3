@@ -47,24 +47,47 @@ public class LineData2 : ScriptableObject
     
     public void SetA(float newA, string changeType)
     {   
-        a  = newA;  this.changeType = changeType;  
-
+          this.changeType = changeType;  
+        if(a != newA)
+        {
+            a = newA;
             puzzleObjectScript.SetA(newA); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+        }
+            
         
 
     }
     public void SetB(float newB, string changeType)
     {
-        b = newB;  this.changeType = changeType; 
+        this.changeType = changeType; 
+        if(b != newB)
+        {
+            b = newB;
+            puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke(); 
+            EventManager.TriggerEvent("ChangeEvent");
+        }
 
-        puzzleObjectScript.SetB(newB); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
 
         
     }
     public void SetH(float newH, string changeType)
-    {h = newH;  this.changeType = changeType; puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");}
+    {
+        this.changeType = changeType; 
+        if(h != newH)
+        {
+          h = newH;  puzzleObjectScript.SetH(newH); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+        }
+        
+    }
     public void SetK(float newK, string changeType)
-    {k = newK;  this.changeType = changeType; puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");}
+    {
+          this.changeType = changeType;
+        if(k != newK)
+        {
+           k = newK;  puzzleObjectScript.SetK(newK); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
+        }
+
+    }
 
     public void SetAll(float newA, float newB, float newH, float newK)
     {

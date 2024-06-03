@@ -104,6 +104,11 @@ public class LevelLoader : MonoBehaviour
     {
         levelManagerSO.SetCurrentLevelNoChange(number);
         fc.ExecuteBlock("BeginLevel");
+        //EventManager.TriggerEvent("ExitMainMenu");
+    }
+
+    public void LevelButtonClick()
+    {
         EventManager.TriggerEvent("ExitMainMenu");
     }
 }

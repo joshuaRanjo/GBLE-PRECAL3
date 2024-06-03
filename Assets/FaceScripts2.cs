@@ -9,9 +9,9 @@ public class FaceScripts2 : MonoBehaviour
 
     // Array of sprites to switch between
     public Sprite[] sprites;
-    private int curSprite = 0;
-    private bool inPuzzle = false;
-    private bool inHelp = false;
+    [SerializeField] private int curSprite = 0;
+    [SerializeField] private bool inPuzzle = false;
+    [SerializeField] private bool inHelp = false;
 
     /* 
     0 = sleepy
@@ -21,20 +21,20 @@ public class FaceScripts2 : MonoBehaviour
     */
     private void OnEnable() {
         EventManager.StartListening("PuzzleHover",SetInterest);
-        EventManager.StartListening("PuzzleHoverExit",SetSleepy);
+        EventManager.StartListening("PuzzleHoverExit",PuzzleHoverExit);
         EventManager.StartListening("EnterPuzzle", SetHappy);
-        EventManager.StartListening("ExitPuzzle", SetSleepy);
-        EventManager.StartListening("EnterHelpMode", SetTeacher);
-        EventManager.StartListening("ExitHelpMode", SetTeacher);
+        EventManager.StartListening("ExitPuzzle", ExitPuzzle);
+        EventManager.StartListening("EnterHelpMode", EnterHelpMode);
+        EventManager.StartListening("ExitHelpMode", ExitHelpMode);
     }
 
     private void OnDisable() {
         EventManager.StopListening("PuzzleHover",SetInterest);
-        EventManager.StopListening("PuzzleHoverExit",SetSleepy);
+        EventManager.StopListening("PuzzleHoverExit",PuzzleHoverExit);
         EventManager.StopListening("EnterPuzzle", SetHappy);
-        EventManager.StopListening("ExitPuzzle", SetSleepy);
-        EventManager.StopListening("EnterHelpMode", SetTeacher);
-        EventManager.StopListening("ExitHelpMode", SetTeacher);
+        EventManager.StopListening("ExitPuzzle", ExitPuzzle);
+        EventManager.StopListening("EnterHelpMode", EnterHelpMode);
+        EventManager.StopListening("ExitHelpMode", ExitHelpMode);
     }
 
     private void SetHappy()
@@ -46,9 +46,7 @@ public class FaceScripts2 : MonoBehaviour
 
     private void SetSleepy()
     {
-        if(!inHelp)
-            SetSprite(0);
-        inPuzzle = false;
+        SetSprite(0);
     }
 
     private void SetInterest()
@@ -64,22 +62,39 @@ public class FaceScripts2 : MonoBehaviour
 
     private void SetTeacher()
     {
-        if(inHelp)
+        SetSprite(3);
+    }
+
+    private void ExitPuzzle()
+    {
+        if(!inHelp)
+            SetSleepy();
+        inPuzzle = false;
+    }
+
+    private void PuzzleHoverExit()
+    {
+        if(!inHelp)
         {
-            inHelp = false;
-            if(inPuzzle)
-            {
-                SetHappy();
-            }
-            else
-            {
-                SetSleepy();
-            }
+            SetSleepy();
         }
-        else
+    }
+
+    private void EnterHelpMode()
+    {
+        inHelp = true;
+        SetTeacher();
+    }
+
+    private void ExitHelpMode()
+    {
+        inHelp = false;
+        if(inPuzzle)
         {
-            inHelp = true;
-            SetSprite(3);
+            SetHappy();
+        }
+        else{
+            SetSleepy();
         }
     }
 }

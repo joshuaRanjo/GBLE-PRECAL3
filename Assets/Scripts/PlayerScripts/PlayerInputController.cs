@@ -8,10 +8,10 @@ public class PlayerInputController : MonoBehaviour
 {
     [SerializeField] private PlayerInput controller;
     [SerializeField] private bool storyConversation = false;
-    private bool isPaused = false;
-    private bool inGame = false;
-    private bool inPuzzle = false;
-    private bool inHelp = false;
+    [SerializeField]private bool isPaused = false;
+    [SerializeField]private bool inGame = false;
+    [SerializeField]private bool inPuzzle = false;
+    [SerializeField]private bool inHelp = false;
 
     private void Start() {
         Debug.developerConsoleVisible = true;
@@ -124,7 +124,7 @@ public class PlayerInputController : MonoBehaviour
                 isPaused = true;
                 EventManager.TriggerEvent("PauseGame");
             }
-        }
+        }   
         if(inGame && inHelp)
         {
             EventManager.TriggerEvent("ExitHelpMode");
@@ -165,8 +165,21 @@ public class PlayerInputController : MonoBehaviour
 
     public void EnterHelpMode()
     {
-        SwitchToConversation();
+        controller.actions.FindActionMap("Pause").Disable();
         inHelp = true;
+        
+        if(inPuzzle)
+        {
+            controller.actions.FindActionMap("Conversation").Disable();
+        }
+        StartCoroutine(DisableActionCoroutine());
+    }
+
+    private IEnumerator DisableActionCoroutine()
+    {
+        
+        yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+        controller.actions.FindActionMap("Pause").Enable();
     }
 
     public void ExitHelpMode()
@@ -174,6 +187,11 @@ public class PlayerInputController : MonoBehaviour
         if(!inPuzzle)
         {
             SwitchToPlayerMovement();
+        }
+        else
+        {
+            controller.actions.FindActionMap("Pause").Disable();
+            controller.actions.FindActionMap("Conversation").Enable();
         }
         inHelp = false;
     }

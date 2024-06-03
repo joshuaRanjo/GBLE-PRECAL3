@@ -195,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884708769456828437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.77, y: -1.48, z: 0}
+  m_LocalPosition: {x: 2.77, y: -2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 3.5178258, y: 4.8358817}
+  m_Size: {x: 3.5, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -262,7 +262,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884708769456828437}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -293,13 +293,13 @@ BoxCollider2D:
     border: {x: 1, y: 1, z: 1, w: 1}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3, y: 3}
-    newSize: {x: 3.5178258, y: 4.8358817}
+    newSize: {x: 3.5, y: 7}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.43, y: 4.84}
+  m_Size: {x: 3.43, y: 7}
   m_EdgeRadius: 0
 --- !u!1 &884708770372983996
 GameObject:
@@ -410,7 +410,7 @@ MonoBehaviour:
   allowK: 1
   allowOrientation: 0
   inverseAB: 0
-  a: 0.5
+  a: 0.70710677
   b: 1
   h: 0
   k: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
   minH: -5
   maxK: 5
   minK: -5
-  simplifiedEllipse: 0
+  simplifiedEllipse: 1
   puzzleObject: {fileID: 884708770372983996}
   ceiling: 0
   lrController: {fileID: 0}

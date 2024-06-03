@@ -2206,7 +2206,7 @@ MonoBehaviour:
   orientation: 0
   conicType: 2
   default_a: 1
-  default_b: 2
+  default_b: 4
   default_h: 0
   default_k: 0
   default_orientation: 0
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   minH: -3
   maxK: 7
   minK: 0
-  simplifiedEllipse: 0
+  simplifiedEllipse: 1
   puzzleObject: {fileID: 4291262236627372785}
   ceiling: 0
   lrController: {fileID: 0}
@@ -12210,6 +12210,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807242, guid: d369e6083447cf547a78bdd68221a695, type: 3}
+      propertyPath: a
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177896298574807242, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: b
       value: -99
       objectReference: {fileID: 0}
@@ -12228,6 +12232,10 @@ PrefabInstance:
     - target: {fileID: 5177896298574807242, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: minK
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177896298574807242, guid: d369e6083447cf547a78bdd68221a695, type: 3}
+      propertyPath: default_a
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807250, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: m_Name

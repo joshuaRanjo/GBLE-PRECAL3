@@ -106,9 +106,9 @@ public class PuzzleObject : LevelProp
             b *= b;
 
             maxA *= maxA;
-            minA = 0.5f;
+            minA = 0.25f;
             maxB *= maxB;
-            minB = 0.5f;
+            minB = 0.25f;
         }
 
         puzzleObject = this.gameObject;
@@ -183,6 +183,7 @@ public class PuzzleObject : LevelProp
             float rangeB = maxB - minB;
 
             b = (rangeB * Mathf.Abs(((a-minA)/rangeA)-1)) + minB;
+            b = Mathf.Round(b * 100f) / 100f;
             if(ldScriptableObject.puzzleObjectScript == this)
                 ldScriptableObject.SetB(b);
         }
@@ -209,6 +210,7 @@ public class PuzzleObject : LevelProp
             float rangeB = maxB - minB;
 
             a = (rangeA * Mathf.Abs(((b-minB)/rangeB)-1)) + minA;
+            a = Mathf.Round(a * 1000f) / 1000f;
             if(ldScriptableObject.puzzleObjectScript == this)
                 ldScriptableObject.SetA(a);
         }
@@ -263,9 +265,9 @@ public class PuzzleObject : LevelProp
                 b *= b;
                 
                 maxA *= maxA;
-                minA = 0.5f;
+                minA = 1f;
                 maxB *= maxB;
-                minB = 0.5f;
+                minB = 1f;
             }
             else
             {

@@ -13,6 +13,7 @@ public class HelpScript : MonoBehaviour
     [SerializeField] private Vector2 originalPosition;
     [SerializeField] private Vector2 showPosition;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private bool inHelp = false;
     private Vector2 targetPosition;
     
     
@@ -29,26 +30,36 @@ public class HelpScript : MonoBehaviour
     private void OnDisable() {
         EventManager.StopListening("EnterHelpMode",ShowHelp);
         EventManager.StopListening("ExitHelpMode",HideHelp);
-        EventManager.StopListening("EnterPuzzle",ShowHelp);
+        EventManager.StopListening("EnterPuzzle",HideHelp);
     }
 
 
     private void ShowHelp()
     {   
-        inputBlockerPanel.SetActive(true);
-        panel.alpha = 0;
-        panelObject.SetActive(true);
-        panel.LeanAlpha(1,moveSpeed);
-        LeanTween.move(rectTransform, showPosition, moveSpeed).setEase(LeanTweenType.easeInOutQuad);
+        if(!inHelp)
+        {
+            inHelp = true;
+            inputBlockerPanel.SetActive(true);
+            panel.alpha = 0;
+            panelObject.SetActive(true);
+            panel.LeanAlpha(1,moveSpeed);
+            LeanTween.move(rectTransform, showPosition, moveSpeed).setEase(LeanTweenType.easeInOutQuad);
+        }
+        
     }
 
     private void HideHelp()
     {
-        inputBlockerPanel.SetActive(false);
+        if(inHelp)
+        {
+            inHelp = false;
+            inputBlockerPanel.SetActive(false);
 
-        panel.LeanAlpha(0, moveSpeed);
+            panel.LeanAlpha(0, moveSpeed);
 
-        LeanTween.move(rectTransform, originalPosition, moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(OnComplete);
+            LeanTween.move(rectTransform, originalPosition, moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(OnComplete);
+        }
+        
     }
 
     void OnComplete()
