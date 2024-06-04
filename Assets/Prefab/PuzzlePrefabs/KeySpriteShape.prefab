@@ -253,6 +253,7 @@ MonoBehaviour:
   allowH: 1
   allowK: 1
   allowOrientation: 0
+  inverseAB: 0
   a: -1
   b: 0
   h: 0
@@ -316,8 +317,8 @@ MonoBehaviour:
   spriteShapeRenderer: {fileID: 5177896298574807252}
   spriteShapeRenderers:
   - {fileID: 5177896298574807252}
-  startColor: {r: 0.19999999, g: 0.25333327, b: 1, a: 0.14901961}
-  endColor: {r: 0.5, g: 0.5333333, b: 1, a: 0.2}
+  startColor: {r: 0, g: 0.28627452, b: 1, a: 0.07058824}
+  endColor: {r: 0.14901961, g: 0.39215687, b: 1, a: 0.101960786}
 --- !u!114 &6971884087799257228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabName: 
   objectId: 
+  showFoci: 1
+  showVertex: 1
   vertexPoint: {fileID: 0}
   vertexPoint2: {fileID: 0}
   fociPoint1: {fileID: 0}

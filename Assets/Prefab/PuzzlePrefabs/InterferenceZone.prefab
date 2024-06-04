@@ -91,8 +91,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.7853744, y: -0.38331485, z: 0}
-    m_Extent: {x: 3.502012, y: 2.5827756, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.0500002, y: 2.0500002, z: 0}
 --- !u!114 &7625154232843091572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: -2.6711183, y: -2.916716, z: 0}
+    - position: {x: -2, y: -2, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: -1.970892, y: 2.1513975, z: 0}
+    - position: {x: -2, y: 2, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 3.7057033, y: 1.7178152, z: 0}
+    - position: {x: 2, y: 2, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 4.241002, y: -2.771508, z: 0}
+    - position: {x: 2, y: -2, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -189,17 +189,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.6999574, y: -2.9423273}
-      - {x: -2.7078083, y: -2.816943}
-      - {x: -2.0236356, y: 2.1349778}
-      - {x: -1.9436319, y: 2.199461}
-      - {x: 3.6889806, y: 1.769238}
-      - {x: 3.7645307, y: 1.6467524}
-      - {x: 4.2873864, y: -2.738213}
-      - {x: 4.214489, y: -2.8220758}
-      - {x: -2.5534716, y: -2.9642553}
-      - {x: -2.6408129, y: -2.9660902}
-      - {x: -2.6999574, y: -2.9423273}
+    - - {x: -2.025, y: -2.025}
+      - {x: -2.0500002, y: -1.7830591}
+      - {x: -2.0500002, y: 1.9749995}
+      - {x: -1.924674, y: 2.0500002}
+      - {x: 1.9749995, y: 2.0500002}
+      - {x: 2.0500002, y: 1.924674}
+      - {x: 2.0500002, y: -1.9749995}
+      - {x: 1.924674, y: -2.0500002}
+      - {x: -1.9246739, y: -2.0500002}
+      - {x: -1.9749995, y: -2.0500002}
+      - {x: -2.025, y: -2.025}
 --- !u!114 &71635277297848049
 MonoBehaviour:
   m_ObjectHideFlags: 0
