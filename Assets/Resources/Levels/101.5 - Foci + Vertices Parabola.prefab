@@ -5346,19 +5346,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
-      propertyPath: m_LocalScale.y
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.7
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6795797429365200984, guid: cfcb3120b2efa8445ab1d5792498e898, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6261,6 +6261,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5768587821243904778}
     m_Modifications:
+    - target: {fileID: 5075040587180981682, guid: d369e6083447cf547a78bdd68221a695, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807250, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: m_Name
       value: KeySpriteShape
