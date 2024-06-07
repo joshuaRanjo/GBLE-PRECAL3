@@ -14,6 +14,7 @@ public class TutorialPointerController : MonoBehaviour
         EventManager.StartListening("Tutorial_HighlightBack", HighlightBackButton);
         EventManager.StartListening("Tutorial_HighlightHelp", HighlightHelpButton);
         EventManager.StartListening("Tutorial_HighlightEquation", HighlightEquation);
+        EventManager.StartListening("Tutorial_HighlightChanges", HighlightChanges);
         EventManager.StartListening("Tutorial_Finish", Finish);
         EventManager.StartListening("Tutorial_Start", StartTut);
         
@@ -24,6 +25,7 @@ public class TutorialPointerController : MonoBehaviour
         EventManager.StopListening("Tutorial_HighlightBack", HighlightBackButton);
         EventManager.StopListening("Tutorial_HighlightHelp", HighlightHelpButton);
         EventManager.StopListening("Tutorial_HighlightEquation", HighlightEquation);
+        EventManager.StopListening("Tutorial_HighlightChanges", HighlightChanges);
         EventManager.StopListening("Tutorial_Finish", Finish);
         EventManager.StopListening("Tutorial_Start", StartTut);
     }
@@ -82,6 +84,17 @@ public class TutorialPointerController : MonoBehaviour
         }
         LeanTween.move(circle, new Vector3(-167,110,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
         LeanTween.size(circle, new Vector2(450,220), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+    }
+
+    private void HighlightChanges()
+    {
+        if(!enabled)
+        {
+            enabled = true;
+            frame.SetActive(true);
+        }
+        LeanTween.move(circle, new Vector3(-167,-246,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(450,142), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void Finish()

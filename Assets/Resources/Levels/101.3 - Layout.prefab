@@ -5216,6 +5216,8 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: f21246b32cc9fc340899ff5c14ab2b5c, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: efa6ffc8a8178d84389b3c909c96e881, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 31
     m_Data:
@@ -6151,11 +6153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979332898, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.65
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979332898, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.07
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979332898, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6285,7 +6287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748535724197226196, guid: bc525bfd597208140ba5173b75780996, type: 3}
       propertyPath: m_DynamicOccludee
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3851562707761862351, guid: bc525bfd597208140ba5173b75780996, type: 3}
       propertyPath: m_DynamicOccludee
@@ -6480,6 +6482,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9012988407774947398}
     m_Modifications:
+    - target: {fileID: 5075040587180981682, guid: d369e6083447cf547a78bdd68221a695, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807242, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: maxA
       value: 5
@@ -6498,11 +6504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807255, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.88
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807255, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.25
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5177896298574807255, guid: d369e6083447cf547a78bdd68221a695, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7233,7 +7239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1125361862185715267, guid: ce6841dff4e52f444a9c5b6242a71d74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2740152
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 1125361862185715267, guid: ce6841dff4e52f444a9c5b6242a71d74, type: 3}
       propertyPath: m_LocalPosition.y
