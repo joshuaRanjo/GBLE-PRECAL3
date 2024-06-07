@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 7138120059816280308}
   - component: {fileID: 3358251664438713248}
   - component: {fileID: 4220251609372214337}
+  - component: {fileID: 7576755622265066518}
+  - component: {fileID: 8967366116743128114}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -116,8 +118,9 @@ MonoBehaviour:
     width: 0
     height: 0
   selectedBlocks:
-  - {fileID: 6238595256154565581}
-  selectedCommands: []
+  - {fileID: 5088099001633542795}
+  selectedCommands:
+  - {fileID: 2433070459619239918}
   variables:
   - {fileID: 2193064093598203452}
   - {fileID: 8438746091017902288}
@@ -788,6 +791,8 @@ MonoBehaviour:
   - {fileID: 7373017340850775845}
   - {fileID: 6943916248787535502}
   - {fileID: 3358251664438713248}
+  - {fileID: 8967366116743128114}
+  - {fileID: 7576755622265066518}
   - {fileID: 3163489936117700245}
   - {fileID: 7793704516009254271}
   - {fileID: 5982903757572972416}
@@ -1592,7 +1597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 1
-  storyText: Good luck!
+  storyText: Now use h or k to move that circle! Good luck!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1605,6 +1610,51 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &7576755622265066518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322746946554606629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 28
+  indentLevel: 1
+  storyText: I'll be keeping track of the number of times you changed an equation
+    here. Lower the better!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &8967366116743128114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322746946554606629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 29
+  indentLevel: 1
+  targetObject: {fileID: 1322746946554606629}
+  methodName: HighlightChanges
+  delay: 0
 --- !u!1 &2155315704812428635
 GameObject:
   m_ObjectHideFlags: 0

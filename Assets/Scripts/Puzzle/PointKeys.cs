@@ -12,6 +12,7 @@ public class PointKeys : LevelProp
     [SerializeField] private GameObject fociPoint2;
 
     private int conicType;
+    private bool firstRun = true;
 
     private float a,b,h,k,c,d, x1,x2,y1,y2;
 
@@ -56,7 +57,7 @@ public class PointKeys : LevelProp
             }
             
         }
-        if(conicType == 4)
+        if(conicType == 4 || conicType == 2)
         {   
             if(showVertex)
             {
@@ -93,7 +94,23 @@ public class PointKeys : LevelProp
         b = poScript.b;
 
         if(showVertex)
-            vertexPoint.transform.position = new Vector3(h,k, 0f);
+        {
+            float sqrtA = Mathf.Sqrt(a);
+            float sqrtB = Mathf.Sqrt(b);
+            
+            if(a>b)
+            {
+                vertexPoint.transform.position = new Vector3(h + sqrtA,k, 0f);
+                vertexPoint2.transform.position = new Vector3(h - sqrtA,k, 0f);
+            }
+            else if(b > a)
+            {
+                vertexPoint.transform.position = new Vector3(h,k + sqrtB, 0f);
+                vertexPoint2.transform.position = new Vector3(h,k - sqrtB, 0f);
+            }
+            
+        }
+            
         if(conicType == 2)
         {
             if(showFoci)

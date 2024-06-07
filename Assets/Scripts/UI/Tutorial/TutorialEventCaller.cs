@@ -32,6 +32,11 @@ public class TutorialEventCaller : MonoBehaviour
         EventManager.TriggerEvent("Tutorial_HighlightEquation");
     }
 
+    public void HighlightChanges()
+    {
+        EventManager.TriggerEvent("Tutorial_HighlightChanges");
+    }
+
     public void FinishTutorial()
     {
         EventManager.TriggerEvent("Tutorial_Finish");
