@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class HyperbolaCreator : MonoBehaviour
 {
-
+    public SpriteShape profile;
     public int pointCount = 100;
     public float lineLength = 10f;
     public float height = 1f;
@@ -60,11 +60,15 @@ public class HyperbolaCreator : MonoBehaviour
 
             child1.transform.SetParent(newObject.transform);
             child2.transform.SetParent(newObject.transform);
+
+            shape1.spriteShape = profile;
+            shape2.spriteShape = profile;
         }
         else
         {
             spriteShapeRenderer1 = newObject.AddComponent<UnityEngine.U2D.SpriteShapeRenderer>();
             shape1 = newObject.AddComponent<SpriteShapeController>();
+            
         }
 
 

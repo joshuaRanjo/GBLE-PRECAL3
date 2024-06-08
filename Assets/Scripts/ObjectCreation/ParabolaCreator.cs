@@ -6,6 +6,7 @@ using UnityEditor;
 
 public class ParabolaCreator : MonoBehaviour
 {
+    public SpriteShape profile;
     public float maxX = 5.0f;  // Maximum x value
     public float maxY = 5.0f;  // Maximum y value
     public float maxLength;
@@ -75,6 +76,7 @@ public class ParabolaCreator : MonoBehaviour
                     shape.spline.InsertPointAt(i, points[i]);
                     shape.spline.SetHeight(i, 0.2f);
                     shape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+                    shape.spriteShape = profile;
                 }
                 
             
