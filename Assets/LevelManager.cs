@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Fungus;
 public class LevelManager : MonoBehaviour
 {
     public Transform gridTransform;
@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public LevelManagerSO levelManagerSO;
     public PlayerData playerData;
     public string levelName;
+    public Flowchart fc;
 
     private void OnEnable() {
         EventManager.StartListening("EnterMainMenu", ClearLevel);
@@ -60,6 +61,7 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.StopListening("SaveComplete", NextLevel);
         levelManagerSO.NextLevel();
+        fc.SetStringVariable("LevelMessage", levelManagerSO.currentLevelDescription);
 
     }
 
@@ -67,6 +69,7 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.TriggerEvent("LevelReloaded");
         levelManagerSO.ReloadLevel();
+        fc.SetStringVariable("LevelMessage", levelManagerSO.currentLevelDescription);
     }
 
     public void LevelCleared()

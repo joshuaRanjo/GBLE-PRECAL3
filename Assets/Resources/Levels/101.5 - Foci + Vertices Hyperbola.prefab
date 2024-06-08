@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 5768587821243904781}
   - component: {fileID: 5768587821243904780}
   - component: {fileID: 5768587821243904779}
+  - component: {fileID: -4508953703178449291}
   m_Layer: 2
   m_Name: 101.5 - Foci + Vertices Hyperbola
   m_TagString: Ground
@@ -4480,6 +4481,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duplicateBool: 0
+--- !u!114 &-4508953703178449291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768587821243904777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7155dcd00c0743446bbe86a70a03a287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  levelIntro: 
 --- !u!1 &7910860521874632938
 GameObject:
   m_ObjectHideFlags: 0
@@ -5585,6 +5600,10 @@ PrefabInstance:
     - target: {fileID: 8425191635233430172, guid: d78db6d8850accd44827e3caf5aecf2d, type: 3}
       propertyPath: minH
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425191635233430172, guid: d78db6d8850accd44827e3caf5aecf2d, type: 3}
+      propertyPath: minK
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8425191635233430172, guid: d78db6d8850accd44827e3caf5aecf2d, type: 3}
       propertyPath: allowH

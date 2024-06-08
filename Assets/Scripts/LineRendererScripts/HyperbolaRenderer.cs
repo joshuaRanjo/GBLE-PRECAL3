@@ -77,6 +77,38 @@ public class HyperbolaRenderer : MonoBehaviour
                 shape1.spline.SetHeight(i, height);
                 shape1.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
+            if(puzzleObject.ceiling)
+            {
+                Debug.Log("Updating for ceiling");
+                int p1Count = shape1.spline.GetPointCount();
+                int p2Count = shape2.spline.GetPointCount();
+
+                Vector3 s1fp = shape1.spline.GetPosition(0);
+                Vector3 s1lp = shape1.spline.GetPosition(p1Count - 1);
+
+                Vector3 s2fp = shape2.spline.GetPosition(0);
+                Vector3 s2lp = shape2.spline.GetPosition(p2Count - 1);
+                if(puzzleObject.orientation)
+                {
+                    s1fp = s1fp + new Vector3(15f,0,0);
+                    s1lp = s1lp + new Vector3(150f,0,0);
+            
+                    s2fp = s2fp - new Vector3(15f,0,0);
+                    s2lp = s2lp - new Vector3(15f,0,0);
+                }
+                else
+                {
+                    s1fp = s1fp + new Vector3(0,15f,0);
+                    s1lp = s1lp + new Vector3(0,15f,0);
+
+                    s2fp = s2fp - new Vector3(0,15f,0);
+                    s2lp = s2lp - new Vector3(0,15f,0);
+                }
+                shape1.spline.SetPosition(0, s1fp);
+                shape1.spline.SetPosition(p1Count - 1, s1lp);
+                shape2.spline.SetPosition(0, s2fp);
+                shape2.spline.SetPosition(p2Count - 1, s2lp);
+            }
         }
         else
         {
@@ -97,6 +129,7 @@ public class HyperbolaRenderer : MonoBehaviour
             }
 
         }
+
     }
 
     public void DrawHorizontalHyperbola(out List<Vector3> list1, out List<Vector3> list2)

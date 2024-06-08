@@ -54,7 +54,7 @@ public class PuzzleObject : LevelProp
     [SerializeField] public GameObject puzzleObject;
 
     [Header("For Parabolas")]
-    [SerializeField] private bool ceiling;
+    [SerializeField] public bool ceiling;
 
     private Vector3 targetPosition;
     private float speed = 1f;

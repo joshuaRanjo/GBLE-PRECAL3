@@ -103,6 +103,7 @@ public class LevelLoader : MonoBehaviour
     private void OnButtonClick(GameObject prefab, int number)
     {
         levelManagerSO.SetCurrentLevelNoChange(number);
+        fc.SetStringVariable("LevelMessage", levelManagerSO.currentLevelDescription);
         fc.ExecuteBlock("BeginLevel");
         //EventManager.TriggerEvent("ExitMainMenu");
     }

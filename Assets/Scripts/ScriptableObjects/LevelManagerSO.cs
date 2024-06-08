@@ -11,6 +11,7 @@ public class LevelManagerSO: ScriptableObject
 
     public int currentLevel;
     public string currentLevelName;
+    public string currentLevelDescription;
     [System.NonSerialized]
     public UnityEvent levelChangeEvent = new UnityEvent();
     public void SetLevelList(List<GameObject> levelList)
@@ -21,12 +22,18 @@ public class LevelManagerSO: ScriptableObject
     public void SetCurrentLevel(int currentLevel)
     {
         this.currentLevel = currentLevel;
+        LevelDetails ld = levelList[currentLevel].GetComponent<LevelDetails>();
+        currentLevelDescription = ld.levelIntro;
+        currentLevelName = ld.name;
         levelChangeEvent.Invoke();
     }
 
     public void SetCurrentLevelNoChange(int currentLevel)
     {
         this.currentLevel = currentLevel;
+        LevelDetails ld = levelList[currentLevel].GetComponent<LevelDetails>();
+        currentLevelDescription = ld.levelIntro;
+        currentLevelName = ld.name;
     }
 
     public void NextLevel()
@@ -34,6 +41,9 @@ public class LevelManagerSO: ScriptableObject
         currentLevel++;
         if(currentLevel <= levelList.Count - 1)
         {
+            LevelDetails ld = levelList[currentLevel].GetComponent<LevelDetails>();
+            currentLevelDescription = ld.levelIntro;
+            currentLevelName = ld.name;
             levelChangeEvent.Invoke();
         }
         else

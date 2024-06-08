@@ -95,20 +95,7 @@ public class PointKeys : LevelProp
 
         if(showVertex)
         {
-            float sqrtA = Mathf.Sqrt(a);
-            float sqrtB = Mathf.Sqrt(b);
-            
-            if(a>b)
-            {
-                vertexPoint.transform.position = new Vector3(h + sqrtA,k, 0f);
-                vertexPoint2.transform.position = new Vector3(h - sqrtA,k, 0f);
-            }
-            else if(b > a)
-            {
-                vertexPoint.transform.position = new Vector3(h,k + sqrtB, 0f);
-                vertexPoint2.transform.position = new Vector3(h,k - sqrtB, 0f);
-            }
-            
+            vertexPoint.transform.position = new Vector3(h,k, 0f);
         }
             
         if(conicType == 2)
@@ -138,6 +125,23 @@ public class PointKeys : LevelProp
             
                 fociPoint1.transform.position = new Vector3(x1,y1,0f);
                 fociPoint2.transform.position = new Vector3(x2,y2,0f);  
+            }
+            if(showVertex)
+            {
+                float sqrtA = Mathf.Sqrt(a);
+                float sqrtB = Mathf.Sqrt(b);
+                
+                if(a>b)
+                {
+                    vertexPoint.transform.position = new Vector3(h + sqrtA,k, 0f);
+                    vertexPoint2.transform.position = new Vector3(h - sqrtA,k, 0f);
+                }
+                else if(b > a)
+                {
+                    vertexPoint.transform.position = new Vector3(h,k + sqrtB, 0f);
+                    vertexPoint2.transform.position = new Vector3(h,k - sqrtB, 0f);
+                }
+                
             }
         }
         
