@@ -76,5 +76,10 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.StartListening("SaveComplete", NextLevel);
         EventManager.TriggerEvent("LevelComplete");
+
+        if(levelManagerSO.currentLevel == levelManagerSO.levelList.Count)
+        {
+            fc.SetBooleanVariable("End", true);
+        }
     }
 }
