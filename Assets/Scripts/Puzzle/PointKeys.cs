@@ -184,19 +184,28 @@ public class PointKeys : LevelProp
             {
                 if(poScript.orientation)
                 {
-                    c = Mathf.Sqrt((a*a) + (b*b));
+                    
                     vertexPoint.transform.position = new Vector3(h+a,k, 0f);
                     vertexPoint2.transform.position = new Vector3(h-a,k, 0f);
                 }
                 else
                 {
-                    d = Mathf.Sqrt((a*a) + (b*b));
+                    
                     vertexPoint.transform.position = new Vector3(h,k+b, 0f);
                     vertexPoint2.transform.position = new Vector3(h,k-b, 0f);
                 }
             }
             if(showFoci)
             {
+                if(poScript.orientation)
+                {
+                    c = Mathf.Sqrt((a*a) + (b*b));
+                }
+                else
+                {
+                    d = Mathf.Sqrt((a*a) + (b*b));
+                }
+
                 x1 = h+c;
                 y1 = k+d;
                 x2 = h-c;
