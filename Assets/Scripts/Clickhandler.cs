@@ -26,7 +26,7 @@ public class Clickhandler : MonoBehaviour
             
             return; // Exit early if the click originated from a UI element
         }
-
+        Debug.Log("Clicked");
         // Check if hit interference layer
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("InterferenceLayer"));
@@ -37,10 +37,13 @@ public class Clickhandler : MonoBehaviour
         
 
         ClickableObject component = rayHit.collider.gameObject.GetComponent<ClickableObject>();
+        
+
         if(component != null)
         {
             //Debug.Log("Clicked clickable object ");
             component.DoAction();
+            Debug.Log("Did action");
         }
         
     }

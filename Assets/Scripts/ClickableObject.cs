@@ -27,6 +27,7 @@ public class ClickableObject : MonoBehaviour
     }
 
     private void OnMouseOver() {
+        
         if(!inPuzzle)
         {
             if (EventSystem.current.IsPointerOverGameObject())

@@ -22,6 +22,8 @@ public class PauseScript : MonoBehaviour
         EventManager.StartListening("ResumeGame", HidePauseScreen);  
         EventManager.StartListening("EnterHelpMode", EnterHelpMode);
         EventManager.StartListening("ExitHelpMode", ExitHelpMode);
+        EventManager.StartListening("UnHidePause", ShowDevice);
+        EventManager.StartListening("HidePause", HideDevice);  
 
     }
 
@@ -30,8 +32,8 @@ public class PauseScript : MonoBehaviour
         EventManager.StopListening("ExitPuzzle", ExitPuzzle);
         EventManager.StopListening("PauseGame", ShowPauseScreen);
         EventManager.StopListening("ResumeGame", HidePauseScreen);
-        EventManager.StopListening("EnterHelpMode", EnterHelpMode);
-        EventManager.StopListening("ExitHelpMode", ExitHelpMode);  
+        EventManager.StopListening("UnHidePause", ShowDevice);
+        EventManager.StopListening("HidePause", HideDevice);  
     }
 
     private void Start() {

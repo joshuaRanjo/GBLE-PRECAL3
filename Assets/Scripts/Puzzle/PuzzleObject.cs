@@ -121,7 +121,10 @@ public class PuzzleObject : LevelProp
 
     public void AttachToScriptableObjects()
     {
-        if(!inPuzzle && CheckVicinity())
+        //Remove
+        inPuzzle = false; 
+        //Remove
+        if(CheckVicinity())
         {
             h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
             k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;

@@ -16,6 +16,9 @@ public class PlayerInputController : MonoBehaviour
     private void Start() {
         Debug.developerConsoleVisible = true;
         DisableMovement();
+        controller.actions.FindActionMap("Pause").Disable();
+        controller.actions.FindActionMap("PlayerMovement").Disable();
+        controller.actions.FindActionMap("Conversation").Disable();
     }
 
     private void OnEnable() {
@@ -36,7 +39,9 @@ public class PlayerInputController : MonoBehaviour
 
         EventManager.StartListening("PauseGame", PauseGame);
         EventManager.StartListening("ResumeGame", ResumeGame);  
-        controller.actions.FindActionMap("Pause").Enable();
+        
+        EventManager.StartListening("StartLevel_EnableMove", StartEnableMove);
+        EventManager.StartListening("StartLevel_DisableMove",StartDisableMove);
     }
 
     private void OnDisable() {
@@ -194,5 +199,17 @@ public class PlayerInputController : MonoBehaviour
             controller.actions.FindActionMap("Conversation").Enable();
         }
         inHelp = false;
+    }
+
+    private void StartEnableMove()
+    {
+        EnableMovement();
+        controller.actions.FindActionMap("Pause").Enable();
+    }
+
+    private void StartDisableMove()
+    {
+        DisableMovement();
+        controller.actions.FindActionMap("Pause").Disable();
     }
 }

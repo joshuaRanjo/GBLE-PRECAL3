@@ -82,4 +82,17 @@ public class LevelManager : MonoBehaviour
             fc.SetBooleanVariable("End", true);
         }
     }
+    // Flowchart trigger
+    public void DisableStartMovement()
+    {
+        EventManager.TriggerEvent("HidePause");
+        EventManager.TriggerEvent("DisableMovement");
+        EventManager.TriggerEvent("StartLevel_DisableMove");
+    }
+    public void EnableStartMovement()
+    {
+        EventManager.TriggerEvent("UnHidePause");
+        EventManager.TriggerEvent("EnableMovement");
+        EventManager.TriggerEvent("StartLevel_EnableMove");
+    }
 }
