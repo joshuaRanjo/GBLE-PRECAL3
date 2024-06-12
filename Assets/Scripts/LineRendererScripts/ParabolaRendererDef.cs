@@ -97,7 +97,6 @@ public class ParabolaRendererDef : MonoBehaviour
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
         float height = shape.spline.GetHeight(0);
         shape.spline.Clear();
-
         for(int i = 0; i < points.Count; i++)
         {
             int count = shape.spline.GetPointCount();
@@ -119,6 +118,7 @@ public class ParabolaRendererDef : MonoBehaviour
             }
             
         }
+        shape.RefreshSpriteShape();
     }
 
     public void UpdateLineLineRenderer(GameObject lineObject)
@@ -130,6 +130,7 @@ public class ParabolaRendererDef : MonoBehaviour
     
     public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY, bool orientation)
     {
+        
         List<Vector3> points = new List<Vector3>();
         if(a != 0)
         {
@@ -185,6 +186,7 @@ public class ParabolaRendererDef : MonoBehaviour
                 float lastY = Mathf.Sqrt(horizontalModifier*maxX/a);
                 points.Insert(0, new Vector3(-lastY,maxX*horizontalModifier,0));
                 points.Add(new Vector3(lastY, maxX*horizontalModifier,0));
+                
             }
         }
         else

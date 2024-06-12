@@ -50,12 +50,10 @@ public class LineData2 : ScriptableObject
           this.changeType = changeType;  
         if(a != newA)
         {
+            
             a = newA;
             puzzleObjectScript.SetA(newA); dataChangeEvent.Invoke(); EventManager.TriggerEvent("ChangeEvent");
         }
-            
-        
-
     }
     public void SetB(float newB, string changeType)
     {

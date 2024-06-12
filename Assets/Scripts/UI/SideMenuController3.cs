@@ -336,13 +336,8 @@ public class SideMenuController3 : MonoBehaviour
               )
             {
                 InputStopListening();
-                //yif(!pDScriptableObject.precisionMode)
-                    ldScriptableObject.SetA(floatValue, "input");
-                /*
-                else
-                {
-                    ldScriptableObject.SetA(floatValue, "PrecisionMode");
-                } */
+                ldScriptableObject.SetA(floatValue, "input");
+
                 aSlider.value = floatValue;
                 InputStartListening();
             }

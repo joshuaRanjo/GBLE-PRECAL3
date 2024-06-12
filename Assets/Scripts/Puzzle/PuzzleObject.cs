@@ -187,13 +187,8 @@ public class PuzzleObject : LevelProp
             if(ldScriptableObject.puzzleObjectScript == this)
                 ldScriptableObject.SetB(b);
         }
-        if(!precisionMode)
-            UpdateObject();
-        else
-        {
-            precisionMode = false;
-            a = oldA;
-        }
+        
+        UpdateObject();
         
     }
     public void SetAPrecision(float newA){ precisionMode = true; SetA(newA); }

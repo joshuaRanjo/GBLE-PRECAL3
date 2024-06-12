@@ -118,6 +118,11 @@ public class PointKeys : LevelProp
                 {
                     d = Mathf.Sqrt(b-a);
                 }
+                if(a == b)
+                {
+                    c = 0;
+                    d = 0;
+                }
                 x1 = h+c;
                 y1 = k+d;
                 x2 = h-c;
@@ -140,6 +145,11 @@ public class PointKeys : LevelProp
                 {
                     vertexPoint.transform.position = new Vector3(h,k + sqrtB, 0f);
                     vertexPoint2.transform.position = new Vector3(h,k - sqrtB, 0f);
+                }
+                else if( a == b)
+                {
+                    vertexPoint.transform.position = new Vector3(h,k, 0f);
+                    vertexPoint2.transform.position = new Vector3(h,k, 0f);
                 }
                 
             }

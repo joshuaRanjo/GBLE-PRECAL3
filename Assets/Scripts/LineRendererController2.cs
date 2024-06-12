@@ -48,6 +48,7 @@ public class LineRendererController2 : MonoBehaviour
             if(puzzleObject.puzzleType) //True == SpriteShapeRenderer, False == Line renderer Type puzzle
             {
                 //parabolaRenderer.UpdateLine(ldScriptableObject.a,ldScriptableObject.orientation, qdScriptableObject.ceiling);
+                
                 parabolaRenderer.UpdateLineSpriteShape(puzzleObject.puzzleObject); 
             }
             else{

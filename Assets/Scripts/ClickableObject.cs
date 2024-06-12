@@ -21,7 +21,7 @@ public class ClickableObject : MonoBehaviour
 
     public void DoAction(){
         //Debug.Log("DoingAction");
-        if(!inPuzzle)
+        //if(!inPuzzle)
             interaction.Invoke();
 
     }
