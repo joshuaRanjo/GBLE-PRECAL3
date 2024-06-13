@@ -18,6 +18,9 @@ public class ClickableObject : MonoBehaviour
 
     private bool inPuzzle = false;
     private bool entered = false;
+    private bool blinking = false;
+
+    public LineData2 ld;
 
     public void DoAction(){
         //Debug.Log("DoingAction");
@@ -72,9 +75,11 @@ public class ClickableObject : MonoBehaviour
 
     private void OnMouseExit() {
         
-        StopLerpCoroutine();
-        if(!inPuzzle)
+        if(!inPuzzle){
+            StopLerpCoroutine();
             EventManager.TriggerEvent("PuzzleHoverExit");
+        }
+
         entered = false;
     }
 
@@ -112,7 +117,10 @@ public class ClickableObject : MonoBehaviour
         EventManager.StartListening("ExitConversation", AllowLerp);
 
         EventManager.StartListening("EnterPuzzle",DisallowLerp);
+        EventManager.StartListening("EnterPuzzle", Blink);
+        
         EventManager.StartListening("ExitPuzzle", AllowLerp);
+        EventManager.StartListening("ExitPuzzle", StopBlink);
         
     }
 
@@ -121,7 +129,16 @@ public class ClickableObject : MonoBehaviour
         EventManager.StopListening("ExitConversation", AllowLerp);
 
         EventManager.StopListening("EnterPuzzle", DisallowLerp);
+        EventManager.StopListening("EnterPuzzle", Blink);
+
         EventManager.StopListening("ExitPuzzle", AllowLerp );
+        EventManager.StopListening("ExitPuzzle",StopBlink );
+    }
+
+
+    private void Start()
+    {
+        ld = Resources.Load<LineData2>("ScriptableObjects/LineData2");
     }
 
     public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
@@ -210,6 +227,38 @@ public class ClickableObject : MonoBehaviour
     public void AllowLerp()
     {
         inPuzzle = false;
+    }
+
+    private void StopBlink()
+    {
+        StopLerpCoroutine();
+    }
+
+    private void Blink()
+    {
+        if(ld.puzzleObject == gameObject || transform.parent.gameObject == ld.puzzleObject)
+        {
+
+        
+                    if(spriteRenderers.Count > 0 && lerpCoroutine == null)
+                    {
+                        lerpCoroutine = StartCoroutine(LerpColorCoroutine());
+                        //Debug.Log("Startlerping");
+                    }
+                    if(spriteShapeRenderer != null)
+                    {
+                        StartCoroutine(LerpColorSpriteShapeCoroutine());
+                    }
+                    if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
+                    {
+                        lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
+                    }
+        }
+        else
+        {
+            StopBlink();
+        }
+
     }
     
 }
