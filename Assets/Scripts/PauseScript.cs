@@ -13,6 +13,7 @@ public class PauseScript : MonoBehaviour
     [SerializeField]private bool inHelp = false;
     private Vector2 targetPosition;
     private RectTransform rectTransform;
+    private bool animating = false;
     [SerializeField] private Vector2 originalPosition;
 
     private void OnEnable() {
@@ -93,7 +94,7 @@ public class PauseScript : MonoBehaviour
             panelBG.LeanAlpha(1,0.5f);
 
             pauseTransform.localPosition = new Vector2(0, -Screen.height*2);
-            LeanTween.move(pauseTransform, new Vector3(0,0,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad);
+            LeanTween.move(pauseTransform, new Vector3(0,0,0), moveSpeed).setEase(LeanTweenType.easeInOutQuad).setOnComplete(DonePauseAnimation);
         }
             
     }
@@ -112,6 +113,12 @@ public class PauseScript : MonoBehaviour
     void DisablePausePanel()
     {
         pausePanel.SetActive(false);
+        DonePauseAnimation();
+    }
+
+    private void DonePauseAnimation()
+    {
+        EventManager.TriggerEvent("PauseDoneAnimating");
     }
 
 

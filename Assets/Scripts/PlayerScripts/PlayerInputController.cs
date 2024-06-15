@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]private bool inGame = false;
     [SerializeField]private bool inPuzzle = false;
     [SerializeField]private bool inHelp = false;
+    private bool animating = false;
 
     private void Start() {
         Debug.developerConsoleVisible = true;
@@ -42,6 +43,8 @@ public class PlayerInputController : MonoBehaviour
         
         EventManager.StartListening("StartLevel_EnableMove", StartEnableMove);
         EventManager.StartListening("StartLevel_DisableMove",StartDisableMove);
+
+        EventManager.StartListening("PauseDoneAnimating", DoneAnimating);
     }
 
     private void OnDisable() {
@@ -61,7 +64,9 @@ public class PlayerInputController : MonoBehaviour
         EventManager.StopListening("ExitHelpMode",ExitHelpMode);
 
         EventManager.StopListening("PauseGame", PauseGame);
-        EventManager.StopListening("ResumeGame", ResumeGame);  
+        EventManager.StopListening("ResumeGame", ResumeGame); 
+
+        EventManager.StopListening("PauseDoneAnimating", DoneAnimating); 
         
     }
 
@@ -117,8 +122,9 @@ public class PlayerInputController : MonoBehaviour
     {
         
         if (!context.started) return;
-        if(inGame && !inPuzzle && !inHelp)
-        {   
+
+        if(inGame && !inPuzzle && !inHelp && !animating)
+        {   animating = true;
             if(isPaused)
             {
                 isPaused = false;
@@ -134,6 +140,11 @@ public class PlayerInputController : MonoBehaviour
         {
             EventManager.TriggerEvent("ExitHelpMode");
         }
+    }
+    //For pause animation
+    private void DoneAnimating()
+    {
+        animating = false;
     }
 
     private void PauseGame()
