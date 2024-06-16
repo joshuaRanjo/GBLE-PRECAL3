@@ -9,7 +9,8 @@ public class LevelSelectionButton : MonoBehaviour
 
     public void SetMoveCount(int number)
     {
-        if(number < 0)
+        number = 0;
+        if(number <= 0)
         {
             moveCount.text = "";
         }

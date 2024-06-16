@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]private bool inGame = false;
     [SerializeField]private bool inPuzzle = false;
     [SerializeField]private bool inHelp = false;
+
     private bool animating = false;
 
     private void Start() {
@@ -66,29 +67,34 @@ public class PlayerInputController : MonoBehaviour
         EventManager.StopListening("PauseGame", PauseGame);
         EventManager.StopListening("ResumeGame", ResumeGame); 
 
+        EventManager.StopListening("StartLevel_EnableMove", StartEnableMove);
+        EventManager.StopListening("StartLevel_DisableMove",StartDisableMove);
+
         EventManager.StopListening("PauseDoneAnimating", DoneAnimating); 
         
     }
 
     public void SwitchToConversation()
     {
-        controller.actions.FindActionMap("PlayerMovement").Disable();
+        DisableMovement();
         controller.actions.FindActionMap("Conversation").Enable();
     }
 
     public void SwitchToPlayerMovement()
     {  
-            controller.actions.FindActionMap("PlayerMovement").Enable();
+            EnableMovement();
             controller.actions.FindActionMap("Conversation").Disable();
     }
 
     public void DisableMovement()
     {
+
         controller.actions.FindActionMap("PlayerMovement").Disable();
     }
 
     public void EnableMovement()
     {
+
         controller.actions.FindActionMap("PlayerMovement").Enable();
     }
 
@@ -214,12 +220,14 @@ public class PlayerInputController : MonoBehaviour
 
     private void StartEnableMove()
     {
+        Debug.Log("Enabling Movement");
         EnableMovement();
         controller.actions.FindActionMap("Pause").Enable();
     }
 
     private void StartDisableMove()
     {
+        Debug.Log("Disabling Movement");
         DisableMovement();
         controller.actions.FindActionMap("Pause").Disable();
     }
