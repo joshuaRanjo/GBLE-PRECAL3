@@ -32,7 +32,7 @@ public class Clickhandler : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("InterferenceLayer"));
         if (hit.collider != null) return; // exit if interferencelayer was clicked
 
-        var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+        var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Input.mousePosition));
         if (!rayHit.collider) return;
         
 

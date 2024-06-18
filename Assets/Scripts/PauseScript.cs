@@ -19,10 +19,13 @@ public class PauseScript : MonoBehaviour
     private void OnEnable() {
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ExitPuzzle);
+
         EventManager.StartListening("PauseGame", ShowPauseScreen);
         EventManager.StartListening("ResumeGame", HidePauseScreen);  
+
         EventManager.StartListening("EnterHelpMode", EnterHelpMode);
         EventManager.StartListening("ExitHelpMode", ExitHelpMode);
+
         EventManager.StartListening("UnHidePause", ShowDevice);
         EventManager.StartListening("HidePause", HideDevice);  
 
@@ -31,8 +34,13 @@ public class PauseScript : MonoBehaviour
     private void OnDisable() {
         EventManager.StopListening("EnterPuzzle",EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ExitPuzzle);
+
         EventManager.StopListening("PauseGame", ShowPauseScreen);
         EventManager.StopListening("ResumeGame", HidePauseScreen);
+
+        EventManager.StopListening("EnterHelpMode", EnterHelpMode);
+        EventManager.StopListening("ExitHelpMode", ExitHelpMode);
+
         EventManager.StopListening("UnHidePause", ShowDevice);
         EventManager.StopListening("HidePause", HideDevice);  
     }

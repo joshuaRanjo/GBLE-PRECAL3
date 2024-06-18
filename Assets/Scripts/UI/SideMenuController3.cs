@@ -458,10 +458,10 @@ public class SideMenuController3 : MonoBehaviour
     private void SliderAChange(float newValue)
     {
         InputStopListening();
-        inputA.text = newValue.ToString("F2");
+        inputA.text = newValue.ToString("F1");
         if(newValue != 0 || ((newValue == 0f) && (ldScriptableObject.conicType == 3)))
         {
-            ldScriptableObject.SetA(Mathf.Round(newValue*100f)/100f, "slider");
+            ldScriptableObject.SetA(Mathf.Round(newValue*10f)/10f, "slider");
         }
             
         InputStartListening();
@@ -469,23 +469,23 @@ public class SideMenuController3 : MonoBehaviour
     private void SliderBChange(float newValue)
     {
         InputStopListening();
-        inputB.text = newValue.ToString("F2");
+        inputB.text = newValue.ToString("F1");
         if(newValue != 0)
-            ldScriptableObject.SetB(Mathf.Round(newValue*100f)/100f, "slider");
+            ldScriptableObject.SetB(Mathf.Round(newValue*10f)/10f, "slider");
         InputStartListening();
     }
     private void SliderHChange(float newValue)
     {
         InputStopListening();
-        inputH.text = newValue.ToString("F2");
-        ldScriptableObject.SetH(Mathf.Round(newValue*100f)/100f, "slider");
+        inputH.text = newValue.ToString("F1");
+        ldScriptableObject.SetH(Mathf.Round(newValue*10f)/10f, "slider");
         InputStartListening();
     }
     private void SliderKChange(float newValue)
     {
         InputStopListening();
-        inputK.text = newValue.ToString("F2");
-        ldScriptableObject.SetK(Mathf.Round(newValue*100f)/100f, "slider");
+        inputK.text = newValue.ToString("F1");
+        ldScriptableObject.SetK(Mathf.Round(newValue*10f)/10f, "slider");
         InputStartListening();
     }
 

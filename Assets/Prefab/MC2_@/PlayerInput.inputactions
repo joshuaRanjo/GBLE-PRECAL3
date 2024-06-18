@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Touch",
+                    "type": "PassThrough",
+                    "id": "759fe8c8-9ae7-4a0a-a1ae-5c16a65ae8f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -207,6 +216,17 @@
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb305af0-ef67-4761-a6b6-bfcb32c5e5e9",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch;Keyboard&Mouse",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -219,6 +239,15 @@
                     "type": "Button",
                     "id": "79e9c2e8-3826-452a-b5f1-4efbc709af93",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Touch",
+                    "type": "PassThrough",
+                    "id": "ad50565f-ebe1-4b82-8240-a1daff7414ac",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -284,6 +313,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Click1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "321941b8-d177-4984-9eb7-9c5612abc313",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch;Keyboard&Mouse",
+                    "action": "Touch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
