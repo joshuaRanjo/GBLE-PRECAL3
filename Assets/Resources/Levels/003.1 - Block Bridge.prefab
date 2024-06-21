@@ -5338,19 +5338,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -3.7981682, y: -3.058063}
-      - {x: -2.9111795, y: -1.669914}
-      - {x: -1.8789747, y: -0.53222144}
-      - {x: -0.9643599, y: 0.053058088}
-      - {x: -0.03020389, y: 0.2591157}
-      - {x: 0.8850256, y: 0.085439384}
-      - {x: 1.9329457, y: -0.5790186}
-      - {x: 2.8318462, y: -1.5646753}
-      - {x: 3.7955675, y: -3.0535512}
-      - {x: 3.7980442, y: -3.3197036}
-      - {x: 3.480423, y: -3.4504948}
-      - {x: -3.4804232, y: -3.4504943}
-      - {x: -3.7981682, y: -3.058063}
+    - - {x: -4.297608, y: -3.9244115}
+      - {x: -3.1523688, y: -2.0087867}
+      - {x: -2.2579432, y: -0.89147174}
+      - {x: -1.2201679, y: -0.07101492}
+      - {x: -0.2797802, y: 0.24233803}
+      - {x: 0.6586499, y: 0.16318755}
+      - {x: 1.7173414, y: -0.4002761}
+      - {x: 2.6214852, y: -1.2994475}
+      - {x: 3.615313, y: -2.7408648}
+      - {x: 3.7981634, y: -3.058054}
+      - {x: 4.297637, y: -3.924383}
 --- !u!1971053207 &7729509250368944127
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -5395,9 +5393,9 @@ SpriteShapeRenderer:
   m_SortingOrder: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 2800000, guid: 2d69815d69d94f442b34a9b7dde2aa5b, type: 3}
+  m_ShapeTexture: {fileID: 0}
   m_Sprites:
-  - {fileID: 21300000, guid: 9f6bdeba05413784f810539c35671515, type: 3}
+  - {fileID: 21300000, guid: edf7e73cf8daad34590f85b3458abd11, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -5407,8 +5405,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -0.00006198883, y: -1.5956895, z: 0}
-    m_Extent: {x: 3.7981062, y: 1.8548052, z: 0}
+    m_Center: {x: 0.000014781952, y: -1.9633605, z: 0}
+    m_Extent: {x: 4.2976227, y: 2.2224762, z: 0}
 --- !u!114 &7729509250368944126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5422,7 +5420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Spline:
-    m_IsOpenEnded: 0
+    m_IsOpenEnded: 1
     m_ControlPoints:
     - position: {x: -3.5714285, y: -3.1887755, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
@@ -5784,7 +5782,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-  m_SpriteShape: {fileID: 11400000, guid: 4478034808bf912418eb41682cb5777f, type: 2}
+  m_SpriteShape: {fileID: 11400000, guid: 9d97d6fc235cc05408fbb7922cb976ca, type: 2}
   m_FillPixelPerUnit: 512
   m_StretchTiling: 1
   m_SplineDetail: 16

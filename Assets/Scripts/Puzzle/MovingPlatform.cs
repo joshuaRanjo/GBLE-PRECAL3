@@ -8,12 +8,19 @@ public class MovingPlatform : LevelProp
     public float speed = 5f;         // Speed of the platform
     private GameObject player;
     private Coroutine moveCoroutine;
+    [SerializeField] private GameObject linePath;
+    [SerializeField] private Transform linePoints;
+    [SerializeField] private GameObject circlePrefab;
 
     private void OnDestroy() {
         if(player != null)
         {
             player.transform.SetParent(null);
         }
+    }
+
+    private void Start() {
+        GenerateLine();
     }
 
     private void OnDisable() {
@@ -63,6 +70,22 @@ public class MovingPlatform : LevelProp
         {
             collision.transform.parent = null;
             player = null;
+        }
+    }
+
+    private void GenerateLine()
+    {
+        LineRenderer line = linePath.GetComponent<LineRenderer>();
+
+        line.positionCount = positions.Count;
+
+        for(int i = 0; i < positions.Count; i++)
+        {
+            line.SetPosition(i, positions[i]);
+
+            GameObject circle = Instantiate(circlePrefab, positions[i], Quaternion.identity);
+
+            circle.transform.SetParent(linePoints,true);
         }
     }
 }

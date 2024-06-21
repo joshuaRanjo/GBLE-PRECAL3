@@ -157,8 +157,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -791336637
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0, z: 0}
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6720982685679830387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.61, y: -1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4512,22 +4512,22 @@ Tilemap:
       e33: 1
   - m_RefCount: 0
     m_Data:
-      e00: 0
+      e00: -2.0211275e+38
       e01: 0
-      e02: 8.7622175e+19
-      e03: 8.7622175e+19
-      e10: 0
+      e02: -2.0401127e+10
+      e03: -2.0401127e+10
+      e10: 7.67e-43
       e11: 0
-      e12: 7.17e-43
-      e13: 7.17e-43
-      e20: 2.9415739e+26
+      e12: 7.67e-43
+      e13: 7.67e-43
+      e20: -3.8105878e-31
       e21: 1e-45
-      e22: -5.027062e-19
-      e23: 1.1558526e-19
+      e22: 1.8642418e-18
+      e23: -5.825429e-10
       e30: 4.5904e-41
       e31: 0
-      e32: 7.17e-43
-      e33: 7.22e-43
+      e32: 7.68e-43
+      e33: 7.71e-43
   - m_RefCount: 65
     m_Data:
       e00: -1
@@ -4913,7 +4913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxA
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxH
@@ -4925,7 +4925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minA
-      value: -3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minH
@@ -4939,6 +4939,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 48093a965b43e4c4f92a5090503e61d7, type: 3}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 152059083
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 152059083
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
 --- !u!4 &592812279567205132 stripped
