@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class ClickableObject : MonoBehaviour
 {
     public UnityEvent interaction;
+    public int layerToCheck = 2;
     
     [SerializeField] private GameObject outlineObject;
 
@@ -57,10 +58,6 @@ public class ClickableObject : MonoBehaviour
                         lerpCoroutine = StartCoroutine(LerpColorCoroutine());
                         //Debug.Log("Startlerping");
                     }
-                    if(spriteShapeRenderer != null)
-                    {
-                        StartCoroutine(LerpColorSpriteShapeCoroutine());
-                    }
                     if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
                     {
                         lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
@@ -97,10 +94,6 @@ public class ClickableObject : MonoBehaviour
                 sr.color = startColor;
             }
         }
-        if(spriteShapeRenderer != null)
-        {
-            spriteShapeRenderer.color = startColor;
-        }
         if(spriteShapeRenderers.Count > 0)
         {
             foreach(UnityEngine.U2D.SpriteShapeRenderer sr in spriteShapeRenderers)
@@ -122,6 +115,8 @@ public class ClickableObject : MonoBehaviour
         EventManager.StartListening("ExitPuzzle", AllowLerp);
         EventManager.StartListening("ExitPuzzle", StopBlink);
         
+
+        allColliders = FindObjectsOfType<Collider>();
     }
 
     private void OnDisable() {
@@ -142,10 +137,11 @@ public class ClickableObject : MonoBehaviour
     }
 
     public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
-    public UnityEngine.U2D.SpriteShapeRenderer spriteShapeRenderer;
     public List<UnityEngine.U2D.SpriteShapeRenderer> spriteShapeRenderers = new List<UnityEngine.U2D.SpriteShapeRenderer>();
     public Color startColor = Color.white;
     public Color endColor = new Color(191f / 255f, 191f / 255f, 191f / 255f); // #BFBFBF in RGB
+//new Color(255f / 255f, 132f / 255f, 132f / 255f);
+    public Color endColor3 = new Color(255f / 255f, 132f / 255f, 132f / 255f);
     private float lerpDuration = 0.25f;
 
     private bool lerpingForward = true;
@@ -245,10 +241,6 @@ public class ClickableObject : MonoBehaviour
                         lerpCoroutine = StartCoroutine(LerpColorCoroutine());
                         //Debug.Log("Startlerping");
                     }
-                    if(spriteShapeRenderer != null)
-                    {
-                        StartCoroutine(LerpColorSpriteShapeCoroutine());
-                    }
                     if(spriteShapeRenderers.Count > 0 && lerpCoroutine == null)
                     {
                         lerpCoroutine = StartCoroutine(LerpColorSpriteShapeCoroutine());
@@ -261,4 +253,71 @@ public class ClickableObject : MonoBehaviour
 
     }
     
+    private Collider[] allColliders;
+    public bool isColliding()
+    {
+        Collider thisCollider = GetComponent<Collider>();
+
+        if (thisCollider == null)
+        {
+            Debug.LogError("No collider attached to this object.");
+            return false;
+        }
+
+        foreach (var otherCollider in allColliders)
+        {
+            // Skip checking against itself
+            if (otherCollider == thisCollider)
+                continue;
+
+            // Check if the other collider is in the specified layer mask
+            if (otherCollider.gameObject.layer != layerToCheck)
+                continue;
+
+            // Check if the colliders are intersecting
+            if (thisCollider.bounds.Intersects(otherCollider.bounds))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    IEnumerator LerpColorRed(float duration)
+    {
+        float timeElapsedRed = 0f;
+        float lerpDuration = 1f;
+        
+        while (timeElapsedRed < duration)
+        {        
+            
+            if(spriteRenderers.Count > 0)
+            {
+                yield return LerpColor(startColor, endColor3, lerpDuration);
+                yield return LerpColor(endColor3, startColor, lerpDuration);
+                timeElapsedRed += (lerpDuration *2);
+            }
+            else if(spriteShapeRenderers.Count > 0)
+            {
+                yield return LerpColorSpriteShape(startColor, endColor3, lerpDuration); // Lerp color from startColor to targetColor
+                yield return LerpColorSpriteShape(endColor3, startColor, lerpDuration); // Lerp color from targetColor to startColor
+                timeElapsedRed += (lerpDuration *2);
+            }
+            
+            lerpDuration -= 0.07f;
+            Debug.Log(timeElapsedRed);
+        }
+        Debug.Log("Done");
+        GetComponent<PuzzleObject>().ResetObject();
+    }
+
+    private void Update() {
+        /*
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("started");
+            StartCoroutine(LerpColorRed(15f));
+        }
+        */
+    }    
 }

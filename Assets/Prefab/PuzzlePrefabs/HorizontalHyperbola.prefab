@@ -56,7 +56,7 @@ SpriteShapeRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 448a32cd170e0344fa902b6d7a3e0367, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 975833953
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7647059, g: 0, b: 1, a: 0.29803923}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: 471a3f275f16af542ba6f31313fee917, type: 3}
   m_Sprites:
@@ -1161,17 +1161,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  layerToCheck: 2
   outlineObject: {fileID: 0}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 10
+  ld: {fileID: 0}
   spriteRenderers: []
-  spriteShapeRenderer: {fileID: 0}
   spriteShapeRenderers:
   - {fileID: 8425191634841804779}
   - {fileID: 8425191634228507408}
-  startColor: {r: 1, g: 1, b: 1, a: 1}
-  endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  startColor: {r: 0.7647059, g: 0, b: 1, a: 0.29803923}
+  endColor: {r: 0.7647059, g: 0, b: 1, a: 0.101960786}
+  endColor3: {r: 1, g: 0.5176471, b: 0.5176471, a: 1}
 --- !u!60 &8425191634228507410
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1262,7 +1264,7 @@ SpriteShapeRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 448a32cd170e0344fa902b6d7a3e0367, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1283,7 +1285,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 975833953
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7647059, g: 0, b: 1, a: 0.29803923}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: 471a3f275f16af542ba6f31313fee917, type: 3}
   m_Sprites:
@@ -2401,17 +2403,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  layerToCheck: 2
   outlineObject: {fileID: 0}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 10
+  ld: {fileID: 0}
   spriteRenderers: []
-  spriteShapeRenderer: {fileID: 0}
   spriteShapeRenderers:
   - {fileID: 8425191634841804779}
   - {fileID: 8425191634228507408}
-  startColor: {r: 1, g: 1, b: 1, a: 1}
-  endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  startColor: {r: 0.7647059, g: 0, b: 1, a: 0.29803923}
+  endColor: {r: 0.7647059, g: 0, b: 1, a: 0.101960786}
+  endColor3: {r: 1, g: 0.5176471, b: 0.5176471, a: 1}
 --- !u!1 &8425191635233430170
 GameObject:
   m_ObjectHideFlags: 0

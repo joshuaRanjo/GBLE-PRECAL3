@@ -1172,8 +1172,8 @@ SpriteShapeRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1521831867
-  m_SortingLayer: 8
+  m_SortingLayerID: 664191767
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Color: {r: 0, g: 0.288064, b: 1, a: 0.14901961}
   m_MaskInteraction: 0
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   allowParabola: 0
   allowHyperbola: 0
   puzzleType: 0
-  allowA: 1
+  allowA: 0
   allowB: 0
   allowH: 1
   allowK: 1
@@ -2497,10 +2497,10 @@ MonoBehaviour:
   minA: -4
   maxB: -99
   minB: -99
-  maxH: 9
-  minH: -9
-  maxK: 7
-  minK: 0
+  maxH: 7
+  minH: -8
+  maxK: 3
+  minK: -3
   simplifiedEllipse: 0
   puzzleObject: {fileID: 1481417732735890807}
   ceiling: 0
@@ -2544,17 +2544,18 @@ MonoBehaviour:
           m_StringArgument: ShowArrow
           m_BoolArgument: 0
         m_CallState: 2
+  layerToCheck: 2
   outlineObject: {fileID: 0}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 1024
   ld: {fileID: 0}
   spriteRenderers: []
-  spriteShapeRenderer: {fileID: 0}
   spriteShapeRenderers:
   - {fileID: 1409556580236499830}
   startColor: {r: 0, g: 0.28627452, b: 1, a: 0.07058824}
   endColor: {r: 0.14999998, g: 0.39166662, b: 1, a: 0.101960786}
+  endColor3: {r: 1, g: 0.5176471, b: 0.5176471, a: 1}
 --- !u!114 &521019636867687822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9347,14 +9348,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  levelIntro: Put the key point in its proper place! You'll get what I mean when
-    we start! ;D
+  levelIntro: This is a key shape. It has key points that should be placed on a reader
+    of the same color.
 --- !u!1001 &446121245116733270
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3816222877402189134}
+    m_TransformParent: {fileID: 3816222875811405346}
     m_Modifications:
     - target: {fileID: 2806288527309222496, guid: 7fc6b11c095c50743b764326c84d79f5, type: 3}
       propertyPath: fullConditionCount
@@ -9438,7 +9439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3371195069313650831, guid: 7fc6b11c095c50743b764326c84d79f5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3371195069313650831, guid: 7fc6b11c095c50743b764326c84d79f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9904,6 +9905,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5496e610b802b934ead07e779d0e9cb5, type: 3}
+--- !u!4 &3816222875811405346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5323645399328775863, guid: 5496e610b802b934ead07e779d0e9cb5, type: 3}
+  m_PrefabInstance: {fileID: 9012988408566841493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3816222877402189134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5323645398472052187, guid: 5496e610b802b934ead07e779d0e9cb5, type: 3}

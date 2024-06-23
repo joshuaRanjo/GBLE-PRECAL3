@@ -420,6 +420,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  layerToCheck: 2
   outlineObject: {fileID: 0}
   blockingLayer:
     serializedVersion: 2
@@ -428,10 +429,10 @@ MonoBehaviour:
   spriteRenderers:
   - {fileID: 5242478252228037227}
   - {fileID: 5242478251047603285}
-  spriteShapeRenderer: {fileID: 0}
   spriteShapeRenderers: []
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  endColor3: {r: 1, g: 0.5176471, b: 0.5176471, a: 1}
 --- !u!114 &7030817779154552722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6362,6 +6363,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
     - target: {fileID: 7728068509789832432, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728068509789832432, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 664191767
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728068509789832432, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
       propertyPath: m_Sprites.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -11064,6 +11073,14 @@ PrefabInstance:
     - target: {fileID: 7728068509789832437, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
       propertyPath: b
       value: 2.6457512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728068509789832437, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
+      propertyPath: allowH
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728068509789832437, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
+      propertyPath: allowK
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7728068509789832437, guid: 42cff38bb2db4cc46b9f3a018eca0506, type: 3}
       propertyPath: default_a

@@ -57,7 +57,7 @@ SpriteShapeRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 448a32cd170e0344fa902b6d7a3e0367, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,14 +75,14 @@ SpriteShapeRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 975833953
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.7921569, a: 0.29803923}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 0}
   m_Sprites:
-  - {fileID: 21300000, guid: 9f6bdeba05413784f810539c35671515, type: 3}
+  - {fileID: 21300000, guid: 6759c37b0a49ad8478a096dcf5770466, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -92,8 +92,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.00000011920929, y: -0.36439514, z: 0}
-    m_Extent: {x: 1.1415498, y: 0.6157016, z: 0}
+    m_Center: {x: 0.00000011920929, y: -0.79077363, z: 0}
+    m_Extent: {x: 1.6638577, y: 1.0420802, z: 0}
 --- !u!114 &8990136486438588921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,12 +241,13 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.25
   m_Points:
-  - {x: -0.9179209, y: -0.84367174}
-  - {x: -0.4740756, y: -0.23149122}
-  - {x: -0.049130585, y: -0.010935748}
-  - {x: 0.37762842, y: -0.1527588}
-  - {x: 0.9153211, y: -0.8394272}
-  - {x: 0.91792125, y: -0.84367234}
+  - {x: -1.4402288, y: -1.6964287}
+  - {x: -0.6926557, y: -0.4845458}
+  - {x: -0.25301442, y: -0.07259956}
+  - {x: 0.17367996, y: -0.040218126}
+  - {x: 0.72375655, y: -0.5266685}
+  - {x: 0.9179212, y: -0.84367234}
+  - {x: 1.4402292, y: -1.6964294}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -278,6 +279,7 @@ MonoBehaviour:
   allowH: 1
   allowK: 1
   allowOrientation: 0
+  inverseAB: 0
   a: -1
   b: 0
   h: 0
@@ -333,13 +335,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  layerToCheck: 2
   outlineObject: {fileID: 0}
   blockingLayer:
     serializedVersion: 2
     m_Bits: 0
+  ld: {fileID: 0}
   spriteRenderers: []
-  spriteShapeRenderer: {fileID: 8990136486438588920}
   spriteShapeRenderers:
   - {fileID: 8990136486438588920}
-  startColor: {r: 1, g: 1, b: 1, a: 1}
-  endColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  startColor: {r: 0, g: 1, b: 0.7921569, a: 0.29803923}
+  endColor: {r: 0, g: 1, b: 0.7921569, a: 0.101960786}
+  endColor3: {r: 1, g: 0.5176471, b: 0.5176471, a: 1}

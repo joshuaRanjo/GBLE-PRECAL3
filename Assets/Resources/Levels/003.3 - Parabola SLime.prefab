@@ -5418,7 +5418,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  levelIntro: Boing!
+  levelIntro: You've seen these slimes before sitting behind interference zones.
+    Now you can manipulate them too!
 --- !u!1 &7956570211239688120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5596,6 +5597,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5721665379898020451}
     m_Modifications:
+    - target: {fileID: 8146168410824758604, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
+      propertyPath: spriteShapeRenderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146168410824758604, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
+      propertyPath: spriteShapeRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146168410824758604, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
+      propertyPath: spriteShapeRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 5721665380514450502}
     - target: {fileID: 8146168410824758611, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -5649,6 +5662,11 @@ PrefabInstance:
 --- !u!4 &5721665380514450501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8146168410824758614, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
+  m_PrefabInstance: {fileID: 4497531814453254419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1971053207 &5721665380514450502 stripped
+SpriteShapeRenderer:
+  m_CorrespondingSourceObject: {fileID: 8146168410824758613, guid: 7abc41ac858775048b1c302f93c665e6, type: 3}
   m_PrefabInstance: {fileID: 4497531814453254419}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5064691267557124268

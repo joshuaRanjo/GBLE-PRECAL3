@@ -26,7 +26,6 @@ public class PointKeyScript : MonoBehaviour
         if(parentClickable != null)
         {
             selfClickable.spriteRenderers = parentClickable.spriteRenderers;
-            selfClickable.spriteShapeRenderer = parentClickable.spriteShapeRenderer;
             selfClickable.spriteShapeRenderers = parentClickable.spriteShapeRenderers;
 
             selfClickable.interaction = parentClickable.interaction;

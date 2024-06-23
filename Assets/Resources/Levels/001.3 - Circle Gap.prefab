@@ -4855,7 +4855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  levelIntro: Watch the hole! If only there was something big enough to fill it...
+  levelIntro: Watch the hole! Our light constructs can also serve as platforms
 --- !u!1001 &722183880374953006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4913,7 +4913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxA
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxH
@@ -4921,7 +4921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxK
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minA
@@ -4935,25 +4935,29 @@ PrefabInstance:
       propertyPath: minK
       value: -8
       objectReference: {fileID: 0}
+    - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: allowH
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 48093a965b43e4c4f92a5090503e61d7, type: 3}
+      objectReference: {fileID: 21300000, guid: c2b3cf237e073b544bc92703076681bd, type: 3}
     - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_SortingLayerID
-      value: 152059083
+      value: 975833953
       objectReference: {fileID: 0}
     - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: m_SortingLayerID
-      value: 152059083
+      value: 975833953
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}

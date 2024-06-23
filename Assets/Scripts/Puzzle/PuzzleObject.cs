@@ -25,6 +25,8 @@ public class PuzzleObject : LevelProp
 
     [SerializeField] private bool inverseAB = false;
 
+    
+
 
     [Header("Saved values")]
     [SerializeField] public float a;
@@ -67,11 +69,21 @@ public class PuzzleObject : LevelProp
     private bool inPuzzle = false;
     private bool precisionMode = false;
 
+    private bool atDefault = true;
+    private float lastValidA, lastValidB, lastValidH, lastValidK;
+
     [SerializeField] private LineRendererController2 lrController;
 
     private void LateUpdate() {
         h = Mathf.Round(puzzleObject.transform.localPosition.x *100) / 100;
         k = Mathf.Round(puzzleObject.transform.localPosition.y *100) / 100;
+
+        /*
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ResetObject();
+        }
+        */
     }
 
     private void OnEnable() {
@@ -80,6 +92,9 @@ public class PuzzleObject : LevelProp
         targetPosition = this.transform.position;
 
         EventManager.StartListening("ExitPuzzle",ExitPuzzle);
+
+        EventManager.StartListening("ExitPuzzle", CheckCollision);
+        EventManager.StartListening("EnterPuzzle", CheckCollision);
 
         EventManager.StartListening("SwitchSimplifiedEllipse",SwitchSimplifiedEllipse);
 
@@ -110,6 +125,11 @@ public class PuzzleObject : LevelProp
             maxB *= maxB;
             minB = 0.25f;
         }
+
+        lastValidA = a;
+        lastValidB = b;
+        lastValidH = h;
+        lastValidK = k;
 
         puzzleObject = this.gameObject;
     }
@@ -283,6 +303,8 @@ public class PuzzleObject : LevelProp
         }
         
     }
+
+
     public void ResetObject()
     {
         a = default_a;
@@ -290,6 +312,15 @@ public class PuzzleObject : LevelProp
         h = default_h;
         k = default_k;
 
+        UpdateObject();
+    }
+
+    public void ResetToLastValidState()
+    {
+        a = lastValidA;
+        b = lastValidB;
+        h = lastValidH;
+        k = lastValidK;
         UpdateObject();
     }
 
@@ -307,5 +338,10 @@ public class PuzzleObject : LevelProp
         {
             return  true;
         }
+    }
+
+    private void CheckCollision()
+    {
+        
     }
 }

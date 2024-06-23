@@ -118,7 +118,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 5088099001633542795}
   selectedCommands:
-  - {fileID: 7138120059816280308}
+  - {fileID: 7760125459650555060}
   variables:
   - {fileID: 2193064093598203452}
   - {fileID: 8438746091017902288}
@@ -1537,8 +1537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 1
-  storyText: I was activated when you clicked that circle-like-object, and you are
-    now in object manipulation mode.
+  storyText: I was activated when you clicked that circle-like light construct, and
+    you are now in object manipulation mode.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -8446,6 +8446,14 @@ PrefabInstance:
       value: StaticCircle
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979332902, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: startColor.a
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025996979332902, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: blockingLayer.m_Bits
+      value: 1032
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025996979332902, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: interaction.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -8483,11 +8491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxH
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: maxK
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minA
@@ -8495,14 +8503,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minH
-      value: -8
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: minK
-      value: -8
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
       propertyPath: allowA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025996979333081, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: default_a
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0014023781
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025997182548733, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 448a32cd170e0344fa902b6d7a3e0367, type: 2}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0014023781
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 162025998208978244, guid: d2f45b3e9f687d042a2a4c1b32556fe4, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
