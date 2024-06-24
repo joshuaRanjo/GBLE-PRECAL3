@@ -91,7 +91,7 @@ public class ParabolaRendererDef : MonoBehaviour
     public void UpdateLineSpriteShape(GameObject lineObject)
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
-        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation);
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation, puzzleObject.maxLineLength);
         points = AdjustLineLength(points, puzzleObject.maxLineLength);
 
         SpriteShapeController shape = lineObject.GetComponent<SpriteShapeController>();
@@ -124,11 +124,11 @@ public class ParabolaRendererDef : MonoBehaviour
     public void UpdateLineLineRenderer(GameObject lineObject)
     {
         ParabolaObject puzzleObject = lineObject.GetComponent<ParabolaObject>();
-        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation);
+        List<Vector3> points = GetParabolaPoints(puzzleObject.a, puzzleObject.xLimit, puzzleObject.yLimit, puzzleObject.orientation, puzzleObject.maxLineLength);
         points = AdjustLineLength(points, puzzleObject.maxLineLength);
     } 
     
-    public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY, bool orientation)
+    public List<Vector3> GetParabolaPoints(float a, float maxX, float maxY, bool orientation, float maxLength)
     {
         
         List<Vector3> points = new List<Vector3>();
@@ -193,8 +193,9 @@ public class ParabolaRendererDef : MonoBehaviour
         {
 
             float x,y;
-            if(isVertical){ x = 3; y = 0;}
-            else{ x = 0; y = 3;}
+            maxLength = maxLength/2;
+            if(isVertical){ x = 0; y = maxLength;}
+            else{ x = maxLength; y = 0;}
 
             points.Insert(0, new Vector3(-x,-y,0));
             points.Insert(1, new Vector3(x,y,0));

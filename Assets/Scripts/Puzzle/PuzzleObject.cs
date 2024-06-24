@@ -17,6 +17,9 @@ public class PuzzleObject : LevelProp
 
     [Header("LineData ScriptableObject")]
     [SerializeField] private LineData2 ldScriptableObject;
+
+    [Tooltip("True to allow for checking of terrain in object for resetting")]
+    [SerializeField] private bool checkForReset
     
     [SerializeField] private bool allowCircle, allowEllipse, allowParabola, allowHyperbola;
     [Tooltip("// True = interact with object, false = line creation")]
@@ -71,6 +74,8 @@ public class PuzzleObject : LevelProp
 
     private bool atDefault = true;
     private float lastValidA, lastValidB, lastValidH, lastValidK;
+    private ClickableObject clickableObject1;
+    private ClickableObject clickableObject2;
 
     [SerializeField] private LineRendererController2 lrController;
 
