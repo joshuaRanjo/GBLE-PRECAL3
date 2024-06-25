@@ -17,10 +17,10 @@ public class PuzzleObject : LevelProp
 
     [Header("LineData ScriptableObject")]
     [SerializeField] private LineData2 ldScriptableObject;
-
+/*
     [Tooltip("True to allow for checking of terrain in object for resetting")]
     [SerializeField] private bool checkForReset
-    
+*/
     [SerializeField] private bool allowCircle, allowEllipse, allowParabola, allowHyperbola;
     [Tooltip("// True = interact with object, false = line creation")]
     [SerializeField] public bool puzzleType; // True = interact with object, false = line creation

@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
     public void ReloadLevel()
     {
         EventManager.TriggerEvent("LevelReloaded");
+        EventManager.TriggerEvent("ExitPuzzle");
         levelManagerSO.ReloadLevel();
         fc.SetStringVariable("LevelMessage", levelManagerSO.currentLevelDescription);
     }

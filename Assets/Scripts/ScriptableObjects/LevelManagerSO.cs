@@ -54,6 +54,7 @@ public class LevelManagerSO: ScriptableObject
 
     public void ReloadLevel()
     {
+        Debug.Log("LevelReloaded");
         levelChangeEvent.Invoke();
     }
 

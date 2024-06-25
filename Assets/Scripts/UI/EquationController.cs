@@ -107,12 +107,16 @@ public class EquationController : MonoBehaviour
 
     private void ParabolaUpdate()
     {
+        if(lineDataScriptableObject.a < 0)
+        { aString = lineDataScriptableObject.a.ToString(); }
         if(lineDataScriptableObject.orientation)
-        {
-            equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )";
+        {// \\rain( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = 4(\\color{"+aColor+"}"  + aString + "\\color{#000000})( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )
+       
+            equationText.text = " \\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )";
         }
         else
-        {
+        { // \\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2} = 4(\\color{"+aColor+"}"  + aString + "\\color{#000000})( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )
+         
             //equationText.text = "\\rain y = {\\color{"+aColor+"}"  + lineDataScriptableObject.a + " \\color{#000000}( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2+\\color{"+kColor+"}"+ lineDataScriptableObject.k +"\\color{#000000}";
             equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )";
         }
@@ -166,7 +170,7 @@ public class EquationController : MonoBehaviour
 
     private string ConvertFloatToString(float value)
     {
-        if (value < 0)
+        if (value < 0 )
         {
             return "(" + value.ToString() + ")";
         }
