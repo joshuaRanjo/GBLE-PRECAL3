@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialPointerController : MonoBehaviour
 {
     public RectTransform circle;
+    public RectTransform circle2;
     public GameObject frame;
     private bool enabled = false;
 
@@ -38,8 +39,11 @@ public class TutorialPointerController : MonoBehaviour
             frame.SetActive(true);
         }
 
-        LeanTween.move(circle, new Vector3(-217,-70,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(250,400), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.move(circle, new Vector3(-40,90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(240,200), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle2, new Vector3(-650,90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle2, new Vector2(240,200), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightSlider()
@@ -49,8 +53,12 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-108,-70,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(250,400), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        
+        LeanTween.move(circle, new Vector3(70,90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(240,200), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle2, new Vector3(-540,90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle2, new Vector2(240,200), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightBackButton()
@@ -60,8 +68,11 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-5,260,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(130,195), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle2, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle, new Vector3(188 ,115,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(153,136), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightHelpButton()
@@ -71,7 +82,10 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-5,170,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle2, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle, new Vector3(192 ,60,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
         LeanTween.size(circle, new Vector2(130,130), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
@@ -82,8 +96,11 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-167,110,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(450,220), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle2, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+
+        LeanTween.move(circle, new Vector3(-294,90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(700, 235), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightChanges()
@@ -99,8 +116,10 @@ public class TutorialPointerController : MonoBehaviour
 
     private void Finish()
     {
+
+        LeanTween.move(circle2, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
         frame.transform.localPosition = new Vector2(-367,-14);
-        frame.SetActive(false);
+        //frame.SetActive(false);
     }
 
     private void StartTut()
