@@ -6,6 +6,8 @@ using UnityEngine;
 public class WeightScript : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [SerializeField] private bool checkForGround = true;
     private Transform parent;
     private Vector3 savedPosition;
     private bool inGround = false;
@@ -66,7 +68,7 @@ public class WeightScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision) {
 
-        if(collision.gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground") && checkForGround)
           { inGround = true;
             Debug.Log("ground inside");
                //Object is still in ground
@@ -96,7 +98,7 @@ public class WeightScript : MonoBehaviour
 
     IEnumerator ResetObject()
     {
-          yield return new WaitForSeconds(0.2f);
+          yield return new WaitForSeconds(3f);
        
         // Check if the condition is still true
         if (inGround)
