@@ -6429,6 +6429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equationText: {fileID: 5039355707025513534}
+  equationTextFloating: {fileID: 0}
   lineDataScriptableObject: {fileID: 11400000, guid: cdedd1e3e03dc4241aaf06927d2e4849, type: 2}
   isVertical: 1
 --- !u!114 &3169496844823449124
@@ -6680,8 +6681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5039355707025513535
 CanvasRenderer:
@@ -9937,7 +9938,7 @@ GameObject:
   - component: {fileID: 3781621607659035002}
   - component: {fileID: 1439784099295986105}
   m_Layer: 5
-  m_Name: Device Screen
+  m_Name: EquationBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

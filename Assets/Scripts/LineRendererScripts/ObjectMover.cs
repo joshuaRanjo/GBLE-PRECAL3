@@ -39,6 +39,7 @@ public class ObjectMover : MonoBehaviour
         //if(newObject.GetComponent<PuzzleObject>().conicType == 4)
         
         {
+            /*
             Vector3 currentPosition = newObject.transform.position;
 
             currentPosition.x = h;
@@ -46,7 +47,9 @@ public class ObjectMover : MonoBehaviour
             currentPosition.z = 0.1f;
             
             newObject.transform.localPosition = currentPosition;
-            
+            */
+            LeanTween.cancel(newObject);
+            LeanTween.move(newObject, new Vector3(h, k , 0), 0.01f).setEase(LeanTweenType.easeInOutQuad);
         }
         
         

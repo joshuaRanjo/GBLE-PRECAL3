@@ -9,6 +9,7 @@ public class EquationController : MonoBehaviour
 {
     [Header("Text Boxes")]
     [SerializeField] private TEXDraw equationText;
+    [SerializeField] private TEXDraw equationTextFloating;
 
     [Header("Line Data")]
     [SerializeField] private LineData2 lineDataScriptableObject;
@@ -19,6 +20,8 @@ public class EquationController : MonoBehaviour
     private string bColor = "#6D37A4";
     private string hColor = "#48A655";
     private string kColor = "#2582B7";
+
+    private string text;
 
     private bool inPuzzle = false;
 
@@ -103,6 +106,9 @@ public class EquationController : MonoBehaviour
                 Debug.Log("Equation controller: Equation Type not properly set equation controller");    
                 break;
         }
+
+        equationText.text = text;
+        equationTextFloating.text = text;
     }
 
     private void ParabolaUpdate()
@@ -112,13 +118,13 @@ public class EquationController : MonoBehaviour
         if(lineDataScriptableObject.orientation)
         {// \\rain( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = 4(\\color{"+aColor+"}"  + aString + "\\color{#000000})( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )
        
-            equationText.text = " \\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )";
+            text = " \\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )";
         }
         else
         { // \\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2} = 4(\\color{"+aColor+"}"  + aString + "\\color{#000000})( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )
          
             //equationText.text = "\\rain y = {\\color{"+aColor+"}"  + lineDataScriptableObject.a + " \\color{#000000}( x - \\color{"+hColor+"}" + lineDataScriptableObject.h + "\\color{#000000} )^2+\\color{"+kColor+"}"+ lineDataScriptableObject.k +"\\color{#000000}";
-            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )";
+            text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{4(\\color{"+aColor+"}"  + aString + "\\color{#000000})} = ( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )";
         }
         
     }
@@ -126,7 +132,7 @@ public class EquationController : MonoBehaviour
     private void CircleUpdate()
     {
         //Debug.Log("Equation Updated C");
-        equationText.text = "\\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2+( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = \\color{"+aColor+"}" + aString +"^2" + "\\color{#000000}";
+        text = "\\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2+( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = \\color{"+aColor+"}" + aString +"^2" + "\\color{#000000}";
     }
 
     private void EllipseUpdate()
@@ -134,11 +140,11 @@ public class EquationController : MonoBehaviour
         
         if(lineDataScriptableObject.simplifiedEllipse)
         {
-            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + aString +  "\\color{#000000}} + \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}} = 1";
+            text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + aString +  "\\color{#000000}} + \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}} = 1";
         }
         else
         {
-            equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + aString +  "\\color{#000000}^2} + \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}^2} = 1";
+            text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}"  + aString +  "\\color{#000000}^2} + \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}^2} = 1";
         }
     }
 
@@ -149,10 +155,10 @@ public class EquationController : MonoBehaviour
         {   
             if(lineDataScriptableObject.simplifiedEllipse)
             {
-                equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  aString + "\\color{#000000}} - \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}} = 1";
+                text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  aString + "\\color{#000000}} - \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}} = 1";
             }
             else{
-                equationText.text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  aString + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}^2} = 1";
+                text = "\\rain\\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" +  aString + "\\color{#000000}^2} - \\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" + bString + "\\color{#000000}^2} = 1";
             }
             
         }
@@ -160,10 +166,10 @@ public class EquationController : MonoBehaviour
         {
             if(lineDataScriptableObject.simplifiedEllipse)
             {
-                equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  bString + "\\color{#000000}} - \\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" + aString + "\\color{#000000}} = 1";
+                text = "\\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  bString + "\\color{#000000}} - \\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" + aString + "\\color{#000000}} = 1";
             }
             else{
-                equationText.text = "\\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  bString + "\\color{#000000}^2} - \\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" + aString + "\\color{#000000}^2} = 1";
+                text = "\\rain\\frac{( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2}{\\color{"+bColor+"}" +  bString + "\\color{#000000}^2} - \\frac{( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2}{\\color{"+aColor+"}" + aString + "\\color{#000000}^2} = 1";
             }
         }
     }
