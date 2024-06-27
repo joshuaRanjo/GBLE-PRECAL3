@@ -17,21 +17,30 @@ public class FloatingEquation : MonoBehaviour
     [SerializeField] private GameObject floatingEquation;
     [SerializeField] private CanvasGroup canvasGroup;
 
+    [SerializeField] private TEXDraw floatingTitle;
+    [SerializeField] private TEXDraw conieTitle;
+
+    private bool toggle = true;
+
     private float offsetX = 0;
     private float offsetY = 0;
+    private int quadrant = 0;
 
     private void OnEnable() {
         EventManager.StartListening("EnterPuzzle", EnterPuzzle);
         EventManager.StartListening("ExitPuzzle", ExitPuzzle);
+        EventManager.StartListening("LevelComplete", ToggleOn);
 
-        //ldScriptableObject.dataChangeEvent.AddListener(UpdateLocation);
+        ldScriptableObject.dataChangeEvent.AddListener(UpdateLocation);
     }
 
     private void OnDisable() {
         EventManager.StopListening("EnterPuzzle", EnterPuzzle);
         EventManager.StopListening("ExitPuzzle", ExitPuzzle);
 
-        //ldScriptableObject.dataChangeEvent.RemoveListener(UpdateLocation);
+        EventManager.StartListening("LevelComplete", ToggleOn);
+
+        ldScriptableObject.dataChangeEvent.RemoveListener(UpdateLocation);
     }
 
     private void UpdateOffsets()
@@ -43,63 +52,181 @@ public class FloatingEquation : MonoBehaviour
 
         offsetX = currentPositionX - h;
         offsetY = currentPositionY - k;
-        UpdateLocation();
+        //UpdateLocation();
+        float newX = Mathf.Clamp(offsetX + h, -6,6);
+        float newY = Mathf.Clamp(offsetY + k, -6,6);
+        LeanTween.cancel(floatingEquation);
+        LeanTween.move(floatingEquation, new Vector3(newX, newY , 0), 0.3f).setEase(LeanTweenType.easeInOutQuad);
+    }
+
+    public void ToggleOn()
+    {
+        toggle = true;
+    }
+
+    public void ToggleOff()
+    {
+        toggle = false;
     }
 
     private void UpdateLocation()
     {
-        float newX = ldScriptableObject.h;
-        float newY = ldScriptableObject.k;
-        float currentPositionX = floatingEquation.transform.position.x;
-        float currentPositionY = floatingEquation.transform.position.y;
+        if(toggle)
+        {
 
-        if(newX > 7.5f && currentPositionX > 5.5f)
-            offsetX = -5f;
-        if(newY > 7.5f && currentPositionY > 5.5f)
-            offsetY = -3f;
-        if(newX < -7.5f && currentPositionX < -5.5f)
-            offsetX = 5f;
-        if(newY < -7.5f && currentPositionY < -5.5f)
-            offsetY = 3f;
+        
+            float h = ldScriptableObject.h;
+            float k = ldScriptableObject.k;
+            float currentPositionX = floatingEquation.transform.position.x;
+            float currentPositionY = floatingEquation.transform.position.y;
 
-        newX += offsetX; newY += offsetY;
+            float newX = 0;
+            float newY = 0;
+            /*
+            if(newX > 7.5f && currentPositionX > 5.5f)
+                offsetX = -5f;
+            if(newY > 7.5f && currentPositionY > 5.5f)
+                offsetY = -3f;
+            if(newX < -7.5f && currentPositionX < -5.5f)
+                offsetX = 5f;
+            if(newY < -7.5f && currentPositionY < -5.5f)
+                offsetY = 3f;
+            */
+            int newQuadrant=0;
+            if(h < 0 )
+            {
+                if(k < 0)
+                {
+                    newQuadrant = 3;
+                }
+                else 
+                {
+                    newQuadrant = 2;
+                }
+            }
+            else
+            {
+                if(k < 0)
+                {
+                    newQuadrant = 1;
+                }
+                else
+                {
+                    newQuadrant = 4;
+                }
+            }
 
-        newX = Mathf.Clamp(newX, -6,6);
-        newY = Mathf.Clamp(newY, -6,6);
+            if(newQuadrant != quadrant)
+            {
+                Debug.Log("New Quadrant");
+                quadrant = newQuadrant;
+                switch (quadrant)
+                {
+                    
+                    case 1:
+                        newX = -4f; newY = 4f;
+                        break;
+                    case 2:
+                        newX = 4f; newY = -4f;
+                        break;   
+                    case 3:
+                        newX = 4f; newY = 4f;
+                        break;
+                    case 4:
+                        newX = -4f; newY = -4f;
+                        break;    
+                    default:
+                        break;
+                }
+
+            // newX = Mathf.Clamp(newX, -6,6);
+            // newY = Mathf.Clamp(newY, -6,6);
 
 
-        LeanTween.cancel(floatingEquation);
-        LeanTween.move(floatingEquation, new Vector3(newX, newY , 0), 0.1f).setEase(LeanTweenType.easeInOutQuad);
+                LeanTween.cancel(floatingEquation);
+                LeanTween.move(floatingEquation, new Vector3(newX, newY , 0), 0.3f).setEase(LeanTweenType.easeInOutQuad);
+            }
+        }
+        //newX += offsetX; newY += offsetY;
+
+        
     }
 
     private void EnterPuzzle()
     {
-        float h = ldScriptableObject.h;
-        float k = ldScriptableObject.k;
+        if(toggle)
+        {
+            
+        
+            float h = ldScriptableObject.h;
+            float k = ldScriptableObject.k;
 
-        offsetX = 5f;
-        offsetY = 3f;
+            float posX = -4f;
+            float posY = -3f;
 
-        if(h > 0)
-            offsetX = -5f;
-        if(k > 0)
-            offsetY = -3f;
-
-        if(h > 7.5f)
-            offsetX = -5f;
-        if(k > 7.5f)
-            offsetY = -3f;
-        if(h < -7.5f)
             offsetX = 5f;
-        if(k < -7.5f)
             offsetY = 3f;
 
-        floatingEquation.transform.position = new Vector3(h+offsetX, k+offsetY, 0);
-        LeanTween.alphaCanvas(canvasGroup, 1f, 0.3f);
+            if(h < 0 )
+            {
+                posX = 4;
+                if(k < 0)
+                {
+                    posY = 4f;
+                    quadrant = 3;
+                }
+                else
+                {
+                    posY = -4f;
+                    quadrant = 2;
+                }
+            }
+            if(h > 0 )
+            {
+                posX = -4;
+                if(k < 0)
+                {
+                    posY = 4f;
+                    quadrant = 1;
+                }
+                else
+                {
+                    posY = -4f;
+                    quadrant = 4;
+                }
+            }
+
+
+            floatingEquation.transform.position = new Vector3(posX,posY ,0);
+            LeanTween.alphaCanvas(canvasGroup, 1f, 0.3f);
+        }
+
+        switch(ldScriptableObject.conicType)
+        {
+            case 1:
+                conieTitle.text = "\\cmbold Equation of the Circle\\\\ \\tiny \\cmunso Standard Form";
+                floatingTitle.text = "\\cmbold Equation of the Circle\\\\ \\tiny \\cmunso Standard Form";
+                break;
+            case 2:
+                conieTitle.text = "\\cmbold Equation of the Ellipse\\\\ \\tiny \\cmunso Standard Form";
+                floatingTitle.text = "\\cmbold Equation of the Ellipse\\\\ \\tiny \\cmunso Standard Form";
+                break;
+            case 3:
+                conieTitle.text = "\\cmbold Equation of the Parabola\\\\ \\tiny \\cmunso Standard Form";
+                floatingTitle.text = "\\cmbold Equation of the Parabola\\\\ \\tiny \\cmunso Standard Form";
+                break;
+            case 4:
+                conieTitle.text = "\\cmbold Equation of the Hyperbola\\\\ \\tiny \\cmunso Standard Form";
+                floatingTitle.text = "\\cmbold Equation of the Hyperbola\\\\ \\tiny \\cmunso Standard Form";
+                break;
+            default:
+                break;
+        }
     }
 
     private void ExitPuzzle()
     {
         LeanTween.alphaCanvas(canvasGroup, 0f, 0.3f);
+        conieTitle.text = "";
     }
 }

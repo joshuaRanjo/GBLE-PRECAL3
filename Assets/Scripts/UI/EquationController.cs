@@ -107,8 +107,8 @@ public class EquationController : MonoBehaviour
                 break;
         }
 
-        equationText.text = text;
-        equationTextFloating.text = text;
+        equationText.text = text.Replace("\\rain","\\cmbold");
+        equationTextFloating.text = text.Replace("\\rain","\\cmbold");
     }
 
     private void ParabolaUpdate()

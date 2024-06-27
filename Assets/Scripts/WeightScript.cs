@@ -7,12 +7,17 @@ public class WeightScript : MonoBehaviour
 {
     // Start is called before the first frame update
     private Transform parent;
+    private Vector3 savedPosition;
     private bool inGround = false;
 
     private Coroutine resetCoroutine;
 
     private void Start() {
         parent = transform.parent;
+    }
+
+    private void OnEnable() {
+        savedPosition = transform.position;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -60,11 +65,14 @@ public class WeightScript : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
-               if(collision.gameObject.CompareTag("Ground"))
-          {
+
+        if(collision.gameObject.CompareTag("Ground"))
+          { inGround = true;
+            Debug.Log("ground inside");
                //Object is still in ground
-               resetCoroutine = StartCoroutine(ResetObject());
-               inGround = true;
+               if(resetCoroutine == null)
+                resetCoroutine = StartCoroutine(ResetObject());
+              
               // Debug.Log("Object still in ground");
           } 
     }
@@ -76,7 +84,12 @@ public class WeightScript : MonoBehaviour
                //Object left ground
                inGround = false;
                if(resetCoroutine != null)
+               {
                     StopCoroutine(resetCoroutine);
+                    resetCoroutine = null;
+               }
+                    
+
                //Debug.Log("Object left ground");
           } 
     }
@@ -84,12 +97,12 @@ public class WeightScript : MonoBehaviour
     IEnumerator ResetObject()
     {
           yield return new WaitForSeconds(0.2f);
-
+       
         // Check if the condition is still true
         if (inGround)
         {
-           //Reseting object
-            
+             transform.position = savedPosition;
+            resetCoroutine = null; 
         }
 
     }

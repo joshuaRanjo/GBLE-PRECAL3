@@ -38,8 +38,8 @@ public class TutorialPointerController : MonoBehaviour
             frame.SetActive(true);
         }
 
-        LeanTween.move(circle, new Vector3(-217,-70,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(250,400), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.move(circle, new Vector3(-215,-90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(263,384), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightSlider()
@@ -49,8 +49,8 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-108,-70,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(250,400), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.move(circle, new Vector3(-100,-90,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(200,380), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightBackButton()
@@ -82,8 +82,8 @@ public class TutorialPointerController : MonoBehaviour
             enabled = true;
             frame.SetActive(true);
         }
-        LeanTween.move(circle, new Vector3(-167,110,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        LeanTween.size(circle, new Vector2(450,220), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.move(circle, new Vector3(-167,100,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        LeanTween.size(circle, new Vector2(470,260), 0.5f).setEase(LeanTweenType.easeInOutQuad);
     }
 
     private void HighlightChanges()
