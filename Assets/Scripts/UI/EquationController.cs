@@ -109,6 +109,11 @@ public class EquationController : MonoBehaviour
 
         equationText.text = text.Replace("\\rain","\\cmbold");
         equationTextFloating.text = text.Replace("\\rain","\\cmbold");
+        if(lineDataScriptableObject.conicType == 1)
+        {
+             equationText.text = "\\fontsize{15pt} " + text.Replace("\\rain","\\cmbold");
+             equationTextFloating.text = "\\fontsize{15pt} " + text.Replace("\\rain","\\cmbold");
+        }
     }
 
     private void ParabolaUpdate()
