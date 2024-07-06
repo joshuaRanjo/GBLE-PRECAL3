@@ -118,7 +118,8 @@ public class TutorialPointerController : MonoBehaviour
     {
 
         LeanTween.move(circle2, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
-        frame.transform.localPosition = new Vector2(-367,-14);
+        LeanTween.move(circle, new Vector3(-200,-50,0), 0.5f).setEase(LeanTweenType.easeInOutQuad);
+        
         //frame.SetActive(false);
     }
 
