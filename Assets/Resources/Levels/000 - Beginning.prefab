@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7138120059816280308}
   - component: {fileID: 3358251664438713248}
   - component: {fileID: 4220251609372214337}
+  - component: {fileID: 4135873220118636438}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -115,8 +116,10 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 5088099001633542795}
+  selectedCommands:
+  - {fileID: 4135873220118636438}
   variables:
   - {fileID: 2193064093598203452}
   - {fileID: 8438746091017902288}
@@ -792,6 +795,7 @@ MonoBehaviour:
   - {fileID: 5982903757572972416}
   - {fileID: 7414172574132775493}
   - {fileID: 4220251609372214337}
+  - {fileID: 4135873220118636438}
   - {fileID: 7839249449881607052}
   suppressAllAutoSelections: 0
 --- !u!114 &8438746091017902288
@@ -1590,7 +1594,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 26
   indentLevel: 1
-  storyText: Now change h and k to move that circle out of the way! Good luck!
+  storyText: 'Now change h and k to move that circle out of the way! '
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &4135873220118636438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322746946554606629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 27
+  indentLevel: 1
+  storyText: Good luck getting through the lab!
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1924,7 +1955,7 @@ MonoBehaviour:
     width: 0
     height: 0
   selectedBlocks:
-  - {fileID: 8924175962324600822}
+  - {fileID: 7695845264450331370}
   selectedCommands: []
   variables:
   - {fileID: 1011761453423283917}
@@ -1953,7 +1984,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 310.90424
-    y: 211.86307
+    y: 213.23293
     width: 109.17806
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
