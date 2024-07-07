@@ -126,7 +126,8 @@ public class EquationController : MonoBehaviour
     private void CircleUpdate()
     {
         //Debug.Log("Equation Updated C");
-        equationText.text = "\\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2+( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = \\color{"+aColor+"}" + aString +"^2" + "\\color{#000000}";
+        //equationText.text = "\\rain( x - \\color{"+hColor+"}" + hString + "\\color{#000000} )^2+( y - \\color{"+kColor+"}" + kString + "\\color{#000000} )^2 = \\color{"+aColor+"}" + aString +"^2" + "\\color{#000000}";
+        equationText.text = "\\fontsize{47.8}( x - \\link[InputH]{\\vcenter by 1em {\\kern1.5em}} )^2+( y - \\link[InputK]{\\vcenter by 1em {\\kern1.5em}} )^2 =\\link[InputA]{\\vcenter by 1em {\\kern2em}}}";    
     }
 
     private void EllipseUpdate()
