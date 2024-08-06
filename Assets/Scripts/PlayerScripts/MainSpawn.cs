@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 
+/// Player character is moved to this objects location on game startup or when
+/// entering the main menu
+/// 
+/// </summary>
 public class MainSpawn : MonoBehaviour
 {
     public Color gizmoColor = Color.red;

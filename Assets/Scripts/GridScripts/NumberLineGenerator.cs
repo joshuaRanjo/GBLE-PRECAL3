@@ -1,5 +1,12 @@
 using UnityEngine;
 using TMPro;
+
+/// <summary>
+/// 
+/// On start, creates numbers in the number line with the number prefab
+/// The positions of the numbers can be modified by setting on offset
+/// 
+/// </summary>
 public class NumberLineGenerator : MonoBehaviour
 {
     public GameObject numberPrefab;

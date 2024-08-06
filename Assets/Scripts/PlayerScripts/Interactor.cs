@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// 
+/// Handles triggering interactable objects
+/// 
+/// </summary>
+
+
 public class Interactor : MonoBehaviour
 {
 

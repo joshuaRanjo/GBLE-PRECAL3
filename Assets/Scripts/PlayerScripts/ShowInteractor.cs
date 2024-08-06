@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 
+/// Shows the sprite usually the input prompt "E" when player enters the trigger
+/// 
+/// </summary>
 public class ShowInteractor : MonoBehaviour
 {
     // Start is called before the first frame update

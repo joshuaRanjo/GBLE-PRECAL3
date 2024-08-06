@@ -1,5 +1,11 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+/// <summary>
+/// 
+///  Creates a second tilemap on the scene
+///  The second tilemap only has its Composite Collider setup with Polygon type geometry
+///  and is used as the collider to detect if objects are inside ground objects
+/// </summary>
 public class GroundDoublerScript : MonoBehaviour
 {
     public bool duplicateBool = false;

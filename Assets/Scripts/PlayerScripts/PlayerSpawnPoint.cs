@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+///  Used in the PlayerSpawnPoint prefab
+///  
+///  When prefab is enabled, player character is moved to the objects location
+/// 
+/// </summary>
 public class PlayerSpawnPoint : MonoBehaviour
 {
     public Color gizmoColor = Color.red;
